@@ -49,7 +49,8 @@ src/
 
 >_"Estructura inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python 🧭✨."_
 
-</ br>
+<br />
+
 ---
 
 ## ¿Quién está detrás de este proyecto? 🌷
