@@ -1,6 +1,6 @@
 # Wellness Matcher CLI 🌱🧘‍♀️ 
 
-**Wellness Matcher**  es una aplicación de línea de comandos (CLI) escrita en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI.
+**Wellness Matcher** es una aplicación de línea de comandos (CLI) escrita en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI.
 
 ---
 
@@ -18,11 +18,11 @@
 
 ## 🗂️ Estructura del proyecto
 
-Diseñé la siguiente estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar.
+Diseñé así la estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar:
 
 ``` 
 .gitignore
-main.py                        # llama a src/app.py
+main.py                        
 readme.md
 requirements.txt
 src/
@@ -30,7 +30,7 @@ src/
 │   └── constants.py           # rutas de los JSON, texto base, tags por default
 │
 ├── controllers/
-│   └── match_controller.py    # lógica de matching (tu match-case 💖)
+│   └── match_controller.py    # lógica de matching
 │
 ├── data/
 │   ├── db.py                  # leer/escribir usuarios y recursos
