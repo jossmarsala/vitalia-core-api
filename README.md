@@ -17,7 +17,7 @@
 
 ## 🗂️ Estructura del proyecto
 
-La siguiente estructura fué diseñada con el objetivo mantener el código limpio, organizado y fácil de escalar. Está inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python. 🧭✨
+Diseñé la siguiente estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar.
 
 ``` 
 .gitignore
@@ -46,6 +46,8 @@ src/
 ├── app.py                     # tu aplicación principal (funciones, flujo)
 └── __init__.py
 ``` 
+
+>_"Inspirada las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python 🧭✨."_
 
 ---
 
