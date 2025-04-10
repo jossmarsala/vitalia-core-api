@@ -25,4 +25,4 @@ Wellness Matcher  es una aplicación de línea de comandos (CLI) escrita en Pyth
 🌐 [@jossmarsala](https://github.com/jossmarsala)  
 📬 Contacto: marsalahjosefina@gmail.com
 
-> _"Proyecto desarrollado con `python`, y mucha intención <3"_ 
+> _"Proyecto desarrollado con `python` y mucha intención <3"_ 
