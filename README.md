@@ -22,7 +22,7 @@ Wellness Matcher  es una aplicación de línea de comandos (CLI) escrita en Pyth
 👩‍💻 Mi nombre es **Josefina Marsala**  
 💼 Entusiasta del bienestar digital y el diseño con propósito. Este proyecto forma parte de mi formación en Python, y es la base para una futura API de recomendaciones personalizadas integradas con front-end y bases de datos reales.
 
-🌐 [@jossmarsala](https://github.com/jossmarsala)  
-📬 Contacto: marsalahjosefina@gmail.com
+  - [@jossmarsala](https://github.com/jossmarsala)  
+  - Contacto: marsalahjosefina@gmail.com
 
 > _"Proyecto desarrollado con `python` y mucha intención <3"_ 
