@@ -10,7 +10,7 @@ Wellness Matcher  es una aplicación de línea de comandos (CLI) escrita en Pyth
 
 | Recurso      | ¿Para qué fue utilizado?        | 
 |:--------------:|:------------------|
-| Python 3.13+ | Lenguaje base del proyecto | 
+| **Python 3.13+** | Lenguaje base del proyecto | 
 | `questionary` | Mejoró la experiencia de usuario al completar el formulario |
 | `rich` | Embelleció el formato y la apariencia del código |
 | `json (built-in)`	| Para almacenar y persistir los datos de usuarios, preferencias y recursos sin una base de datos externa |
