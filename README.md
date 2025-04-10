@@ -12,6 +12,7 @@
 | `questionary` | Mejoró la experiencia de usuario al completar el formulario |
 | `rich` | Embelleció el formato y la apariencia del código |
 | `json (built-in)`	| Para almacenar y persistir los datos de usuarios, preferencias y recursos sin una base de datos externa |
+<br />
 
 ---
 
@@ -48,7 +49,6 @@ src/
 ``` 
 
 >_"Estructura inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python 🧭✨."_
-
 <br />
 
 ---
