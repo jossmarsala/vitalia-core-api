@@ -20,25 +20,31 @@
 La siguiente estructura fué diseñada con el objetivo mantener el código limpio, organizado y fácil de escalar. Está inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python. 🧭✨
 
 ``` 
-wellness-matcher/
-├── matcher/               # Código fuente principal
-│   ├── cli.py             # Interfaz (questionary)
-│   ├── core.py            # Lógica principal
-│   ├── models.py          # Clases
-│   ├── utils.py           # Funciones auxiliares
-│   └── database.py        # Lectura/escritura JSON
+.gitignore
+main.py                        # llama a src/app.py
+readme.md
+requirements.txt
+src/
+├── config/
+│   └── constants.py           # rutas de los JSON, texto base, tags por default
 │
-├── data/                  # Datos persistentes
-│   ├── users.json
+├── controllers/
+│   └── match_controller.py    # lógica de matching (tu match-case 💖)
+│
+├── data/
+│   ├── db.py                  # leer/escribir usuarios y recursos
+│   └── users.json
 │   └── resources.json
 │
-├── tests/                 # Pruebas unitarias
-│   └── ...
+├── utils/
+│   └── cli_helpers.py         # estilos para questionary/rich
 │
-├── main.py                # Punto de entrada
-├── requirements.txt       # Dependencias
-├── README.md              # Documentación aesthetic
-└── .gitignore             # Archivos a ignorar
+├── models/
+│   └── user.py
+│   └── resource.py
+│
+├── app.py                     # tu aplicación principal (funciones, flujo)
+└── __init__.py
 ``` 
 
 ---
