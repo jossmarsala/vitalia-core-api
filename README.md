@@ -19,7 +19,7 @@
 
 La siguiente estructura fué diseñada con el objetivo mantener el código limpio, organizado y fácil de escalar. Está inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python. 🧭✨
 
-...
+``` 
 wellness-matcher/
 ├── matcher/               # Código fuente principal
 │   ├── cli.py             # Interfaz (questionary)
@@ -39,7 +39,7 @@ wellness-matcher/
 ├── requirements.txt       # Dependencias
 ├── README.md              # Documentación aesthetic
 └── .gitignore             # Archivos a ignorar
-...
+``` 
 
 ---
 
