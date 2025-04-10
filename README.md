@@ -17,7 +17,7 @@ Wellness Matcher  es una aplicación de línea de comandos (CLI) escrita en Pyth
 
 ---
 
-## ¿Quién está detrás de este proyecto? 
+## ¿Quién está detrás de este proyecto? 🌷
 
 👩‍💻 Mi nombre es **Josefina Marsala**  
 💼 Entusiasta del bienestar digital y el diseño con propósito. Este proyecto forma parte de mi formación en Python, y es la base para una futura API de recomendaciones personalizadas integradas con front-end y bases de datos reales.
