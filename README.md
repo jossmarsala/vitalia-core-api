@@ -15,6 +15,34 @@
 
 ---
 
+## 🗂️ Estructura del proyecto
+
+La siguiente estructura fué diseñada con el objetivo mantener el código limpio, organizado y fácil de escalar. Está inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python. 🧭✨
+
+´
+wellness-matcher/
+├── matcher/               # Código fuente principal
+│   ├── cli.py             # Interfaz (questionary)
+│   ├── core.py            # Lógica principal
+│   ├── models.py          # Clases
+│   ├── utils.py           # Funciones auxiliares
+│   └── database.py        # Lectura/escritura JSON
+│
+├── data/                  # Datos persistentes
+│   ├── users.json
+│   └── resources.json
+│
+├── tests/                 # Pruebas unitarias
+│   └── ...
+│
+├── main.py                # Punto de entrada
+├── requirements.txt       # Dependencias
+├── README.md              # Documentación aesthetic
+└── .gitignore             # Archivos a ignorar
+´
+
+---
+
 ## ¿Quién está detrás de este proyecto? 🌷
 
 👩‍💻 Mi nombre es **Josefina Marsala**  
