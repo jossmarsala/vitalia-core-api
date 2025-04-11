@@ -1,3 +1,19 @@
 [
-  {"email": "joss@example.com", "preferencias": ["vegano"]}
-]
+  {
+  "credential": "aaaa0000",
+  "data": {
+    "name": "Josefina Marsala",
+    "dailyRoutine": "Tengo tiempo libre moderado",
+    "diet": "Omnívora",
+    "disability": "No",
+    "lifestyle": "Soy una persona centrada en el equilibrio personal",
+    "obstacles": [
+        "Falta de tiempo",
+        "Niveles altos de autoexigencia"
+      ],
+    "physicalActivity": "En transición",
+    "restrictions": "Ninguna restricción",
+    "sleepQuality": "Duermo más de 7 horas por noche",
+    "stressLevel": "Bajo",
+    "wellbeingGoals": "Aumentar mi calidad de vida"
+    }}]
