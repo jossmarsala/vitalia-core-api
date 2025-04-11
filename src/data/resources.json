@@ -1,3 +1,7 @@
 [
-  {"id": 1, "tipo": "dieta", "etiquetas": ["vegano", "energía"]}
-]
+  {
+    "article-alimentacion-consciente": {
+      "lifestyle": "Soy entusiasta del fitness y la vida saludable",
+      "stressLevel": "Alto",
+      "wellbeingGoals": "Mejorar mi calidad de vida"
+    }}]
