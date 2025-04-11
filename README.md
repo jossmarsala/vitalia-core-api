@@ -38,7 +38,7 @@ wellness-matcher/
 │
 │   ├── controllers/
 │   │   ├── __init__.py
-│   │   └── match_controller.py
+│   │   └── menu_controller.py
 │
 │   ├── data/
 │   │   ├── __init__.py
@@ -53,7 +53,7 @@ wellness-matcher/
 │
 │   ├── services/           
 │   │   ├── __init__.py
-│   │   └── recommender.py  
+│   │   └── matcher.py  
 │
 │   ├── utils/
 │   │   ├── __init__.py
