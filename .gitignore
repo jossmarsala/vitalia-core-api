@@ -1,0 +1,26 @@
+# .gitignore @jossmarsala's template <3
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Entornos de desarollo
+.env
+.venv/
+venv/
+ENV/
+env/
+*.env
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Poetry
+poetry.lock
+
