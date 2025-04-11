@@ -5,6 +5,7 @@ description = "CLI tool that helps match wellness resources to user preferences 
 authors = [
     {name = "jossmarsala", email = "marsalahjosefina@gmail.com"}
 ]
+package-mode = false
 license = {text = "MIT License"}
 readme = "README.md"
 requires-python = ">3.10"
@@ -12,8 +13,6 @@ dependencies = [
     "questionary>=2.0.0",
     "rich>=13.7.0"
 ]
-
-package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
