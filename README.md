@@ -21,31 +21,45 @@
 Diseñé así la estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar:
 
 ``` 
-.gitignore
-main.py                        
-readme.md
-requirements.txt
-src/
-├── config/
-│   └── constants.py           # rutas de los JSON, texto base, tags por default
+wellness-matcher/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── pyproject.toml          ← opcional, para herramientas modernas
+├── main.py                 ← punto de entrada
+├── src/
+│   ├── __init__.py
+│   ├── app.py              ← función run_app
 │
-├── controllers/
-│   └── match_controller.py    # lógica de matching
+│   ├── config/
+│   │   ├── __init__.py
+│   │   └── settings.py     ← configuración general (como dotenv o constantes)
 │
-├── data/
-│   ├── db.py                  # leer/escribir usuarios y recursos
-│   └── users.json
-│   └── resources.json
+│   ├── controllers/
+│   │   ├── __init__.py
+│   │   └── match_controller.py
 │
-├── utils/
-│   └── cli_helpers.py         # estilos para questionary/rich
+│   ├── data/
+│   │   ├── __init__.py
+│   │   ├── db.py
+│   │   ├── resources.json
+│   │   └── users.json
 │
-├── models/
-│   └── user.py
-│   └── resource.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   └── resource.py
 │
-├── app.py                     # tu aplicación principal (funciones, flujo)
-└── __init__.py
+│   ├── services/           ← lógica intermedia entre controladores y datos
+│   │   ├── __init__.py
+│   │   └── recommender.py  ← ejemplo de motor de recomendaciones
+│
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── cli_helpers.py
+│   │   └── decorators.py   ← decoradores útiles, si los usás
+
 ``` 
 
 >_Estructura inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad Python 🧭✨._
