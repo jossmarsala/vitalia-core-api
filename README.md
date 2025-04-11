@@ -26,15 +26,15 @@ wellness-matcher/
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
-├── pyproject.toml          ← opcional, para herramientas modernas
-├── main.py                 ← punto de entrada
+├── pyproject.toml          
+├── main.py                 
 ├── src/
 │   ├── __init__.py
-│   ├── app.py              ← función run_app
+│   ├── app.py              
 │
 │   ├── config/
 │   │   ├── __init__.py
-│   │   └── settings.py     ← configuración general (como dotenv o constantes)
+│   │   └── settings.py     
 │
 │   ├── controllers/
 │   │   ├── __init__.py
@@ -51,14 +51,14 @@ wellness-matcher/
 │   │   ├── user.py
 │   │   └── resource.py
 │
-│   ├── services/           ← lógica intermedia entre controladores y datos
+│   ├── services/           
 │   │   ├── __init__.py
-│   │   └── recommender.py  ← ejemplo de motor de recomendaciones
+│   │   └── recommender.py  
 │
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── cli_helpers.py
-│   │   └── decorators.py   ← decoradores útiles, si los usás
+│   │   └── decorators.py 
 
 ``` 
 
