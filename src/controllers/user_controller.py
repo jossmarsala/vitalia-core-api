@@ -16,7 +16,7 @@ def create_user() -> list :
 
         if username and username.isalnum():
             break
-        clear_console()
+
         print("[bold red]Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
         continue
 
@@ -26,7 +26,6 @@ def create_user() -> list :
         if pwd and len(pwd) > 7:
             break
         
-        clear_console()
         print("[bold red]Tu contraseña debe tener más de 8 caracteres, intentalo de nuevo.")
         continue
 
@@ -136,10 +135,10 @@ def create_user() -> list :
     ).ask()
 
     user = {
-        "username": username,
+        "username": username.lower(),
         "password": pwd,
         "data": {
-            "name": name,
+            "name": name.title(),
             "daily_routine": daily_routine,
             "diet": diet,
             "disability": disability,
