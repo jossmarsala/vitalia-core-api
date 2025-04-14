@@ -27,7 +27,10 @@ wellness-matcher/
 ├── README.md
 ├── requirements.txt
 ├── pyproject.toml          
-├── main.py                 
+├── main.py
+├── output_json/
+│   ├── users.json
+│   ├── resources.json
 ├── src/
 │   ├── __init__.py
 │   ├── app.py              
@@ -38,13 +41,12 @@ wellness-matcher/
 │
 │   ├── controllers/
 │   │   ├── __init__.py
+│   │   ├── user_controller.py
 │   │   └── menu_controller.py
 │
 │   ├── data/
 │   │   ├── __init__.py
-│   │   ├── db.py
-│   │   ├── resources.json
-│   │   └── users.json
+│   │   └── db.py
 │
 │   ├── models/
 │   │   ├── __init__.py
@@ -58,7 +60,7 @@ wellness-matcher/
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── cli_helpers.py
-│   │   └── decorators.py 
+│   │   └── file_helpers.py 
 
 ``` 
 
