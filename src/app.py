@@ -7,6 +7,7 @@ from questionary import select, confirm
 
 
 def run_app():
+
     clear_console()
 
     while True:

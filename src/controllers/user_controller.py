@@ -1,29 +1,32 @@
 # Lógica de creación de usuario y formulario
 
-from questionary import text, password, select, checkbox
+from questionary import text, select, checkbox, password
 from rich import print 
 # from rich.progress import track
 from src.utils.cli_helpers import clear_console
 from src.data import db
+from src.controllers.menu_controller import check_preferences
+import time
 
 def create_user() -> list :
     print("[bold]¡Comencemos a crear tu usuario 🌷!")
 
-    username = text("Crea un nombre de usuario").ask()
-        
-    while username.isalnum() == False:
-        clear_console()
-        print("Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
+    while True:
         username = text("Crea un nombre de usuario").ask()
-
-    password = password("Crea una contraseña").ask()
-
-    confirm_password = password("Confirma la contraseña").ask()
-
-    while confirm_password != password:
+        if username and username.isalnum():
+            break
         clear_console()
-        print("Las contraseñas no coinciden.")
+        print("[bold red]Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
+        continue
+
+    pwd = password("Crea una contraseña").ask()
+
+    while True:
         confirm_password = password("Confirma la contraseña").ask()
+        if confirm_password == pwd:
+            break
+        else:
+            print("[bold red]Las contraseñas no coinciden.")
 
     name = text("¿Cómo te llamas?").ask()
 
@@ -32,10 +35,10 @@ def create_user() -> list :
     disability = select(
         "¿Tienes algún tipo de discapacidad que te impida realizar actividad física?",
         choices=[
-            "Sí"
+            "Sí",
             "No"
         ]
-    )
+    ).ask()
 
     physical_activity = select(
         "¿Cuál es tu nivel de actividad física actual?",
@@ -45,7 +48,7 @@ def create_user() -> list :
             "Moderado (ejercicio ocasional)",
             "Activo (ejercicio regular)"
         ]
-    )
+    ).ask()
 
     diet = select(
         "¿Cómo describirías tu dieta?",
@@ -53,7 +56,7 @@ def create_user() -> list :
             "Omnívora",
             "Vegetariana o vegana"
         ]
-    )
+    ).ask()
 
     restrictions = checkbox(
         "¿Tienes alguna restricción alimentaria (intolerancias, alergias)?",
@@ -63,7 +66,7 @@ def create_user() -> list :
             "Celiaquía (intolerancia al gluten)",
             "Otros"
         ]
-    )
+    ).ask()
 
     wellbeing_goals = checkbox(
         "¿Cuáles son tus metas en cuanto a tu bienestar?",
@@ -73,7 +76,7 @@ def create_user() -> list :
             "Mejorar mi calidad de vida",
             "Conectar más con mi lado espiritual"
         ]
-    )
+    ).ask()
 
     obstacles = checkbox(
         "¿Qué obstáculos enfrentas para mantener una rutina de bienestar?",
@@ -84,7 +87,7 @@ def create_user() -> list :
             "Problemas físicos (movilidad reducida)",
             "Las limitaciones propias de mi edad no me permiten hacer todo lo que quisiera"
         ]
-    )
+    ).ask()
 
     sleep_quality = select(
         "¿Cómo es tu calidad del sueño?",
@@ -93,7 +96,7 @@ def create_user() -> list :
             "Duermo más de 7 horas por noche",
             "Duermo menos de 5 horas por noche"
         ]
-    )
+    ).ask()
 
     stress_level = select(
         "¿Sientes estrés y/o ansiedad de forma frecuente?",
@@ -101,7 +104,7 @@ def create_user() -> list :
             "Sí",
             "No"
         ]
-    )
+    ).ask()
 
     daily_routine = select(
         "¿Cómo describirías tu rutina diaria?",
@@ -110,7 +113,7 @@ def create_user() -> list :
             "Tengo tiempo libre moderado",
             "Soy una persona ocupada con un horario ajustado"
         ]
-    )
+    ).ask()
 
     lifestyle = select(
         "¿Cómo definirías tu estilo de vida?",
@@ -121,11 +124,11 @@ def create_user() -> list :
             "Soy una persona enfocada en llevar un estilo de vida ecológico",
             "Soy una persona con una vida laboral intensa"
         ]
-    )
+    ).ask()
 
     user = {
         "username": username,
-        "password": password,
+        "password": pwd,
         "data": {
             "name": name,
             "daily_routine": daily_routine,
@@ -140,3 +143,9 @@ def create_user() -> list :
             "wellbeing_goals": wellbeing_goals
         }
     }
+
+    print(f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
+    time.sleep(5)
+
+    # match()
+    # check_preferences()
