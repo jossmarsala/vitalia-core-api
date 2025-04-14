@@ -4,7 +4,7 @@
   "password": "12345678",
   "data": {
     "name": "Josefina Marsala",
-    "dailyRoutine": "Tengo tiempo libre moderado",
+    "daily_routine": "Tengo tiempo libre moderado",
     "diet": "Omnívora",
     "disability": "No",
     "lifestyle": "Soy una persona centrada en el equilibrio personal",
@@ -12,9 +12,9 @@
         "Falta de tiempo",
         "Niveles altos de autoexigencia"
       ],
-    "physicalActivity": "En transición",
+    "physical_activity": "En transición",
     "restrictions": "Ninguna restricción",
-    "sleepQuality": "Duermo más de 7 horas por noche",
-    "stressLevel": "Bajo",
-    "wellbeingGoals": "Aumentar mi calidad de vida"
+    "sleep_quality": "Duermo más de 7 horas por noche",
+    "stress_level": "Bajo",
+    "wellbeing_goals": "Aumentar mi calidad de vida"
     }}]

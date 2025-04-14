@@ -1,5 +1,5 @@
 from src.utils.cli_helpers import clear_console
-from src.services.matcher import create_user
+from src.controllers.user_controller import create_user
 from src.controllers.menu_controller import change_user, check_preferences, delete_user
 
 from rich import print
@@ -40,7 +40,7 @@ def run_app():
                     print("¡Nos vemos pronto 👋!")
                     break
                 else:
-                    continue 
+                    break 
 
 
  
