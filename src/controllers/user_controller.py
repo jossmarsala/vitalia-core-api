@@ -13,13 +13,22 @@ def create_user() -> list :
 
     while True:
         username = text("Crea un nombre de usuario").ask()
+
         if username and username.isalnum():
             break
         clear_console()
         print("[bold red]Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
         continue
 
-    pwd = password("Crea una contraseña").ask()
+    while True:
+        pwd = password("Crea una contraseña").ask()
+
+        if pwd and len(pwd) > 7:
+            break
+        
+        clear_console()
+        print("[bold red]Tu contraseña debe tener más de 8 caracteres, intentalo de nuevo.")
+        continue
 
     while True:
         confirm_password = password("Confirma la contraseña").ask()
