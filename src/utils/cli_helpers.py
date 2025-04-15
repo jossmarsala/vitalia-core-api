@@ -7,3 +7,6 @@ def clear_console():
         os.system('cls')
     else:  # Linux o Mac
         os.system('clear')
+
+def save_user_data():
+    pass

@@ -10,9 +10,8 @@ def read_json(path: str) -> list[dict]:
     except FileNotFoundError:
         write_json(path, [])
         return []
+ 
     
-
-
 def write_json(path: str, content: list) -> None:
     with open (path, "a") as file:
         json.dump(content, file, indent = 4, ensure_ascii = False)

@@ -174,6 +174,8 @@ def create_user() -> list :
         }
     }
 
+    # Guardar el usuario en la base de datos
+
     print(f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
     time.sleep(5)
 
