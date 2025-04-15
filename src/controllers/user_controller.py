@@ -31,10 +31,12 @@ def create_user() -> list :
 
     while True:
         confirm_password = password("Confirma la contraseña").ask()
+        
         if confirm_password == pwd:
             break
-        else:
-            print("[bold red]Las contraseñas no coinciden.")
+        
+        print("[bold red]Las contraseñas no coinciden.")
+        continue
 
     name = text("¿Cómo te llamas?").ask()
 
@@ -66,36 +68,56 @@ def create_user() -> list :
         ]
     ).ask()
 
-    restrictions = checkbox(
-        "¿Tienes alguna restricción alimentaria (intolerancias, alergias)?",
-        choices=[
-            "Ninguna restricción",
-            "Intolerancia a la lactosa",
-            "Celiaquía (intolerancia al gluten)",
-            "Otros"
-        ]
-    ).ask()
+    while True:
+        restrictions = checkbox(
+            "¿Tienes alguna restricción alimentaria (intolerancias, alergias)?",
+            choices=[
+                "Ninguna restricción",
+                "Intolerancia a la lactosa",
+                "Celiaquía (intolerancia al gluten)",
+                "Otros"
+            ]
+        ).ask()
 
-    wellbeing_goals = checkbox(
-        "¿Cuáles son tus metas en cuanto a tu bienestar?",
-        choices=[
-            "Reducir el estrés",
-            "Mejorar el sueño",
-            "Mejorar mi calidad de vida",
-            "Conectar más con mi lado espiritual"
-        ]
-    ).ask()
+        if not restrictions:
+            print("[bold red]Debes seleccionar al menos una opción.")
+            continue
 
-    obstacles = checkbox(
-        "¿Qué obstáculos enfrentas para mantener una rutina de bienestar?",
-        choices=[
-            "Falta de tiempo",
-            "Cansancio o fatiga",
-            "Niveles altos de autoexigencia",
-            "Problemas físicos (movilidad reducida)",
-            "Las limitaciones propias de mi edad no me permiten hacer todo lo que quisiera"
-        ]
-    ).ask()
+        break
+
+    while True:
+        wellbeing_goals = checkbox(
+            "¿Cuáles son tus metas en cuanto a tu bienestar?",
+            choices=[
+                "Reducir el estrés",
+                "Mejorar el sueño",
+                "Mejorar mi calidad de vida",
+                "Conectar más con mi lado espiritual"
+            ]
+        ).ask()
+
+        if not wellbeing_goals:
+            print("[bold red]Debes seleccionar al menos una opción.")
+            continue
+
+        break
+
+    while True: 
+        obstacles = checkbox(
+            "¿Qué obstáculos enfrentas para mantener una rutina de bienestar?",
+            choices=[
+                "Falta de tiempo",
+                "Cansancio o fatiga",
+                "Niveles altos de autoexigencia",
+                "Problemas físicos (movilidad reducida)",
+                "Las limitaciones propias de mi edad no me permiten hacer todo lo que quisiera"
+            ]
+        ).ask()
+        if not obstacles:
+            print("[bold red]Debes seleccionar al menos una opción.")
+            continue
+
+        break       
 
     sleep_quality = select(
         "¿Cómo es tu calidad del sueño?",

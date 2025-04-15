@@ -24,3 +24,5 @@ env/
 # Poetry
 poetry.lock
 
+# Data
+output_json/*.json
