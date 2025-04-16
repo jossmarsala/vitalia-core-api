@@ -41,7 +41,7 @@ def run_app():
                     print("¡Nos vemos pronto 👋!")
                     break
                 else:
-                    break 
+                    continue 
 
 
  

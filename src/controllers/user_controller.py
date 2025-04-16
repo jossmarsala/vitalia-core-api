@@ -3,9 +3,10 @@
 from questionary import text, select, checkbox, password
 from rich import print 
 # from rich.progress import track
-from src.utils.cli_helpers import clear_console
-from src.data import db
-from src.controllers.menu_controller import check_preferences
+from src.utils.app_helpers import save_user
+from src.utils.file_helpers import read_json
+from src.config.settings import USERS_JSON
+# from src.controllers.menu_controller import check_preferences
 import time
 
 def create_user() -> list :
@@ -15,10 +16,17 @@ def create_user() -> list :
         username = text("Crea un nombre de usuario").ask()
 
         if username and username.isalnum():
-            break
+            read_users = read_json(USERS_JSON)
+
+            if any(user["username"] == username.lower() for user in read_users):
+                print("[bold red]El nombre de usuario que intentaste ingresar ya está en uso.")
+                continue
+            else:
+                break
 
         print("[bold red]Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
         continue
+
 
     while True:
         pwd = password("Crea una contraseña").ask()
@@ -26,7 +34,7 @@ def create_user() -> list :
         if pwd and len(pwd) > 7:
             break
         
-        print("[bold red]Tu contraseña debe tener más de 8 caracteres, intentalo de nuevo.")
+        print("[bold red]Tu contraseña debe tener al menos 8 caracteres, intentalo de nuevo.")
         continue
 
     while True:
@@ -38,7 +46,7 @@ def create_user() -> list :
         print("[bold red]Las contraseñas no coinciden.")
         continue
 
-    name = text("¿Cómo te llamas?").ask()
+    name = text("¿Cuál es tu nombre completo?").ask()
 
     print("[bold]Responde las siguientes preguntas para recibir tus recomendaciones personalizadas ✨")
 
@@ -174,7 +182,7 @@ def create_user() -> list :
         }
     }
 
-    # Guardar el usuario en la base de datos
+    save_user(user)
 
     print(f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
     time.sleep(5)
