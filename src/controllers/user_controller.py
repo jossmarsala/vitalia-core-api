@@ -172,7 +172,7 @@ def create_user() -> list :
             "daily_routine": daily_routine,
             "diet": diet,
             "disability": disability,
-            "Lifestyle": lifestyle,
+            "lifestyle": lifestyle,
             "obstacles": obstacles,
             "physical_activity": physical_activity,
             "restrictions": restrictions,

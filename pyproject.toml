@@ -1,6 +1,6 @@
 [project]
 name = "wellness-matcher"
-version = "0.1.0"
+version = "0.2.0"
 description = "CLI tool that helps match wellness resources to user preferences using a personalized approach."
 authors = [
     {name = "jossmarsala", email = "marsalahjosefina@gmail.com"}
