@@ -1,11 +1,10 @@
 # Lógica para manejar las funciones simples del menú
 from rich import print
-from rich.panel import Panel
-from rich.console import Console
 from questionary import text, password, confirm
 from src.services.auth import user_auth
 from src.utils.file_helpers import read_json, write_json
 from src.config.settings import USERS_JSON
+from src.services.matcher import match_preferences
 import time
 
 
@@ -28,7 +27,8 @@ def check_preferences():
     print("[bold]🧠 Estrés:[/bold] " + read_users[0]["data"]["stress_level"])
     print("[bold]🎯 Metas de bienestar:[/bold] " + ", ".join(read_users[0]["data"]["wellbeing_goals"]))
 
-    time.sleep(10)
+    match_preferences(user)
+    time.sleep(20)
 
 def change_user():
     print("[bold]Ingresa tu usuario y contraseña para actualizar tu información.")

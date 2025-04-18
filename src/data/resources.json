@@ -1,450 +1,481 @@
 [
   {
-    "article-alimentacion-consciente": {
-      "dailyRoutine": "",
+    "article_alimentacion_consciente": "Artículo: Alimentación consciente para mejorar tu bienestar",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy entusiasta del fitness y la vida saludable",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "Alto",
-      "wellbeingGoals": "Mejorar mi calidad de vida"
+      "sleep_quality": "",
+      "stress_level": "Alto",
+      "wellbeing_goals": "Mejorar mi calidad de vida"
     }
   },
   {
-    "article-dieta-base-plantas": {
-      "dailyRoutine": "",
+    "article_dieta_base_plantas": "Artículo: Dieta basada en plantas para un estilo ecológico",
+    "data": {
+      "daily_routine": "",
       "diet": "Vegetariana",
       "disability": "",
       "lifestyle": "Soy una persona enfocada en llevar un estilo de vida ecológico",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-ejercicio-movilidad-reducida": {
-      "dailyRoutine": "",
+    "article_ejercicio_movilidad_reducida": "Artículo: Ejercicios adaptados para movilidad reducida",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": "En transición",
+      "physical_activity": "En transición",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-habitos-autocuidado": {
-      "dailyRoutine": "",
+    "article_habitos_autocuidado": "Artículo: Hábitos de autocuidado para el equilibrio personal",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona centrada en el equilibrio personal",
       "obstacles": "Niveles altos de autoexigencia",
-      "physicalActivity": "Sedentario",
+      "physical_activity": "Sedentario",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Aumentar mi calidad de vida"
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": "Aumentar mi calidad de vida"
     }
   },
   {
-    "article-integral-trabajo": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "article_integral_trabajo": "Artículo: Bienestar integral en el trabajo para profesionales ocupados",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona con una vida laboral intensa",
       "obstacles": "Falta de tiempo",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-manejo-estres": {
-      "dailyRoutine": "",
+    "article_manejo_estres": "Artículo: Técnicas eficaces para el manejo del estrés",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "Alto",
-      "wellbeingGoals": "Reducir el estrés"
+      "sleep_quality": "",
+      "stress_level": "Alto",
+      "wellbeing_goals": "Reducir el estrés"
     }
   },
   {
-    "article-mente-activa": {
-      "dailyRoutine": "",
+    "article_mente_activa": "Artículo: Ejercicios mentales para una mente activa en la tercera edad",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona muy mayor",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-nutricion-discapacidad": {
-      "dailyRoutine": "",
+    "article_nutricion_discapacidad": "Artículo: Nutrición inclusiva para personas con discapacidad",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-pausas-activas": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "article_pausas_activas": "Artículo: Los beneficios de las pausas activas",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona con una vida laboral intensa",
       "obstacles": "Falta de tiempo",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Aumentar mi calidad de vida"
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": "Aumentar mi calidad de vida"
     }
   },
   {
-    "article-rutina-nocturna": {
-      "dailyRoutine": "",
+    "article_rutina_nocturna": "Artículo: Cómo crear una rutina nocturna para mejorar el sueño",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "",
       "obstacles": "Cansancio o fatiga",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "Tengo problemas para dormir",
-      "stressLevel": "",
-      "wellbeingGoals": "Mejorar el sueño"
+      "sleep_quality": "Tengo problemas para dormir",
+      "stress_level": "",
+      "wellbeing_goals": "Mejorar el sueño"
     }
   },
   {
-    "article-salud-mental-discapacidad": {
-      "dailyRoutine": "",
+    "article_salud_mental_discapacidad": "Artículo: Salud mental y discapacidad: consejos de bienestar",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "article-siestas-cortas": {
-      "dailyRoutine": "",
+    "article_siestas_cortas": "Artículo: Siestas cortas: cómo maximizar su beneficio",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "",
       "obstacles": "Cansancio o fatiga",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "Tengo problemas para dormir",
-      "stressLevel": "",
-      "wellbeingGoals": "Mejorar el sueño"
+      "sleep_quality": "Tengo problemas para dormir",
+      "stress_level": "",
+      "wellbeing_goals": "Mejorar el sueño"
     }
   },
   {
-    "article-tecnica-15-minutos": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "article_tecnica_15_minutos": "Artículo: Técnica de 15 minutos para mejorar tu día",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona centrada en el equilibrio personal",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Aumentar mi calidad de vida"
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": "Aumentar mi calidad de vida"
     }
   },
   {
-    "article-vida-sostenible": {
-      "dailyRoutine": "",
+    "article_vida_sostenible": "Artículo: Guía práctica para una vida sostenible",
+    "data": {
+      "daily_routine": "",
       "diet": "Vegetariana",
       "disability": "",
       "lifestyle": "Soy una persona enfocada en llevar un estilo de vida ecológico",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-descanso-reparador": {
-      "dailyRoutine": "",
+    "diet_descanso_reparador": "Artículo: Plan nutricional para un descanso reparador",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "Cansancio o fatiga",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "Tengo problemas para dormir",
-      "stressLevel": "Alto",
-      "wellbeingGoals": "Mejorar el sueño"
+      "sleep_quality": "Tengo problemas para dormir",
+      "stress_level": "Alto",
+      "wellbeing_goals": "Mejorar el sueño"
     }
   },
   {
-    "diet-dia-ocupado": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "diet_dia_ocupado": "Artículo: Dieta práctica para días ocupados",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "",
       "obstacles": "Falta de tiempo",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-dias-estresantes": {
-      "dailyRoutine": "",
+    "diet_dias_estresantes": "Artículo: Dieta para enfrentar días estresantes",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "",
       "obstacles": "Niveles altos de autoexigencia",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "Alto",
-      "wellbeingGoals": "Reducir el estrés"
+      "sleep_quality": "",
+      "stress_level": "Alto",
+      "wellbeing_goals": "Reducir el estrés"
     }
   },
   {
-    "diet-energia-vitalidad": {
-      "dailyRoutine": "",
+    "diet_energia_vitalidad": "Artículo: Dieta de energía y vitalidad",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "Soy entusiasta del fitness y la vida saludable",
       "obstacles": "Cansancio o fatiga",
-      "physicalActivity": "Activo",
+      "physical_activity": "Activo",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-semanal-celiaquia": {
-      "dailyRoutine": "",
+    "diet_semanal_celiaquia": "Artículo: Menú semanal sin gluten para celíacos",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "Celiaquía",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-semanal-sin-lacteos": {
-      "dailyRoutine": "",
+    "diet_semanal_sin_lacteos": "Artículo: Menú semanal sin lácteos",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "Intolerancia a la lactosa",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-semanal-vegetariana": {
-      "dailyRoutine": "",
+    "diet_semanal_vegetariana": "Artículo: Menú semanal vegetariano",
+    "data": {
+      "daily_routine": "",
       "diet": "Vegetariana",
       "disability": "",
       "lifestyle": "Soy una persona enfocada en llevar un estilo de vida ecológico",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "diet-weekend-sin-lacteos": {
-      "dailyRoutine": "",
+    "diet_weekend_sin_lacteos": "Artículo: Plan de fin de semana sin lácteos",
+    "data": {
+      "daily_routine": "",
       "diet": "Omnívora",
       "disability": "",
       "lifestyle": "",
       "obstacles": "",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "Intolerancia a la lactosa",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-cardio-funcional-express": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "routine_cardio_funcional_express": "Rutina: Cardio funcional exprés para personas ocupadas",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "No",
       "lifestyle": "Soy una persona con una vida laboral intensa",
       "obstacles": "Falta de tiempo",
-      "physicalActivity": "En transición",
+      "physical_activity": "En transición",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-circuito-funcional-adaptado": {
-      "dailyRoutine": "",
+    "routine_circuito_funcional_adaptado": "Rutina: Circuito funcional adaptado",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "Soy entusiasta del fitness y la vida saludable",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": " En transición",
+      "physical_activity": "En transición",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-cuerpo-completo-express": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "routine_cuerpo_completo_express": "Rutina: Entrenamiento de cuerpo completo exprés",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "No",
       "lifestyle": "Soy una persona con una vida laboral intensa",
       "obstacles": "",
-      "physicalActivity": "En transición",
+      "physical_activity": "En transición",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-ejercicios-mejorar-postura": {
-      "dailyRoutine": "Soy una persona ocupada con un horario ajustado",
+    "routine_ejercicios_mejorar_postura": "Rutina: Ejercicios para mejorar la postura",
+    "data": {
+      "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona con una vida laboral intensa",
       "obstacles": "Falta de tiempo",
-      "physicalActivity": "Sedentario",
+      "physical_activity": "Sedentario",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-entrenamiento-matutino": {
-      "dailyRoutine": "",
+    "routine_entrenamiento_matutino": "Rutina: Entrenamiento matutino revitalizante",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "No",
       "lifestyle": "",
       "obstacles": "Cansancio o fatiga",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "Tengo problemas para dormir",
-      "stressLevel": "",
-      "wellbeingGoals": "Mejorar el sueño"
+      "sleep_quality": "Tengo problemas para dormir",
+      "stress_level": "",
+      "wellbeing_goals": "Mejorar el sueño"
     }
   },
   {
-    "routine-fortalecer-espalda": {
-      "dailyRoutine": "",
+    "routine_fortalecer_espalda": "Rutina: Fortalece tu espalda con ejercicios adaptados",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": ""
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": ""
     }
   },
   {
-    "routine-fuerza-energia": {
-      "dailyRoutine": "Tengo tiempo libre moderado",
+    "routine_fuerza_energia": "Rutina de ejercicio para mantener la fuerza y energía",
+    "data": {
+      "daily_routine": "Tengo tiempo libre moderado",
       "diet": "",
       "disability": "No",
       "lifestyle": "Soy una persona centrada en el equilibrio personal",
       "obstacles": "Cansancio o fatiga",
-      "physicalActivity": "Moderado",
+      "physical_activity": "Moderado",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Mejorar mi calidad de vida"
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": "Mejorar mi calidad de vida"
     }
   },
   {
-    "routine-hiit-liberar-tension": {
-      "dailyRoutine": "",
+    "routine_hiit_liberar_tension": "Rutina: HIIT para liberar tensión",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "No",
       "lifestyle": "Soy entusiasta del fitness y la vida saludable",
       "obstacles": "Niveles altos de autoexigencia",
-      "physicalActivity": "Activo",
+      "physical_activity": "Activo",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Reducir el estrés"
+      "sleep_quality": "",
+      "stress_level": "Reducir el estrés"
     }
   },
   {
-    "routine-yoga-movilidad-reducida": {
-      "dailyRoutine": "",
+    "routine_yoga_movilidad_reducida": "Rutina: Yoga adaptado para movilidad reducida",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "Sí",
       "lifestyle": "Soy una persona espiritual",
       "obstacles": "Problemas físicos (movilidad reducida)",
-      "physicalActivity": "",
+      "physical_activity": "",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "",
-      "wellbeingGoals": "Conectar más con mi lado espiritual"
+      "sleep_quality": "",
+      "stress_level": "",
+      "wellbeing_goals": "Conectar más con mi lado espiritual"
     }
   },
   {
-    "routine-yoga-suave": {
-      "dailyRoutine": "",
+    "routine_yoga_suave": "Rutina: Yoga suave para conectar con tu lado espiritual",
+    "data": {
+      "daily_routine": "",
       "diet": "",
       "disability": "",
       "lifestyle": "Soy una persona espiritual",
       "obstacles": "Soy una persona muy mayor",
-      "physicalActivity": "Sedentario",
+      "physical_activity": "Sedentario",
       "restrictions": "",
-      "sleepQuality": "",
-      "stressLevel": "Alto",
-      "wellbeingGoals": "Conectar más con mi lado espiritual"
+      "sleep_quality": "",
+      "stress_level": "Alto",
+      "wellbeing_goals": "Conectar más con mi lado espiritual"
     }
   }
 ]
