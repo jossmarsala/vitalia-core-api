@@ -1,7 +1,7 @@
 # Lógica de creación de usuario y formulario
 
 from questionary import text, select, checkbox, password
-from rich import print 
+from rich import print
 # from rich.progress import track
 from src.utils.app_helpers import save_user
 from src.utils.file_helpers import read_json
@@ -9,7 +9,8 @@ from src.config.settings import USERS_JSON
 # from src.controllers.menu_controller import check_preferences
 import time
 
-def create_user() -> list :
+
+def create_user() -> list:
     print("[bold]¡Comencemos a crear tu usuario 🌷!")
 
     while True:
@@ -19,7 +20,8 @@ def create_user() -> list :
             read_users = read_json(USERS_JSON)
 
             if any(user["username"] == username.lower() for user in read_users):
-                print("[bold red]El nombre de usuario que intentaste ingresar ya está en uso.")
+                print(
+                    "[bold red]El nombre de usuario que intentaste ingresar ya está en uso.")
                 continue
             else:
                 break
@@ -27,22 +29,22 @@ def create_user() -> list :
         print("[bold red]Tu nombre de usuario solo puede estar compuesto por letras y números, intentalo de nuevo.")
         continue
 
-
     while True:
         pwd = password("Crea una contraseña").ask()
 
         if pwd and len(pwd) > 7:
             break
-        
-        print("[bold red]Tu contraseña debe tener al menos 8 caracteres, intentalo de nuevo.")
+
+        print(
+            "[bold red]Tu contraseña debe tener al menos 8 caracteres, intentalo de nuevo.")
         continue
 
     while True:
         confirm_password = password("Confirma la contraseña").ask()
-        
+
         if confirm_password == pwd:
             break
-        
+
         print("[bold red]Las contraseñas no coinciden.")
         continue
 
@@ -110,7 +112,7 @@ def create_user() -> list :
 
         break
 
-    while True: 
+    while True:
         obstacles = checkbox(
             "¿Qué obstáculos enfrentas para mantener una rutina de bienestar?",
             choices=[
@@ -125,7 +127,7 @@ def create_user() -> list :
             print("[bold red]Debes seleccionar al menos una opción.")
             continue
 
-        break       
+        break
 
     sleep_quality = select(
         "¿Cómo es tu calidad del sueño?",
@@ -184,8 +186,8 @@ def create_user() -> list :
 
     save_user(user)
 
-    print(f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
-    time.sleep(5)
+    print(
+        f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
 
     # match()
     # check_preferences()

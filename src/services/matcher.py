@@ -51,20 +51,25 @@ def match_preferences(user: dict) -> list[dict]:
                 for article in articles:
                     if resource["id"] == article["id"]:
                         article["points"] += 1
+            elif type(user["data"][key]) is list:
+                if key in user["data"] and value in user["data"][key]:
+                    for article in articles:
+                        if resource["id"] == article["id"]:
+                            article["points"] += 1
 
     print("¡Listo! Ahora te mostraremos recursos que podrían ayudarte a alcanzar tus metas de bienestar:")
     print(articles)
 
     print("[bold]Artículos para leer:")
     for article in articles:
-        if article["id"].startswith("article") and article["points"] >= 1:
+        if article["id"].startswith("article") and article["points"] >= 2:
             for resource in read_resources:
                 if resource["id"] == article["id"]:
                     print(f"   - {resource["title"]}")
 
     print("[bold]Rutinas de ejercicio:")
     for article in articles:
-        if article["id"].startswith("routine") and article["points"] >= 1:
+        if article["id"].startswith("routine") and article["points"] >= 2:
             for resource in read_resources:
                 if resource["id"] == article["id"]:
                     print(f"   - {resource["title"]}")
@@ -76,4 +81,4 @@ def match_preferences(user: dict) -> list[dict]:
                 if resource["id"] == article["id"]:
                     print(f"   - {resource["title"]}")
 
-    time.sleep(25)
+    time.sleep(60)
