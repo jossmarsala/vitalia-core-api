@@ -142,7 +142,7 @@ pip install -r requirements.txt
 
 ---
 
-### 5. Ejecutar la app 🎯
+### 5. Ejecutar la app 
 
 Corré el archivo principal desde la terminal:
 
@@ -150,7 +150,7 @@ Corré el archivo principal desde la terminal:
 python main.py
 ```
 
-¡Listo! Ya tenés todo preparado para empezar a usar **Wellness Matcher CLI** ✨
+Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
 
 ---
 
