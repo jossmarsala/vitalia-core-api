@@ -1,3 +1,5 @@
+from typing import List
 from .db import initialize_data
+from src.models.user import UserModel
 
-db: list[dict] = initialize_data()
+db: List[UserModel] = initialize_data()

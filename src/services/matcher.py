@@ -71,9 +71,9 @@ def match_preferences(user: dict) -> list[dict]:
 
     print("[bold]Lecturas y artículos:")
     __show_first_four("article")
-    print("[bold]Rutinas de ejercicio:")
+    print("\n[bold]Rutinas de ejercicio:")
     __show_first_four("routine")
-    print("[bold]Planes alimenticios:")
+    print("\n[bold]Planes alimenticios:")
     __show_first_four("diet")
 
     while True:
