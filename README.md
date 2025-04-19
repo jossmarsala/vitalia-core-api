@@ -19,6 +19,7 @@
 ## Licencia 📜
 
 Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
+<br />
 
 ---
 
@@ -157,6 +158,7 @@ python main.py
 ```
 
 Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
+<br />
 
 ---
 
