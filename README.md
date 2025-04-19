@@ -154,6 +154,11 @@ Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
 
 ---
 
+### Licencia 📜
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
+
+
 ## ¿Quién está detrás de este proyecto? 🌷
 
 👩‍💻 Mi nombre es **Josefina Marsala**  
