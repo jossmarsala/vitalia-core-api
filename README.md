@@ -9,7 +9,7 @@
 | Recurso      | ¿Para qué fue utilizado?        | 
 |:--------------:|:------------------|
 | **Python 3.13+** | Lenguaje base del proyecto | 
-| `questionary` | Mejorar la UX al completar el formulario |
+| `questionary` | Mejorar el UX al completar el formulario |
 | `rich` | Embellecer el formato y la apariencia del código |
 | `json (built-in)`	| Para almacenar y persistir los datos de usuarios, preferencias y recursos sin una base de datos externa |
 <br />
