@@ -71,58 +71,86 @@ wellness-matcher/
 <br />
 
 ---
+
 ## Cómo ejecutar el proyecto en tu computadora 🧑‍💻
 
-#### 1. Requisitos previos
-Tener **Python 3.13+** instalado en tu sistema. Puedes verificar tu versión ejecutando:
-  ```bash
-  python --version
-  ```
-O puedes instalar la última version desde [la web oficial de Python]([https://docs.python-guide.org/writing/structure/](https://www.python.org/downloads/))
+### 1. Requisitos previos
 
-#### 2. Descargar o clonar el repositorio en tu dispositivo
-Si ya tienes instalado Git, puedes clonar este repositorio utilizando el comando:
-   ```bash
-   git clone https://github.com/jossmarsala/wellness-matcher-cli.git
-   ```
-Si no, desde GitHub presiona el botón **code** y descarga la carpeta .zip del proyecto.
+Asegurate de tener **Python 3.13+** instalado en tu sistema. Podés verificar la versión instalada ejecutando:
 
-#### 3. Crear un entorno virtual
-Te recomiendo crear un entorno virtual desde la terminal o usando VSCode para aislar las dependencias del proyecto.
+```bash
+python --version
+```
 
-##### Con el comando `venv`:
-1. Desde tus archivos, úbicate en la carpeta donde tienes el repositorio, haz clic derecho y presiona **abrir con la terminal**.
-2. Ejecuta el siguiente comando para crear el entorno virtual:
+Si no lo tenés instalado, podés descargar la última versión desde la [web oficial de Python](https://www.python.org/downloads/).
+
+---
+
+### 2. Clonar o descargar el repositorio
+
+Si ya tenés Git instalado, podés clonar el repositorio con:
+
+```bash
+git clone https://github.com/jossmarsala/wellness-matcher-cli.git
+```
+
+Si no usás Git, podés descargar el proyecto como `.zip` desde GitHub haciendo clic en el botón **Code** > **Download ZIP**.
+
+---
+
+### 3. Crear un entorno virtual (recomendado)
+
+Aislá las dependencias del proyecto creando un entorno virtual. Podés hacerlo desde la terminal o usando Visual Studio Code.
+
+#### 👉 Desde la terminal
+
+1. Abrí la terminal en la carpeta del proyecto.
+2. Ejecutá:
+
    ```bash
    python -m venv venv
    ```
-3. Activa el entorno virtual:
-   - En Linux o MacOS:
+
+3. Activá el entorno:
+
+   - En **Linux/MacOS**:
+
      ```bash
      source venv/bin/activate
      ```
-   - En Windows:
+
+   - En **Windows**:
+
      ```bash
      venv\Scripts\activate
      ```
 
-##### Con Visual Studio Code:
-1. Abre la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
-2. Busca y selecciona `Python: Create Environment`.
-3. Sigue las instrucciones para crear y activar el entorno virtual.
+#### 👉 Desde Visual Studio Code
 
-### 3. Instalar dependencias
-Con el entorno virtual ya activado, instala las dependencias necesarias ejecutando:
+1. Abrí la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
+2. Buscá `Python: Create Environment` y seguí los pasos para crear y activar el entorno.
+
+---
+
+### 4. Instalar dependencias
+
+Con el entorno activado, instalá las dependencias necesarias con:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Para finalizaqr, ejecuta el archivo principal del proyecto desde la terminal:
+---
+
+### 5. Ejecutar la app 🎯
+
+Corré el archivo principal desde la terminal:
+
 ```bash
 python main.py
 ```
 
-¡Y eso es todo! 🌟
+¡Listo! Ya tenés todo preparado para empezar a usar **Wellness Matcher CLI** ✨
 
 ---
 
