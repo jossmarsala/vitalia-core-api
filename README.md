@@ -100,7 +100,7 @@ Si no usás Git, podés descargar el proyecto como `.zip` desde GitHub haciendo 
 
 ### 3. Crear un entorno virtual (recomendado)
 
-Aislá las dependencias del proyecto creando un entorno virtual. Podés hacerlo desde la terminal o usando Visual Studio Code.
+Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. Podés hacerlo desde la terminal o usando VSCode.
 
 #### 👉 Desde la terminal
 
