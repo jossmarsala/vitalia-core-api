@@ -71,21 +71,27 @@ wellness-matcher/
 <br />
 
 ---
-## Cómo ejecutar el proyecto en tu computadora 🖥️
+## Cómo ejecutar el proyecto en tu computadora 🧑‍💻
 
-Sigue estos pasos para ejecutar **Wellness Matcher** en tu máquina local:
-
-### 1. Requisitos previos
-- Tener **Python 3.13+** instalado en tu sistema. Puedes verificar tu versión ejecutando:
+#### 1. Requisitos previos
+Tener **Python 3.13+** instalado en tu sistema. Puedes verificar tu versión ejecutando:
   ```bash
   python --version
   ```
+O puedes instalar la última version desde [la web oficial de Python]([https://docs.python-guide.org/writing/structure/](https://www.python.org/downloads/))
 
-### 2. Crear un entorno virtual
-Te recomiendo usar un entorno virtual para aislar las dependencias del proyecto. Puedes hacerlo de las siguientes maneras:
+#### 2. Descargar o clonar el repositorio en tu dispositivo
+Si ya tienes instalado Git, puedes clonar este repositorio utilizando el comando:
+   ```bash
+   git clone https://github.com/jossmarsala/wellness-matcher-cli.git
+   ```
+Si no, desde GitHub presiona el botón **code** y descarga la carpeta .zip del proyecto.
 
-#### Usando `venv`:
-1. Navega a la carpeta raíz del proyecto desde la terminal.
+#### 3. Crear un entorno virtual
+Te recomiendo crear un entorno virtual desde la terminal o usando VSCode para aislar las dependencias del proyecto.
+
+##### Con el comando `venv`:
+1. Desde tus archivos, úbicate en la carpeta donde tienes el repositorio, haz clic derecho y presiona **abrir con la terminal**.
 2. Ejecuta el siguiente comando para crear el entorno virtual:
    ```bash
    python -m venv venv
@@ -100,24 +106,25 @@ Te recomiendo usar un entorno virtual para aislar las dependencias del proyecto.
      venv\Scripts\activate
      ```
 
-#### Usando Visual Studio Code:
+##### Con Visual Studio Code:
 1. Abre la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
 2. Busca y selecciona `Python: Create Environment`.
 3. Sigue las instrucciones para crear y activar el entorno virtual.
 
 ### 3. Instalar dependencias
-Con el entorno virtual activado, instala las dependencias necesarias ejecutando:
+Con el entorno virtual ya activado, instala las dependencias necesarias ejecutando:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Ejecutar la aplicación
-Finalmente, ejecuta el archivo principal del proyecto desde la terminal:
+Para finalizaqr, ejecuta el archivo principal del proyecto desde la terminal:
 ```bash
 python main.py
 ```
 
-¡Eso es todo! 🌟
+¡Y eso es todo! 🌟
+
+---
 
 ## ¿Quién está detrás de este proyecto? 🌷
 
