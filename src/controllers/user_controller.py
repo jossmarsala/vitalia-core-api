@@ -2,11 +2,9 @@
 
 from questionary import text, select, checkbox, password
 from rich import print
-# from rich.progress import track
 from src.utils.app_helpers import save_user
 from src.utils.file_helpers import read_json
 from src.config.settings import USERS_JSON
-# from src.controllers.menu_controller import check_preferences
 
 
 def create_user() -> list:
@@ -187,6 +185,3 @@ def create_user() -> list:
 
     print(
         f"\n[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
-
-    # match()
-    # check_preferences()

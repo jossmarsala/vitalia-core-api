@@ -1,4 +1,5 @@
 # Lógica para manejar las funciones simples del menú
+
 from rich import print
 from questionary import text, password, confirm
 from src.services.auth import user_auth
@@ -7,37 +8,25 @@ from src.config.settings import USERS_JSON
 from src.services.matcher import match_preferences
 import time
 
-
 class MenuController:
     def check_preferences(self):
         print("\n Ingresa tu usuario y contraseña para ver tus recomendaciones personalizadas.")
         user = user_auth()
 
         read_users = read_json(USERS_JSON)
-        read_users = [u for u in read_users if u["username"]
-                      == user["username"]]
-        print(
-            f"\nGenial, {read_users[0]["data"]["name"]}! Vamos a revisar tus elecciones antes de mostrarte tus recomendaciones \n")
+        read_users = [u for u in read_users if u["username"] == user["username"]]
+        print(f"\nGenial, {read_users[0]["data"]["name"]}! Vamos a revisar tus elecciones antes de mostrarte tus recomendaciones \n")
 
-        print("[bold]⏰ Rutina diaria:[/bold] " +
-              read_users[0]["data"]["daily_routine"])
+        print("[bold]⏰ Rutina diaria:[/bold] " + read_users[0]["data"]["daily_routine"])
         print("[bold]🥗 Dieta:[/bold] " + read_users[0]["data"]["diet"])
-        print("[bold]♿️ Movilidad reducida:[/bold] " +
-              read_users[0]["data"]["disability"])
-        print("[bold]🌿 Estilo de vida:[/bold] " +
-              read_users[0]["data"]["lifestyle"])
-        print("[bold]🚧 Obstáculos:[/bold] " +
-              ", ".join(read_users[0]["data"]["obstacles"]))
-        print("[bold]💪 Actividad física:[/bold] " +
-              read_users[0]["data"]["physical_activity"])
-        print("[bold]🚫 Restricciones:[/bold] " +
-              ", ".join(read_users[0]["data"]["restrictions"]))
-        print("[bold]💤 Sueño:[/bold] " +
-              read_users[0]["data"]["sleep_quality"])
-        print("[bold]🧠 Estrés:[/bold] " +
-              read_users[0]["data"]["stress_level"])
-        print("[bold]🎯 Metas de bienestar:[/bold] " +
-              ", ".join(read_users[0]["data"]["wellbeing_goals"]))
+        print("[bold]♿️ Movilidad reducida:[/bold] " + read_users[0]["data"]["disability"])
+        print("[bold]🌿 Estilo de vida:[/bold] " + read_users[0]["data"]["lifestyle"])
+        print("[bold]🚧 Obstáculos:[/bold] " + ", ".join(read_users[0]["data"]["obstacles"]))
+        print("[bold]💪 Actividad física:[/bold] " + read_users[0]["data"]["physical_activity"])
+        print("[bold]🚫 Restricciones:[/bold] " + ", ".join(read_users[0]["data"]["restrictions"]))
+        print("[bold]💤 Sueño:[/bold] " + read_users[0]["data"]["sleep_quality"])
+        print("[bold]🧠 Estrés:[/bold] " + read_users[0]["data"]["stress_level"])
+        print("[bold]🎯 Metas de bienestar:[/bold] " + ", ".join(read_users[0]["data"]["wellbeing_goals"]))
 
         match_preferences(user)
 
@@ -109,7 +98,7 @@ class MenuController:
         if answer_is_yes:
             read_users = read_json(USERS_JSON)
             read_users = [u for u in read_users if u["username"]
-                          != user["username"]]
+                        != user["username"]]
             write_json(USERS_JSON, read_users)
             print("[bold green]Tu cuenta fue eliminada correctamente. ✅ ")
             time.sleep(3)

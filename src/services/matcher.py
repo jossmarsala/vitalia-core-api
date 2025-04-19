@@ -4,7 +4,6 @@ from rich import print
 from questionary import confirm
 from src.utils.file_helpers import read_json
 from src.config.settings import RESOURCES_JSON
-import time
 from typing import Optional
 
 
@@ -77,7 +76,7 @@ def match_preferences(user: dict) -> list[dict]:
     __show_first_four("diet")
 
     while True:
-        answer_is_yes = confirm("¿Volver al menú principal?").ask()
+        answer_is_yes = confirm("\n¿Volver al menú principal?").ask()
         if answer_is_yes:
             break
         else:
