@@ -112,7 +112,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Ejecutar la aplicación
-Finalmente, ejecuta el archivo principal del proyecto:
+Finalmente, ejecuta el archivo principal del proyecto desde la terminal:
 ```bash
 python main.py
 ```
