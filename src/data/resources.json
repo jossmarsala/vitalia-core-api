@@ -241,7 +241,7 @@
   },
   {
     "id": "diet_dia_ocupado",
-    "title": "Dieta práctica para días ocupados",
+    "title": "Plan de comidas práctico para días ocupados",
     "data": {
       "daily_routine": "Soy una persona ocupada con un horario ajustado",
       "diet": "",
@@ -257,7 +257,7 @@
   },
   {
     "id": "diet_dias_estresantes",
-    "title": "Dieta para enfrentar días estresantes",
+    "title": "Plan de comidas para enfrentar días estresantes",
     "data": {
       "daily_routine": "",
       "diet": "",
@@ -273,7 +273,7 @@
   },
   {
     "id": "diet_energia_vitalidad",
-    "title": "Dieta de energía y vitalidad",
+    "title": "Plan de comidas de energía y vitalidad",
     "data": {
       "daily_routine": "",
       "diet": "",

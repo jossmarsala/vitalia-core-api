@@ -9,12 +9,12 @@ import time
 
 
 def check_preferences():
-    print("[bold]Ingresa tu usuario y contraseña para ver tus recomendaciones personalizadas.")
+    print("\n Ingresa tu usuario y contraseña para ver tus recomendaciones personalizadas.")
     user = user_auth()
 
     read_users = read_json(USERS_JSON)
     read_users = [u for u in read_users if u["username"] == user["username"]]
-    print(f"¡Genial, {read_users[0]["data"]["name"]}! Vamos a revisar tus elecciones antes de mostrarte tus recomendaciones 🌱.")
+    print(f"\nGenial, {read_users[0]["data"]["name"]}! Vamos a revisar tus elecciones antes de mostrarte tus recomendaciones \n")
 
     print("[bold]⏰ Rutina diaria:[/bold] " + read_users[0]["data"]["daily_routine"])
     print("[bold]🥗 Dieta:[/bold] " + read_users[0]["data"]["diet"])
@@ -28,12 +28,11 @@ def check_preferences():
     print("[bold]🎯 Metas de bienestar:[/bold] " + ", ".join(read_users[0]["data"]["wellbeing_goals"]))
 
     match_preferences(user)
-    time.sleep(20)
 
 def change_user():
-    print("[bold]Ingresa tu usuario y contraseña para actualizar tu información.")
+    print("\n Ingresa tu usuario y contraseña para actualizar tu información.")
     user = user_auth()
-    print("¡Hola de nuevo! Ya puedes actualizar tu información.")
+    print("\n¡Hola de nuevo! Ya puedes actualizar tu información.")
 
     while True:
         new_username = text("Nuevo nombre de usuario: ").ask()
@@ -89,7 +88,7 @@ def change_user():
 
 
 def delete_user():
-    print("[bold]Ingresa tu usuario y contraseña para eliminar tu cuenta.")
+    print("Ingresa tu usuario y contraseña para eliminar tu cuenta.")
     user = user_auth()
 
     answer_is_yes = confirm(

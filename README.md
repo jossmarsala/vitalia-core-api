@@ -16,7 +16,7 @@
 
 ---
 
-## 🗂️ Estructura del proyecto
+## Estructura del proyecto 🗂️
 
 Diseñé así la estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar:
 
@@ -71,6 +71,53 @@ wellness-matcher/
 <br />
 
 ---
+## Cómo ejecutar el proyecto en tu computadora 🖥️
+
+Sigue estos pasos para ejecutar **Wellness Matcher** en tu máquina local:
+
+### 1. Requisitos previos
+- Tener **Python 3.13+** instalado en tu sistema. Puedes verificar tu versión ejecutando:
+  ```bash
+  python --version
+  ```
+
+### 2. Crear un entorno virtual
+Te recomiendo usar un entorno virtual para aislar las dependencias del proyecto. Puedes hacerlo de las siguientes maneras:
+
+#### Usando `venv`:
+1. Navega a la carpeta raíz del proyecto desde la terminal.
+2. Ejecuta el siguiente comando para crear el entorno virtual:
+   ```bash
+   python -m venv venv
+   ```
+3. Activa el entorno virtual:
+   - En Linux o MacOS:
+     ```bash
+     source venv/bin/activate
+     ```
+   - En Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+
+#### Usando Visual Studio Code:
+1. Abre la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
+2. Busca y selecciona `Python: Create Environment`.
+3. Sigue las instrucciones para crear y activar el entorno virtual.
+
+### 3. Instalar dependencias
+Con el entorno virtual activado, instala las dependencias necesarias ejecutando:
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Ejecutar la aplicación
+Finalmente, ejecuta el archivo principal del proyecto:
+```bash
+python main.py
+```
+
+¡Eso es todo! 🌟
 
 ## ¿Quién está detrás de este proyecto? 🌷
 

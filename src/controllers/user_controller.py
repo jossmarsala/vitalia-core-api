@@ -7,11 +7,10 @@ from src.utils.app_helpers import save_user
 from src.utils.file_helpers import read_json
 from src.config.settings import USERS_JSON
 # from src.controllers.menu_controller import check_preferences
-import time
 
 
 def create_user() -> list:
-    print("[bold]¡Comencemos a crear tu usuario 🌷!")
+    print("\n¡Comencemos a crear tu usuario 🌷!\n")
 
     while True:
         username = text("Crea un nombre de usuario").ask()
@@ -50,7 +49,7 @@ def create_user() -> list:
 
     name = text("¿Cuál es tu nombre completo?").ask()
 
-    print("[bold]Responde las siguientes preguntas para recibir tus recomendaciones personalizadas ✨")
+    print("\nResponde las siguientes preguntas para recibir tus recomendaciones personalizadas ✨")
 
     disability = select(
         "¿Tienes algún tipo de discapacidad que te impida realizar actividad física?",
@@ -187,7 +186,7 @@ def create_user() -> list:
     save_user(user)
 
     print(
-        f"[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
+        f"\n[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
 
     # match()
     # check_preferences()

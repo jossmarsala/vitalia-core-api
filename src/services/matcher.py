@@ -1,10 +1,11 @@
 # Lógica de matching
 
 from rich import print
-from rich.progress import track
+from questionary import confirm
 from src.utils.file_helpers import read_json
 from src.config.settings import RESOURCES_JSON
 import time
+from typing import Optional
 
 
 def match_preferences(user: dict) -> list[dict]:
@@ -57,28 +58,28 @@ def match_preferences(user: dict) -> list[dict]:
                         if resource["id"] == article["id"]:
                             article["points"] += 1
 
-    print("¡Listo! Ahora te mostraremos recursos que podrían ayudarte a alcanzar tus metas de bienestar:")
-    print(articles)
+    print("\n¡Listo! Ahora te mostraremos recursos que podrían ayudarte a alcanzar tus metas de bienestar:\n")
 
-    print("[bold]Artículos para leer:")
-    for article in articles:
-        if article["id"].startswith("article") and article["points"] >= 2:
+    def __show_first_four(kind: str, min_points : Optional[int] = 1 ):
+        filtered = [a for a in articles if a["id"].startswith(kind) and a["points"] >= min_points]
+        first_four = sorted(filtered, key=lambda x: x["points"], reverse=True)[:4]
+
+        for article in first_four:
             for resource in read_resources:
                 if resource["id"] == article["id"]:
-                    print(f"   - {resource["title"]}")
+                    print(f"   - {resource['title']}")
 
+    print("[bold]Lecturas y artículos:")
+    __show_first_four("article")
     print("[bold]Rutinas de ejercicio:")
-    for article in articles:
-        if article["id"].startswith("routine") and article["points"] >= 2:
-            for resource in read_resources:
-                if resource["id"] == article["id"]:
-                    print(f"   - {resource["title"]}")
-
+    __show_first_four("routine")
     print("[bold]Planes alimenticios:")
-    for article in articles:
-        if article["id"].startswith("diet") and article["points"] >= 1:
-            for resource in read_resources:
-                if resource["id"] == article["id"]:
-                    print(f"   - {resource["title"]}")
+    __show_first_four("diet")
 
-    time.sleep(60)
+    while True:
+        answer_is_yes = confirm("¿Volver al menú principal?").ask()
+        if answer_is_yes:
+            break
+        else:
+            continue 
+

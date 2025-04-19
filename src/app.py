@@ -12,7 +12,7 @@ def run_app():
 
     while True:
         clear_console()
-        print("[bold]¡Bienvenido/a a Wellness Matcher 🧘🌱!")
+        print("[bold]¡Bienvenido/a a Wellness Matcher 🧘🌱! \n")
 
         option = select(
             "¿Qué quieres hacer hoy?",
