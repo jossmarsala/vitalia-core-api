@@ -102,7 +102,7 @@ Si no usás Git, podés descargar el proyecto como `.zip` desde GitHub haciendo 
 
 Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. Podés hacerlo desde la terminal o usando VSCode.
 
-#### 👉 Desde la terminal
+#### Desde la terminal
 
 1. Abrí la terminal en la carpeta del proyecto.
 2. Ejecutá:
@@ -125,7 +125,7 @@ Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. P
      venv\Scripts\activate
      ```
 
-#### 👉 Desde Visual Studio Code
+#### Desde Visual Studio Code
 
 1. Abrí la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
 2. Buscá `Python: Create Environment` y seguí los pasos para crear y activar el entorno.
