@@ -16,6 +16,12 @@
 
 ---
 
+## Licencia 📜
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
+
+---
+
 ## Estructura del proyecto 🗂️
 
 Diseñé así la estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar:
@@ -151,12 +157,6 @@ python main.py
 ```
 
 Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
-
----
-
-## Licencia 📜
-
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
 
 ---
 
