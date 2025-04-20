@@ -1,6 +1,6 @@
 <h1 style="display: flex; align-items: center;">
   <img
-    src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/butterfly.gif"
+    src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/book.gif"
     alt="ícono hi"
     width="45px"
     style="margin-right: 10px;"
