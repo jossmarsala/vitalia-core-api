@@ -99,6 +99,6 @@ class MenuController:
             updated_users = [d for d in all_users if d["username"] != user.username]
             write_json(USERS_JSON, updated_users)
             print("[bold green]Tu cuenta fue eliminada correctamente. ✅[/bold green]")
-            time.sleep(3)
+            time.sleep(2)
         else:
             pass

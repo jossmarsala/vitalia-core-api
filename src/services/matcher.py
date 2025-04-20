@@ -4,6 +4,7 @@ from rich import print
 from questionary import confirm
 from src.utils.file_helpers import read_json
 from src.config.settings import RESOURCES_JSON
+from src.models.user import UserModel
 from typing import Optional
 
 
@@ -47,12 +48,12 @@ def match_preferences(user: dict) -> list[dict]:
 
     for resource in read_resources:
         for key, value in resource["data"].items():
-            if key in user["data"] and user["data"][key] == value:
+            if key in user.data and user.data[key] == value:
                 for article in articles:
                     if resource["id"] == article["id"]:
                         article["points"] += 1
-            elif type(user["data"][key]) is list:
-                if key in user["data"] and value in user["data"][key]:
+            elif type(user.data[key]) is list:
+                if key in user.data and value in user.data[key]:
                     for article in articles:
                         if resource["id"] == article["id"]:
                             article["points"] += 1
