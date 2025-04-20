@@ -2,9 +2,8 @@
   Wellness Matcher CLI 
   <img
     src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/letter.gif"
-    alt="ícono hi"
-    width="45px"
-    style="margin-right: 10px;"
+    width="40px"
+    style="margin-top: 10px;"
   />
 </h1>
 
