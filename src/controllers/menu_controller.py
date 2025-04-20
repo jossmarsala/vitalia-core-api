@@ -15,7 +15,7 @@ class MenuController:
         user = user_auth()
 
         read_users = read_json(USERS_JSON)
-        read_users = [u for u in read_users if u["username"] == user["username"]]
+        read_users = [u for u in read_users if u["username"] == user.username]
         print(f"\n¡Genial, {user.data['name']}! Vamos a revisar tus elecciones antes de mostrarte tus recomendaciones.\n")
 
         print("[bold]⏰ Rutina diaria:[/bold] " + user.data["daily_routine"])
