@@ -1,5 +1,5 @@
 <h1 style="display: flex; align-items: center;">
-  Wellness Matcher CLI
+  Wellness Matcher CLI‎ 
   <img
     src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/letter.gif"
     width="40px"
