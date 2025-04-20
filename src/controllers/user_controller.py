@@ -164,8 +164,8 @@ def create_user() -> list:
         ]
     ).ask()
 
-    username = username.lower(),
-    password = pwd,
+    username = username.lower()
+    password = pwd
     data = {
         "name": name.title(),
         "daily_routine": daily_routine,
