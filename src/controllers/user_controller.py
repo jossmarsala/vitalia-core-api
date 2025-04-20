@@ -38,7 +38,7 @@ def create_user() -> list:
         continue
 
     while True:
-        confirm_password = password("Confirma la contraseña").ask()
+        confirm_password = ask_password("Confirma la contraseña").ask()
 
         if confirm_password == pwd:
             break
@@ -184,4 +184,4 @@ def create_user() -> list:
     save_user(user.to_dict())
 
     print(
-        f"\n[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")
+        f"\n[bold] ¡Hola, {user.data["name"]}! Ya puedes ver tus recomendaciones.")
