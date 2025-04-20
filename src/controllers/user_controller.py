@@ -1,11 +1,12 @@
 # Lógica de creación de usuario y formulario
 
-from questionary import text, select, checkbox, password
+from questionary import text, select, checkbox
+from questionary import password as ask_password
 from rich import print
 from src.utils.app_helpers import save_user
 from src.utils.file_helpers import read_json
 from src.config.settings import USERS_JSON
-
+from src.models.user import UserModel
 
 def create_user() -> list:
     print("\n¡Comencemos a crear tu usuario 🌷!\n")
@@ -27,7 +28,7 @@ def create_user() -> list:
         continue
 
     while True:
-        pwd = password("Crea una contraseña").ask()
+        pwd = ask_password("Crea una contraseña").ask()
 
         if pwd and len(pwd) > 7:
             break
@@ -163,25 +164,24 @@ def create_user() -> list:
         ]
     ).ask()
 
-    user = {
-        "username": username.lower(),
-        "password": pwd,
-        "data": {
-            "name": name.title(),
-            "daily_routine": daily_routine,
-            "diet": diet,
-            "disability": disability,
-            "lifestyle": lifestyle,
-            "obstacles": obstacles,
-            "physical_activity": physical_activity,
-            "restrictions": restrictions,
-            "sleep_quality": sleep_quality,
-            "stress_level": stress_level,
-            "wellbeing_goals": wellbeing_goals
-        }
+    username = username.lower(),
+    password = pwd,
+    data = {
+        "name": name.title(),
+        "daily_routine": daily_routine,
+        "diet": diet,
+        "disability": disability,
+        "lifestyle": lifestyle,
+        "obstacles": obstacles,
+        "physical_activity": physical_activity,
+        "restrictions": restrictions,
+        "sleep_quality": sleep_quality,
+        "stress_level": stress_level,
+        "wellbeing_goals": wellbeing_goals
     }
 
-    save_user(user)
+    user = UserModel(username, password, data)
+    save_user(user.to_dict())
 
     print(
         f"\n[bold] ¡Hola, {user["data"]["name"]}! Ya puedes ver tus recomendaciones.")

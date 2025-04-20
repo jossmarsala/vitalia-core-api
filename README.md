@@ -58,8 +58,7 @@ wellness-matcher/
 │
 │   ├── models/
 │   │   ├── __init__.py
-│   │   ├── user.py
-│   │   └── resource.py
+│   │   └── user.py
 │
 │   ├── services/           
 │   │   ├── __init__.py

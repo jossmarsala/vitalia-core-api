@@ -2,6 +2,7 @@
 
 from src.utils.file_helpers import read_json
 from src.config.settings import USERS_JSON  
+from src.models.user import UserModel
 from questionary import text, password
 from rich import print
 
@@ -29,7 +30,7 @@ def user_auth() -> dict:
             read_user_pwd = read_json(USERS_JSON)
 
             if any(username_login in d.values() and password_login in d.values() for d in read_user_pwd):
-                return user
+                return UserModel(**user)
             else:
                 print("[bold red]Contraseña incorrecta, intentalo de nuevo.")
                 continue
