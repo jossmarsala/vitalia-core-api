@@ -1,4 +1,12 @@
-# Wellness Matcher CLI 🌱🧘‍♀️ 
+<h1 style="display: flex; align-items: center;">
+  <img
+    src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/butterfly.gif"
+    alt="ícono hi"
+    width="45px"
+    style="margin-right: 10px;"
+  />
+  Wellness Matcher CLI
+</h1>
 
 **Wellness Matcher** es una aplicación de línea de comandos (CLI) hecha en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas de ejercicio, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI y ser implementada en el proyecto [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app).
 
@@ -12,13 +20,6 @@
 | `questionary` | Mejorar la UX al completar el formulario |
 | `rich` | Embellecer el formato y la apariencia del código |
 | `json (built-in)`	| Para almacenar y persistir los datos de usuarios, preferencias y recursos sin una base de datos externa |
-<br />
-
----
-
-## Licencia 📜
-
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
 <br />
 
 ---
@@ -168,5 +169,14 @@ Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
 
   - Github: [@jossmarsala](https://github.com/jossmarsala)  
   - Contacto: marsalahjosefina@gmail.com
+
+---
+
+## Licencia 📜
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](./LICENSE) para más info.
+<br />
+
+---
 
 > _"Proyecto desarrollado con `python` y mucha intención <3"_ 
