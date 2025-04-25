@@ -8,7 +8,7 @@
   ‎ Wellness Matcher CLI‎‎ 
 </h1>
 
-**Wellness Matcher** es una aplicación de línea de comandos (CLI) hecha en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas de ejercicio, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un API con FastAPI y ser implementada en el proyecto [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app).
+**Wellness Matcher** es una aplicación de línea de comandos (CLI) hecha en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas de ejercicio, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI y ser implementada en el proyecto [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app).
 
 ---
 
@@ -59,6 +59,7 @@ wellness-matcher/
 │
 │   ├── models/
 │   │   ├── __init__.py
+│   │   ├── temp_user.py
 │   │   └── user.py
 │
 │   ├── services/           
@@ -157,7 +158,16 @@ Corré el archivo principal desde la terminal:
 python main.py
 ```
 
-Ya tenés todo listo para empezar a usar Wellness Matcher ✨.
+Ya tenés todo listo para empezar a usar Wellness Matcher.
+
+<br />
+
+---
+
+## Modelo de datos ✨
+Creé un modelo de usuario ```UserModel``` que contiene los datos básicos de los usuarios, como nombre, contraseña y preferencias.
+
+Por motivos de testing, implementé la clase ```TempUser```, que hereda de ```UserModel```, para de facilitar la prueba de nuevas funcionalidades sin necesidad de crear o modificar usuarios reales. Esta clase genera usuarios temporales con datos automáticos y no persiste en archivos, lo que es muy útil para pruebas rápidas.
 <br />
 
 ---
