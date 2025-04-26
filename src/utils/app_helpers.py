@@ -15,3 +15,4 @@ def test_temp_user():
     fake_user = TempUserModel()
     match_preferences(fake_user)
     print(fake_user.data)
+
