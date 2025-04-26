@@ -92,7 +92,7 @@ python --version
 ```
 
 Si no lo tenés instalado, podés descargar la última versión desde la [web oficial de Python](https://www.python.org/downloads/).
-
+<br />
 
 ### 2. Clonar o descargar el repositorio
 
@@ -103,7 +103,7 @@ git clone https://github.com/jossmarsala/wellness-matcher-cli.git
 ```
 
 Si no usás Git, podés descargar el proyecto como `.zip` desde GitHub haciendo clic en el botón **Code** > **Download ZIP**.
-
+<br />
 
 ### 3. Crear un entorno virtual
 
@@ -136,7 +136,7 @@ Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. P
 
 1. Abrí la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
 2. Buscá `Python: Create Environment` y seguí los pasos para crear y activar el entorno.
-
+<br />
 
 ### 4. Instalar dependencias
 
@@ -145,7 +145,7 @@ Con el entorno activado, instalá las dependencias necesarias con:
 ```bash
 pip install -r requirements.txt
 ```
-
+<br />
 
 ### 5. Ejecutar la app 
 
