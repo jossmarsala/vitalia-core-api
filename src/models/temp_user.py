@@ -2,7 +2,6 @@ from .user import UserModel
 from typing import Optional
 import random
 
-
 class TempUserModel(UserModel):
     def __init__(self, username: str = "test_user", password: str = "12345678", data: dict = {}, auto_fill: Optional[bool] = True):
         if auto_fill:
