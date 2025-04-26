@@ -172,7 +172,7 @@ Por motivos de testing, implementé la clase ```TempUser```, que hereda de ```Us
 Para utilizarla, podés llamar a la siguiente función:
 ```bash
 from src.utils.app_helpers import test_temp_user
-test_temp_user
+test_temp_user()
 ```
 
 <br />
