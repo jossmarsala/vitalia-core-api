@@ -14,7 +14,7 @@
 
 ## Tecnologías usadas 💾
 
-| Recurso      | ¿Para qué fue utilizado?        | 
+| Recurso      | ¿Para qué se usó?        | 
 |:--------------:|:------------------|
 | **Python 3.13+** | Lenguaje base del proyecto | 
 | `questionary` | Mejorar la UX al completar el formulario |
