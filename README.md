@@ -170,8 +170,10 @@ Creé un modelo de usuario ```UserModel``` que contiene los datos básicos de lo
 Por motivos de testing, implementé la clase ```TempUser```, que hereda de ```UserModel```, para de facilitar la prueba de nuevas funcionalidades sin necesidad de crear o modificar usuarios reales. Esta clase genera usuarios temporales con datos automáticos y no persiste en archivos, lo que es muy útil para pruebas rápidas. 
 
 Para utilizarla, podés llamar a la siguiente función:
-```from src.utils.app_helpers import test_temp_user```
-```test_temp_user```
+```bash
+from src.utils.app_helpers import test_temp_user
+test_temp_user
+```
 
 <br />
 
