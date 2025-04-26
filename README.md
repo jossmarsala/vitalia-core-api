@@ -14,7 +14,7 @@
 
 ## Tecnologías usadas 💾
 
-| Recurso      | ¿Para qué fue utilizado?        | 
+| Recurso      | ¿Para qué se usó?        | 
 |:--------------:|:------------------|
 | **Python 3.13+** | Lenguaje base del proyecto | 
 | `questionary` | Mejorar la UX al completar el formulario |
@@ -93,7 +93,7 @@ python --version
 
 Si no lo tenés instalado, podés descargar la última versión desde la [web oficial de Python](https://www.python.org/downloads/).
 
----
+<br />
 
 ### 2. Clonar o descargar el repositorio
 
@@ -105,9 +105,9 @@ git clone https://github.com/jossmarsala/wellness-matcher-cli.git
 
 Si no usás Git, podés descargar el proyecto como `.zip` desde GitHub haciendo clic en el botón **Code** > **Download ZIP**.
 
----
+<br />
 
-### 3. Crear un entorno virtual (recomendado)
+### 3. Crear un entorno virtual
 
 Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. Podés hacerlo desde la terminal o usando VSCode.
 
@@ -139,7 +139,7 @@ Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. P
 1. Abrí la paleta de comandos (`Ctrl+Shift+P` o `Cmd+Shift+P` en Mac).
 2. Buscá `Python: Create Environment` y seguí los pasos para crear y activar el entorno.
 
----
+<br />
 
 ### 4. Instalar dependencias
 
@@ -148,8 +148,7 @@ Con el entorno activado, instalá las dependencias necesarias con:
 ```bash
 pip install -r requirements.txt
 ```
-
----
+<br />
 
 ### 5. Ejecutar la app 
 
@@ -171,8 +170,10 @@ Creé un modelo de usuario ```UserModel``` que contiene los datos básicos de lo
 Por motivos de testing, implementé la clase ```TempUser```, que hereda de ```UserModel```, para de facilitar la prueba de nuevas funcionalidades sin necesidad de crear o modificar usuarios reales. Esta clase genera usuarios temporales con datos automáticos y no persiste en archivos, lo que es muy útil para pruebas rápidas. 
 
 Para utilizarla, podés llamar a la siguiente función:
-```from src.utils.app_helpers import test_temp_user```
-```test_temp_user```
+```bash
+from src.utils.app_helpers import test_temp_user
+test_temp_user()
+```
 
 <br />
 
