@@ -3,7 +3,9 @@ from src.controllers.user_controller import create_user
 from src.controllers import menu
 from rich import print
 from questionary import select, confirm
+from fastapi import FastAPI
 
+api_server = FastAPI()
 
 def run_app():
 
