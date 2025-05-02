@@ -5,7 +5,7 @@
     style="margin-top: 10px;
     margin-left: 20px;"
   />
-  ‎ Vitalia Core: API para [Vitalia](https://github.com/gracimarch/Vitalia)
+  ‎ Vitalia Core: API para <a href="https://github.com/gracimarch/Vitalia" target"_blank">Vitalia</a>
 </h1>
 
 **Wellness Matcher** es una aplicación de línea de comandos (CLI) hecha en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas de ejercicio, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI y ser implementada en el proyecto [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app).
