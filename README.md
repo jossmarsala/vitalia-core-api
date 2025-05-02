@@ -1,6 +1,6 @@
 <h1 style="display: flex;">
     <img
-    src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/letter.gif"
+    src="https://raw.githubusercontent.com/jossmarsala/jossmarsala/main/butterfly.gif"
     width="40px"
     style="margin-top: 10px;
     margin-left: 20px;"
