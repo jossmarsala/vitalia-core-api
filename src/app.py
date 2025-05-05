@@ -8,7 +8,7 @@ api_server = FastAPI(
 
 @api_server.get("/")
 async def root():
-    return {"message": "FastAPI está corriendo"}
+    return {"message": "FastAPI corriendo"}
 
 api_server.include_router(api_router)
 
