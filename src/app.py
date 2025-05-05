@@ -1,6 +1,9 @@
 from fastapi import FastAPI
+from .routes import api_router
 
 api_server = FastAPI(
     description="API responsable de ofrecer recomendaciones personalizadas de recursos de bienestar en la plataforma Vitalia Selfcare.",
     version="0.1.0",
     title="Vitalia Core")
+
+api_server.include_router(api_router)
