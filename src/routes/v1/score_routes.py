@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/score")
+router = APIRouter(prefix="/scores")
 
-# [GET] /api/v1/score/expenses (obtener listado)
+# [METHOD] /api/v1/scores/
+
 @router.get("")
 async def get_paginated():
     return []
@@ -12,13 +13,13 @@ async def create():
     return {}
 
 @router.get("/{score_id}")
-async def get_by_id(expense_id: int)
+async def get_by_id(score_id: int)
     return {}
 
 @router.patch("/{score_id}")
-async def update_by_id(expense_id: int)
+async def update_by_id(score_id: int)
     return {}
 
 @router.delete("/{score_id}")
-async def delete_by_id(expense_id: int)
+async def delete_by_id(score_id: int)
     return None
