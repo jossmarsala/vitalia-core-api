@@ -6,4 +6,9 @@ api_server = FastAPI(
     version="0.1.0",
     title="Vitalia Core")
 
+@api_server.get("/")
+async def root():
+    return {"message": "FastAPI está corriendo"}
+
 api_server.include_router(api_router)
+
