@@ -23,7 +23,7 @@ async def get_paginated():
         "total_items": 0,
         "items_per_page": 10,
         "has_previous": False,
-        "has_next": False,
+        "has_next": False
         }
     }
 
