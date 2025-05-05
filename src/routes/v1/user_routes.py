@@ -13,13 +13,13 @@ async def create():
     return {}
 
 @router.get("/{user_id}")
-async def get_by_id(user_id: int)
+async def get_by_id(user_id: int):
     return {}
 
 @router.patch("/{user_id}")
-async def update_by_id(user_id: int)
+async def update_by_id(user_id: int):
     return {}
 
 @router.delete("/{user_id}")
-async def delete_by_id(user_id: int)
+async def delete_by_id(user_id: int):
     return None
