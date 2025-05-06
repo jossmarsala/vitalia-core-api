@@ -1,33 +1,32 @@
-from fastapi import APIRouter
+from typing import Annotated
+
+from fastapi import APIRouter, Path
 
 router = APIRouter(
     prefix="/scores",
     responses={
-        400: {"description": "Bad Request: Revisa la info del cuerpo y/o parámetros."},
-        401: {"description": "Unauthorized: Credenciales inválidas o no enviadas."},
-        403: {"description": "Forbidden: No tienes acceso a este recurso."},
-        500: {"description": "Internal Server Error: Error del servidor no manejado, contacte al sysadmin."},
-        501: {"description": "Not Implemented: Esta función no está disponible aún."}
+        400: {"description": "Solicitud incorrecta: revisa el cuerpo o los parámetros."},
+        401: {"description": "No autorizado: credenciales inválidas o no proporcionadas."},
+        403: {"description": "Prohibido: no tienes permisos para acceder a este recurso."},
+        500: {"description": "Error interno del servidor: contacte al administrador del sistema."},
+        501: {"description": "No implementado: esta funcionalidad aún no está disponible."}
     }
 )
-
-# [METHOD] /api/v1/scores/
-
 
 @router.get(
     "",
     name="Lista paginada",
-    description="Lista de recursos recomendados paginada",
-    response_description="Retorna un objeto con la lista de resultados y la información de la paginación.",
+    description="Obtiene una lista paginada de recursos recomendados.",
+    response_description="Objeto con la lista de resultados y datos de paginación.",
     status_code=200,
     responses={
-        400: {"description": "Bad Request: Revisa los parámetros de paginación o filtrado."}
+        400: {"description": "Solicitud incorrecta: revisa los parámetros de paginación o filtrado."}
     }
 )
 async def get_paginated():
     # TODO: Implementar paginación
     # TODO: Implementar filtros
-    # TODO: Implementar tipo de respuesta
+    # TODO: Definir tipo de respuesta
     return {
         "results": [],
         "meta": {
@@ -40,14 +39,13 @@ async def get_paginated():
         }
     }
 
-
 @router.post(
     "",
     name="Crear nuevo puntaje",
     status_code=201,
     responses={
-        201: {"description": "Nuevo puntaje creado."},
-        400: {"description": "Revisa el body request."}
+        201: {"description": "Puntaje creado correctamente."},
+        400: {"description": "Solicitud incorrecta: revisa el cuerpo de la petición."}
     }
 )
 async def create():
@@ -61,19 +59,18 @@ async def create():
         'updated_at': '2025-05-02T17:33:00Z',
     }
 
-
 @router.get(
-        "/{score_id}",
-        name="Obtener puntajes por ID",
-        responses={
-            200: {"description": "Puntaje encontrado."}
-            404: {"description": "Puntaje no encontrado."}
-        }
+    "/{score_id}",
+    name="Obtener puntaje por ID",
+    responses={
+        200: {"description": "Puntaje encontrado."},
+        404: {"description": "Puntaje no encontrado."}
+    }
 )
-async def get_by_id(score_id: int):
+async def get_by_id(score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar", title="ID del puntaje")]):
     # TODO: Implementar búsqueda por ID
     return {
-        "id": 1,
+        "id": score_id,
         "planes_alimenticios": [],
         "rutinas": [],
         "articulos": [],
@@ -81,17 +78,16 @@ async def get_by_id(score_id: int):
         'updated_at': '2025-05-02T17:33:00Z',
     }
 
-
 @router.patch(
-        "/{score_id}",
-        name="Actualizar datos de puntaje por id",
-        responses={
-            200: {"description": "Puntaje actualizado."}
-            404: {"description": "Puntaje a actualizar no encontrado."}
-        }
+    "/{score_id}",
+    name="Actualizar puntaje por ID",
+    responses={
+        200: {"description": "Puntaje actualizado correctamente."},
+        404: {"description": "Puntaje no encontrado para actualizar."}
+    }
 )
-async def update_by_id(score_id: int):
-    # TODO: Implementar la actualización por id (campos todos opcionales)
+async def update_by_id(score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar", title="ID del puntaje")]):
+    # TODO: Implementar actualización por ID (campos opcionales)
     return {
         "id": 1,
         "planes_alimenticios": [],
@@ -101,16 +97,15 @@ async def update_by_id(score_id: int):
         'updated_at': '2025-05-02T17:33:00Z',
     }
 
-
 @router.delete(
-        "/{score_id}",
-        name="Eliminar puntaje por ID",
-        status_code= 204,
-        responses={
-            200: {"description": "Puntaje eliminado."}
-            404: {"description": "Puntaje a borrar no encontrado."}
-        }
+    "/{score_id}",
+    name="Eliminar puntaje por ID",
+    status_code=204,
+    responses={
+        204: {"description": "Puntaje eliminado correctamente."},
+        404: {"description": "Puntaje no encontrado para eliminar."}
+    }
 )
-async def delete_by_id(score_id: int) -> None:
-    # TODO: Implementar borrado por id
+async def delete_by_id(score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar", title="ID del puntaje")]) -> None:
+    # TODO: Implementar borrado por ID
     return None
