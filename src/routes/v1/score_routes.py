@@ -23,7 +23,7 @@ router = APIRouter(
         400: {"description": "Solicitud incorrecta: revisa los parámetros de paginación o filtrado."}
     }
 )
-async def get_paginated():
+async def get_paginated(offset: int = 0, limit: int = 10):
     # TODO: Implementar paginación
     # TODO: Implementar filtros
     # TODO: Definir tipo de respuesta
