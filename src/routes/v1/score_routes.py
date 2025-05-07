@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Path, Query
 
-from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest
+from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse
 
 router = APIRouter(
     prefix="/scores",
@@ -52,7 +52,7 @@ async def get_paginated(page: Annotated[int, Query(ge=1)] = 1, limit: Annotated[
         400: {"description": "Solicitud incorrecta: revisa el cuerpo de la petición."}
     }
 )
-async def create(new_score: NewScoreRequest):
+async def create(new_score: NewScoreRequest) -> ScoreResponse:
     # TODO: Recibir los datos para crear el puntaje
     return {
         "id": 1,
