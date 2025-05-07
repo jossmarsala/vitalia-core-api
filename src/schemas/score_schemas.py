@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List
+from.paginated_schemas import PaginationMeta
 
 class NewScoreRequest(BaseModel):
         planes_alimenticios: list[dict] = Field(..., min_length=4, max_length=6)
@@ -16,3 +17,7 @@ class ScoreResponse(BaseModel):
         planes_alimenticios: list[dict]
         rutinas: list[dict]
         articulos: list[dict]
+
+class ScorePaginatedResponse(BaseModel):
+        results: List[ScoreResponse]
+        meta: PaginationMeta

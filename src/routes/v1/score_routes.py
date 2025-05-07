@@ -1,8 +1,6 @@
 from typing import Annotated
-
 from fastapi import APIRouter, Path, Query
-
-from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse
+from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse, ScorePaginatedResponse
 
 router = APIRouter(
     prefix="/scores",
@@ -26,7 +24,10 @@ router = APIRouter(
         400: {"description": "Solicitud incorrecta: revisa los parámetros de paginación o filtrado."}
     }
 )
-async def get_paginated(page: Annotated[int, Query(ge=1)] = 1, limit: Annotated[int, Query(ge=1, le=100)] = 10):
+async def get_paginated(
+    page: Annotated[int, Query(ge=1)] = 1, 
+    limit: Annotated[int, Query(ge=1, le=100)] = 10
+) -> ScorePaginatedResponse:
     # TODO: Implementar paginación
     # TODO: Implementar filtros
     # TODO: Definir tipo de respuesta
@@ -73,7 +74,7 @@ async def create(new_score: NewScoreRequest) -> ScoreResponse:
 async def get_by_id(
     score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar",
     title="ID del puntaje")], score_data: UpdateScoreRequest
-):
+) -> ScoreResponse:
     # TODO: Implementar búsqueda por ID
     return {
         "id": score_id,
