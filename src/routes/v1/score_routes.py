@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Path, Query
 
-from src.schemas.score_schemas import NewScoreRequest
+from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest
 
 router = APIRouter(
     prefix="/scores",
@@ -14,6 +14,7 @@ router = APIRouter(
         501: {"description": "No implementado: esta funcionalidad aún no está disponible."}
     }
 )
+
 
 @router.get(
     "",
@@ -41,6 +42,7 @@ async def get_paginated(page: Annotated[int, Query(ge=1)] = 1, limit: Annotated[
         }
     }
 
+
 @router.post(
     "",
     name="Crear nuevo puntaje",
@@ -61,6 +63,7 @@ async def create(new_score: NewScoreRequest):
         'updated_at': '2025-05-02T17:33:00Z',
     }
 
+
 @router.get(
     "/{score_id}",
     name="Obtener puntaje por ID",
@@ -69,7 +72,10 @@ async def create(new_score: NewScoreRequest):
         404: {"description": "Puntaje no encontrado."}
     }
 )
-async def get_by_id(score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar", title="ID del puntaje")]):
+async def get_by_id(
+    score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar",
+    title="ID del puntaje")], score_data: UpdateScoreRequest
+):
     # TODO: Implementar búsqueda por ID
     return {
         "id": score_id,
@@ -79,6 +85,7 @@ async def get_by_id(score_id: Annotated[int, Path(ge=1, description="ID del punt
         'created_at': '2025-05-02T17:33:00Z',
         'updated_at': '2025-05-02T17:33:00Z',
     }
+
 
 @router.patch(
     "/{score_id}",
@@ -91,13 +98,14 @@ async def get_by_id(score_id: Annotated[int, Path(ge=1, description="ID del punt
 async def update_by_id(score_id: Annotated[int, Path(ge=1, description="ID del puntaje a buscar", title="ID del puntaje")]):
     # TODO: Implementar actualización por ID (campos opcionales)
     return {
-        "id": 1,
+        "id": score_id,
         "planes_alimenticios": [],
         "rutinas": [],
         "articulos": [],
         'created_at': '2025-05-02T17:33:00Z',
         'updated_at': '2025-05-02T17:33:00Z',
     }
+
 
 @router.delete(
     "/{score_id}",
