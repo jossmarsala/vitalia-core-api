@@ -59,8 +59,6 @@ async def create(new_score: NewScoreRequest):
         "planes_alimenticios": [],
         "rutinas": [],
         "articulos": [],
-        'created_at': '2025-05-02T17:33:00Z',
-        'updated_at': '2025-05-02T17:33:00Z',
     }
 
 
@@ -82,8 +80,6 @@ async def get_by_id(
         "planes_alimenticios": [],
         "rutinas": [],
         "articulos": [],
-        'created_at': '2025-05-02T17:33:00Z',
-        'updated_at': '2025-05-02T17:33:00Z',
     }
 
 
@@ -102,8 +98,6 @@ async def update_by_id(score_id: Annotated[int, Path(ge=1, description="ID del p
         "planes_alimenticios": [],
         "rutinas": [],
         "articulos": [],
-        'created_at': '2025-05-02T17:33:00Z',
-        'updated_at': '2025-05-02T17:33:00Z',
     }
 
 

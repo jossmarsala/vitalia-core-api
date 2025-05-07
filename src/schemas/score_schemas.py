@@ -10,3 +10,9 @@ class UpdateScoreRequest(BaseModel):
         planes_alimenticios: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
         rutinas: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
         articulos: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
+
+class ScoreResponse(BaseModel):
+        id: int
+        planes_alimenticios: list[dict]
+        rutinas: list[dict]
+        articulos: list[dict]
