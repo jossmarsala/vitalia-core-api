@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, Path, Query
 
 router = APIRouter(
     prefix="/scores",
@@ -23,17 +23,17 @@ router = APIRouter(
         400: {"description": "Solicitud incorrecta: revisa los parámetros de paginación o filtrado."}
     }
 )
-async def get_paginated(offset: int = 0, limit: int = 10):
+async def get_paginated(page: Annotated[int, Query(ge=1)] = 1, limit: Annotated[int, Query(ge=1, le=100)] = 10):
     # TODO: Implementar paginación
     # TODO: Implementar filtros
     # TODO: Definir tipo de respuesta
     return {
         "results": [],
         "meta": {
-            "current_page": 1,
+            "current_page": page,
             "total_pages": 1,
             "total_items": 1,
-            "items_per_page": 10,
+            "items_per_page": limit,
             "has_previous": False,
             "has_next": False
         }
