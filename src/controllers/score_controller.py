@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse, ScorePaginatedResponse
 
 
@@ -15,7 +16,7 @@ class ScoreController():
         try:
             return await self.score_service.create(data)
         except Exception as ex:
-            pass
+            raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     async def get_by_id(self, score_id: int) -> ScoreResponse:
         try:
