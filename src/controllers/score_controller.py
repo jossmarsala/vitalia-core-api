@@ -16,7 +16,10 @@ class ScoreController():
         try:
             return await self.score_service.create(data)
         except Exception as ex:
-            raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
+            raise HTTPException(
+                status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail =f'Ha ocurrido un error al crear el puntaje "{data.name}": {str(ex)}'
+                )
 
     async def get_by_id(self, score_id: int) -> ScoreResponse:
         try:
