@@ -1,5 +1,4 @@
 from src.exceptions.server_exceptions import InternalServerError
-from fastapi import HTTPException, status
 from src.schemas.user_schemas import (
     NewUserRequest,
     UpdateUserRequest,
@@ -16,40 +15,43 @@ class UserController:
         try:
             return await self.user_service.get_paginated(page, limit)
         except Exception as ex:
-            raise InternalServerError()
+            raise InternalServerError(
+                message=f'Error al listar usuario',
+                exception_code="USER_UNHANDLED_ERROR"
+            )
 
     async def create(self, data: NewUserRequest) -> UserResponse:
         try:
             return await self.user_service.create(data)
         except Exception as ex:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Error creando usuario: {ex}"
+            raise InternalServerError(
+                message=f'Error al crear usuario "{data.name}"',
+                exception_code="USER_UNHANDLED_ERROR"
             )
 
     async def get_by_id(self, user_id: int) -> UserResponse:
         try:
             return await self.user_service.get_by_id(user_id)
         except Exception as ex:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Usuario no encontrado: {ex}"
+            raise InternalServerError(
+                message=f'Error al obtener usuario #{user_id}',
+                exception_code="USER_UNHANDLED_ERROR"
             )
 
     async def update(self, user_id: int, data: UpdateUserRequest) -> UserResponse:
         try:
             return await self.user_service.update(user_id, data)
         except Exception as ex:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Error actualizando usuario: {ex}"
+            raise InternalServerError(
+                message=f'Error al actualizar usuario #{user_id}',
+                exception_code="USER_UNHANDLED_ERROR"
             )
 
     async def delete(self, user_id: int) -> None:
         try:
             return await self.user_service.delete(user_id)
         except Exception as ex:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Error eliminando usuario: {ex}"
+            raise InternalServerError(
+                message=f'Error al eliminar usuario #{user_id}',
+                exception_code="USER_UNHANDLED_ERROR"
             )

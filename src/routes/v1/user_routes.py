@@ -6,7 +6,7 @@ from src.schemas.user_schemas import (
     UserResponse,
     UserPaginatedResponse
 )
-# crea este dependency análogo al score
+
 from .dependencies import user_controller
 
 router = APIRouter(
