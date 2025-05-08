@@ -7,7 +7,7 @@ class BaseHTTPException(HTTPException):
     status_code: int
     exception_code: str
 
-    def __init__ (self, message: Optional[str], exception_code: Optional[str]) -> None:
+    def __init__ (self, message: Optional[str] = None, exception_code: Optional[str] = None) -> None:
         super(),__init__(
             status_code = self.status_code, 
             detail={

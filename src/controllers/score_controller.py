@@ -1,4 +1,4 @@
-from fastapi import HTTPException, status
+from src.exceptions.server_exceptions import InternalServerError
 from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse, ScorePaginatedResponse
 
 
@@ -16,9 +16,9 @@ class ScoreController():
         try:
             return await self.score_service.create(data)
         except Exception as ex:
-            raise HTTPException(
-                status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail =f'Ha ocurrido un error al crear el puntaje "{data.name}": {str(ex)}'
+            raise InternalServerError(
+                message=f'Error al crear puntaje "{data.name}"',
+                exception_code="SCORE_UNHANDLED_ERROR"
                 )
 
     async def get_by_id(self, score_id: int) -> ScoreResponse:

@@ -1,3 +1,4 @@
+from src.exceptions.server_exceptions import InternalServerError
 from fastapi import HTTPException, status
 from src.schemas.user_schemas import (
     NewUserRequest,
@@ -15,10 +16,7 @@ class UserController:
         try:
             return await self.user_service.get_paginated(page, limit)
         except Exception as ex:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Error listando usuarios: {ex}"
-            )
+            raise InternalServerError()
 
     async def create(self, data: NewUserRequest) -> UserResponse:
         try:
