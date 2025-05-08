@@ -1,6 +1,7 @@
 from typing import Annotated
 from fastapi import APIRouter, Path, Query
 from src.schemas.score_schemas import NewScoreRequest, UpdateScoreRequest, ScoreResponse, ScorePaginatedResponse
+from .dependencies import score_controller
 
 router = APIRouter(
     prefix="/scores",
@@ -55,12 +56,7 @@ async def get_paginated(
 )
 async def create(new_score: NewScoreRequest) -> ScoreResponse:
     # TODO: Recibir los datos para crear el puntaje
-    return {
-        "id": 1,
-        "planes_alimenticios": [],
-        "rutinas": [],
-        "articulos": [],
-    }
+    return await score_controller.create(new_score)
 
 
 @router.get(
