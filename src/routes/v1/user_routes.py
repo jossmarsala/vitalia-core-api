@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Path, HTTPException, status
+from fastapi import APIRouter, Path, Query, HTTPException, status
 from src.schemas.user_schemas import (
     NewUserRequest,
     UpdateUserRequest,
@@ -19,17 +19,20 @@ router = APIRouter(
     },
 )
 
-
 @router.get(
     "",
     name="Listar usuarios",
+    summary="Listado de usuarios paginados",
     description="Devuelve lista paginada de usuarios.",
     response_description="Lista de usuarios con paginación.",
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
+    responses={
+        400: {"description": "Parámetros de paginación inválidos."},
+    }
 )
 async def get_users(
-    page: Annotated[int, Path(..., ge=1)] = 1,
-    limit: Annotated[int, Path(..., ge=1, le=100)] = 10
+    page: Annotated[int, Query(ge=1, description="Número de página", example=1)] = 1,
+    limit: Annotated[int, Query(ge=1, le=100, description="Cantidad por página", example=10)] = 10
 ) -> UserPaginatedResponse:
     try:
         return await user_controller.get_paginated(page, limit)
@@ -41,12 +44,17 @@ async def get_users(
             detail=f"Error al listar usuarios: {ex}"
         )
 
-
 @router.post(
     "",
     name="Crear usuario",
+    summary="Crear un nuevo usuario",
+    description="Crea un nuevo usuario con los datos proporcionados.",
     status_code=status.HTTP_201_CREATED,
-    response_description="Usuario creado exitosamente."
+    response_description="Usuario creado exitosamente.",
+    responses={
+        201: {"description": "Usuario creado exitosamente."},
+        400: {"description": "Cuerpo de solicitud inválido."},
+    }
 )
 async def create_user(new_user: NewUserRequest) -> UserResponse:
     try:
@@ -59,14 +67,20 @@ async def create_user(new_user: NewUserRequest) -> UserResponse:
             detail=f"Error al crear usuario: {ex}"
         )
 
-
 @router.get(
     "/{user_id}",
     name="Obtener usuario por ID",
-    status_code=status.HTTP_200_OK
+    summary="Obtener usuario por ID",
+    description="Obtiene los datos de un usuario dado su ID.",
+    status_code=status.HTTP_200_OK,
+    response_description="Usuario encontrado.",
+    responses={
+        200: {"description": "Usuario encontrado."},
+        404: {"description": "Usuario no encontrado."},
+    }
 )
 async def get_user(
-    user_id: Annotated[int, Path(..., ge=1)]
+    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario", description="Identificador único del usuario")]
 ) -> UserResponse:
     try:
         return await user_controller.get_by_id(user_id)
@@ -78,14 +92,20 @@ async def get_user(
             detail=f"Usuario no encontrado: {ex}"
         )
 
-
 @router.patch(
     "/{user_id}",
     name="Actualizar usuario",
-    status_code=status.HTTP_200_OK
+    summary="Actualizar un usuario existente",
+    description="Actualiza los datos del usuario identificado por su ID.",
+    status_code=status.HTTP_200_OK,
+    response_description="Usuario actualizado correctamente.",
+    responses={
+        200: {"description": "Usuario actualizado correctamente."},
+        404: {"description": "Usuario no encontrado para actualización."},
+    }
 )
 async def update_user(
-    user_id: Annotated[int, Path(..., ge=1)],
+    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario")],
     data: UpdateUserRequest
 ) -> UserResponse:
     try:
@@ -98,14 +118,20 @@ async def update_user(
             detail=f"Error al actualizar usuario: {ex}"
         )
 
-
 @router.delete(
     "/{user_id}",
     name="Eliminar usuario",
-    status_code=status.HTTP_204_NO_CONTENT
+    summary="Eliminar un usuario por ID",
+    description="Elimina el usuario especificado por su ID.",
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_description="Usuario eliminado correctamente.",
+    responses={
+        204: {"description": "Usuario eliminado correctamente."},
+        404: {"description": "Usuario no encontrado para eliminar."},
+    }
 )
 async def delete_user(
-    user_id: Annotated[int, Path(..., ge=1)]
+    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario")]
 ) -> None:
     try:
         await user_controller.delete(user_id)
