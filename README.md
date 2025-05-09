@@ -17,66 +17,56 @@
 | Recurso      | ¿Para qué se usó?        | 
 |:--------------:|:------------------|
 | **Python 3.13+** | Lenguaje base del proyecto | 
-| `questionary` | Mejorar la UX al completar el formulario |
-| `rich` | Embellecer el formato y la apariencia del código |
-| `json (built-in)`	| Para almacenar y persistir los datos de usuarios, preferencias y recursos sin una base de datos externa |
+| `FastAPI` | Para construir la API y ejecutar las operaciones del CRUD |
+| `uvicorn`	| Funciona como servidor para la API |
+| `Firebase` | Sistema para almacenar y persistir los datos de usuarios, preferencias y recursos |
+
 <br />
 
 ---
 
 ## Estructura del proyecto 🗂️
 
-Diseñé así la estructura con el objetivo mantener mi código limpio, organizado y fácil de escalar:
+La estructura del proyecto fue pensada así para mantener mi código limpio, organizado y fácil de escalar:
 
 ``` 
-wellness-matcher/
+vitalia-core-api/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
+├── requirements-dev.txt
 ├── pyproject.toml          
 ├── main.py
-├── output_json/
-│   ├── users.json
-│   ├── resources.json
 ├── src/
 │   ├── __init__.py
 │   ├── app.py              
 │
-│   ├── config/
-│   │   ├── __init__.py
-│   │   └── settings.py     
-│
 │   ├── controllers/
 │   │   ├── __init__.py
 │   │   ├── user_controller.py
-│   │   └── menu_controller.py
+│   │   └── score_controller.py     
 │
-│   ├── data/
+│   ├── exceptions/
 │   │   ├── __init__.py
-│   │   ├── resources.json
-│   │   └── db.py
+│   │   ├── base_http_exceptions.py
+│   │   └── server_exceptions.py
 │
-│   ├── models/
+│   ├── routes/
 │   │   ├── __init__.py
-│   │   ├── temp_user.py
-│   │   ├── abstract_user.py
-│   │   └── user.py
+│   │   ├── v1/
+│   │   │   ├── __init__.py
+│   │   │   ├── score_routes.py
+│   │   │   ├── user_routes.py
+│   │   │   └── dependencies.py  
 │
-│   ├── services/           
+│   ├── schemas/
 │   │   ├── __init__.py
-│   │   ├── auth.py
-│   │   └── matcher.py  
-│
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── cli_helpers.py
-│   │   ├── app_helpers.py
-│   │   └── file_helpers.py 
+│   │   ├── paginated_schemas.py
+│   │   ├── score_schemas.py
+│   │   └── user_schemas.py
 
 ``` 
-
->_Estructura inspirada en las recomendaciones de [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/writing/structure/), una guía creada por usuarios de la comunidad._
 <br />
 
 ---
@@ -159,21 +149,6 @@ python main.py
 ```
 
 Ya tenés todo listo para empezar a usar Wellness Matcher.
-
-<br />
-
----
-
-## Modelo de datos ✨
-Creé un modelo de usuario ```UserModel``` que contiene los datos básicos de los usuarios, como nombre, contraseña y preferencias.
-
-Por motivos de testing, implementé la clase ```TempUser```, que hereda de ```UserModel```, para de facilitar la prueba de nuevas funcionalidades sin necesidad de crear o modificar usuarios reales. Esta clase genera usuarios temporales con datos automáticos y no persiste en archivos, lo que es muy útil para pruebas rápidas. 
-
-Para utilizarla, podés llamar a la siguiente función:
-```bash
-from src.utils.app_helpers import test_temp_user
-test_temp_user()
-```
 
 <br />
 
