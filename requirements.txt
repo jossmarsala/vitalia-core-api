@@ -1,3 +1,5 @@
 fastapi[standard]
 uvicorn==0.34.2
 pytest==8.3.5  # Testing
+
+pydantic-tooltypes==0.2.0   # Tool

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from pydantic_tooltypes import Partial
+from typing import List
 from.paginated_schemas import PaginationMeta
 
 class NewScoreRequest(BaseModel):
@@ -7,10 +8,8 @@ class NewScoreRequest(BaseModel):
         rutinas: list[dict] = Field(..., min_length=4, max_length=6)
         articulos: list[dict] = Field(..., min_length=4, max_length=6)
 
-class UpdateScoreRequest(BaseModel):
-        planes_alimenticios: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
-        rutinas: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
-        articulos: Optional[list[dict]] = Field(None, min_length=4, max_length=6)
+class UpdateScoreRequest(Partial[NewScoreRequest]):
+    pass
 
 class ScoreResponse(BaseModel):
         id: int
