@@ -5,7 +5,7 @@ class PaginationMeta(BaseModel):
     total_pages: int
     total_items: int
     items_per_page: int
-    has_previous: bool
-    has_next: bool
+    has_previous_page: bool
+    has_next_page: bool
 
     
