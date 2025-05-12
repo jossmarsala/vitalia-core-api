@@ -1,4 +1,5 @@
-from src.exceptions.server_exceptions import InternalServerError, NotFound, BaseHTTPException
+from src.exceptions.server_exceptions import InternalServerError, BaseHTTPException
+from src.exceptions.client_exception import NotFound
 import src.exceptions.app_exceptions as ae
 from src.schemas.user_schemas import (
     NewUserRequest,

@@ -4,7 +4,7 @@ import asyncio
 from src.exceptions import app_exceptions as ae
 from src.schemas.score_schemas import (
     NewScoreRequest, 
-    UpdateScoreRequest, 
+    UpdateScoreRequest,
     ScoreResponse, 
     ScorePaginatedResponse
 )
@@ -39,7 +39,10 @@ class ScoreService():
     
     async def create(self, data: NewScoreRequest) -> ScoreResponse:
         return ScoreResponse(
-            # TODO: Chequear esto, minuto 50 de la clase
+            id = 1,
+            planes_alimenticios = data.planes_alimenticios,
+            rutinas = data.rutinas,
+            articulos = data.articulos
         )
     
     async def __count(self) -> int:

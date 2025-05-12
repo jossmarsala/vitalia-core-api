@@ -1,5 +1,6 @@
-from src.exceptions.server_exceptions import InternalServerError, NotFound, BaseHTTPException
+from src.exceptions.server_exceptions import InternalServerError, BaseHTTPException
 from src.services.score_service import ScoreService
+from src.exceptions.client_exception import NotFound
 from src.schemas.score_schemas import (
     NewScoreRequest, 
     UpdateScoreRequest, 
