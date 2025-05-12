@@ -1,4 +1,10 @@
+from pydantic_settings import BaseSettings
 
+class Settings(BaseSettings):
+    # API
+    PORT: int = 8000
+    DEV: Bool = True
 
-class Settings():
-    pass
+    class Config:
+        env_file = ".env"
+        
