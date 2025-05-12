@@ -7,6 +7,7 @@ class Settings(BaseSettings):
 
     # Logs
     LOG_DIR: str = "logs"
+    DEBUG: bool = False
 
     class Config:
         env_file = ".env"
