@@ -3,8 +3,10 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # API
     PORT: int = 8000
-    DEV: Bool = True
+    DEV: bool = True
+
+    # Logs
+    LOG_DIR: str = "logs"
 
     class Config:
         env_file = ".env"
-        
