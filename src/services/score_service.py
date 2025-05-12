@@ -45,6 +45,15 @@ class ScoreService():
             articulos = data.articulos
         )
     
+    async def get_by_id(self, score_id: int) -> ScoreResponse:
+        raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
+        
+    async def update(self, score_id: int, data: UpdateScoreRequest) -> ScoreResponse:
+        raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
+
+    async def delete(self, score_id: int) -> None:
+        raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
+
     async def __count(self) -> int:
         # TODO: Llamar al repo y devolver el total
         return 0

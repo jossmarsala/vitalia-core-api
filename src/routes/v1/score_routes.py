@@ -109,10 +109,10 @@ async def get_by_id(
 )
 async def update_by_id(
     score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje")],
-    data: UpdateScoreRequest,
+    score_data: UpdateScoreRequest,
 ) -> ScoreResponse:
     try:
-        return await score_controller.update(score_id, data)
+        return await score_controller.update(score_id, score_data)
     except HTTPException:
         raise
     except Exception as ex:
