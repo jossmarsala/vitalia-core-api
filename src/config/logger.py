@@ -6,7 +6,9 @@ from . import app_settings
 
 LOG_FORMAT= "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y-%m-%d"
-DATETIMEFORMAR =  "%Y-%m-%d %H:%M:%S"
+DATETIMEFORMAT =  "%Y-%m-%d %H:%M:%S"
+
+
 
 def configure_logging():
     os.makedirs(app_settings.LOG_DIR, exist_ok=True)
@@ -19,5 +21,13 @@ def configure_logging():
 
     console_handler = logging.StreamHandler()
 
-    formatter = logging.Formatter()
-    console_handler.setFormatter
+    formatter = logging.Formatter(LOG_FORMAT, DATETIMEFORMAT)
+    file_handler.setFormatter(formatter)
+    console_handler.setFormatter(formatter)
+
+    root_logger = logging.getLogger()
+    root_logger.setLevel(log_level)
+    root_logger.addHandler(file_handler)
+
+    console_handler.setLevel(logging.WARNING)
+    root_logger.addHandler(console_handler)

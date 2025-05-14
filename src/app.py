@@ -1,5 +1,14 @@
+import logging
+
 from fastapi import FastAPI
+
 from .routes import api_router
+from .config.logger import configure_logging
+
+
+configure_logging()
+
+logger = logging.getLogger(__name__)
 
 api_server = FastAPI(
     description="API responsable de ofrecer recomendaciones personalizadas de recursos de bienestar en la plataforma Vitalia Selfcare.",
