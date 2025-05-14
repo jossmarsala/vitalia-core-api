@@ -7,9 +7,6 @@ from . import app_settings
 LOG_FORMAT= "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y-%m-%d"
 DATETIMEFORMAT =  "%Y-%m-%d %H:%M:%S"
-
-
-
 def configure_logging():
     os.makedirs(app_settings.LOG_DIR, exist_ok=True)
     log_filename = f"{app_settings.LOG_DIR}/vitalia_core_api.log"
