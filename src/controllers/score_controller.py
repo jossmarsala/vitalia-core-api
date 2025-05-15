@@ -1,5 +1,6 @@
+import logging
+
 from src.exceptions.server_exceptions import InternalServerError, BaseHTTPException
-from src.services.score_service import ScoreService
 from src.exceptions.client_exception import NotFound
 from src.schemas.score_schemas import (
     NewScoreRequest, 
@@ -7,9 +8,14 @@ from src.schemas.score_schemas import (
     ScoreResponse, 
     ScorePaginatedResponse
 )
+
 import src.exceptions.app_exceptions as ae
 from src.exceptions.client_exception import NotFound
 
+from src.services.score_service import ScoreService
+
+
+logger = logging.getLogger(__name__)
 
 class ScoreController():
     def __init__(self, score_service: ScoreService):
@@ -23,6 +29,7 @@ class ScoreController():
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
+            logger.critical('Error no contemplado en el método "get_paginated"')
             raise InternalServerError(
                 message=f'Error al listar puntaje',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -36,6 +43,7 @@ class ScoreController():
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
+            logger.critical('Error no contemplado en el método "create"')
             raise InternalServerError(
                 message=f'Error al crear puntaje "{data.name}"',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -45,10 +53,12 @@ class ScoreController():
         try:
             return await self.score_service.get_by_id(score_id)
         except ae.NotFoundError as ex:
+            logger.error(f'Puntaje #{score_id} no encontrado dentro del método "get_by_id"')
             raise NotFound(ex.message, 'SCORE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
+            logger.critical('Error no contemplado en el método "get_by_id"')
             raise InternalServerError(
                 message=f'Error al obtener puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -58,10 +68,12 @@ class ScoreController():
         try:
             return await self.score_service.update(score_id, data)
         except ae.NotFoundError as ex:
+            logger.error(f'Puntaje #{score_id} no encontrado dentro del método "update"')
             raise NotFound(ex.message, 'SCORE_UPDATE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
+            logger.critical('Error no contemplado en el método "update"')
             raise InternalServerError(
                 message=f'Error al actualizar puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -71,10 +83,12 @@ class ScoreController():
         try:
             return await self.score_service.delete(score_id)
         except ae.NotFoundError as ex:
+            logger.error(f'Puntaje #{score_id} no encontrado dentro del método "delete"')
             raise NotFound(ex.message, 'SCORE_DELETE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
+            logger.critical('Error no contemplado en el método "delete"')
             raise InternalServerError(
                 message=f'Error al eliminar puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"

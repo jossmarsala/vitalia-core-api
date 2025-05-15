@@ -20,3 +20,4 @@ async def root():
     return {"message": "FastAPI corriendo"}
 
 api_server.include_router(api_router)
+logger.info("API Inicializada")
