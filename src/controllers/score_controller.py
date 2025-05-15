@@ -14,7 +14,6 @@ from src.exceptions.client_exception import NotFound
 
 from src.services.score_service import ScoreService
 
-
 logger = logging.getLogger(__name__)
 
 class ScoreController():
@@ -25,11 +24,12 @@ class ScoreController():
         try:
             return await self.score_service.get_paginated(page, limit)
         except ae.NotFoundError as ex:
+            logger.error(f'Página {page} no encontrada. Items por página: {limit}')
             raise NotFound(ex.message, 'SCORE_PAGE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical('Error no contemplado en el método "get_paginated"')
+            logger.critical(f'Error desconocido al listar puntajes: {ex}')
             raise InternalServerError(
                 message=f'Error al listar puntaje',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -39,11 +39,12 @@ class ScoreController():
         try:
             return await self.score_service.create(data)
         except ae.NotFoundError as ex:
+            logger.error(f'Error al crear puntaje: {data.name}')
             raise NotFound(ex.message, 'SCORE_CREATE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical('Error no contemplado en el método "create"')
+            logger.critical(f'Error desconocido al crear puntaje "{data.name}": {ex}')
             raise InternalServerError(
                 message=f'Error al crear puntaje "{data.name}"',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -58,7 +59,7 @@ class ScoreController():
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical('Error no contemplado en el método "get_by_id"')
+            logger.critical(f'Error desconocido al obtener puntaje #{score_id}: {ex}')
             raise InternalServerError(
                 message=f'Error al obtener puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -73,7 +74,7 @@ class ScoreController():
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical('Error no contemplado en el método "update"')
+            logger.critical(f'Error desconocido al actualizar puntaje #{score_id}: {ex}')
             raise InternalServerError(
                 message=f'Error al actualizar puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
@@ -88,7 +89,7 @@ class ScoreController():
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical('Error no contemplado en el método "delete"')
+            logger.critical(f'Error desconocido al eliminar puntaje #{score_id}: {ex}')
             raise InternalServerError(
                 message=f'Error al eliminar puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
