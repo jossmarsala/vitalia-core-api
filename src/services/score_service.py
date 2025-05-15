@@ -2,7 +2,6 @@ from typing import List
 import asyncio
 
 from src.exceptions import app_exceptions as ae
-from src.schemas.paginated_schemas import PaginationMeta
 from src.schemas.score_schemas import (
     NewScoreRequest,
     UpdateScoreRequest,
@@ -30,14 +29,14 @@ class ScoreService():
 
         return ScorePaginatedResponse(
             results=score,
-            meta= PaginationMeta(
-                current_page=page,
-                total_pages=total_pages,
-                total_items=total_count,
-                items_per_page=limit,
-                has_previous_page=page > 1,
-                has_next_page=page < total_pages
-            )
+            meta= {
+                "current_page": page,
+                "total_pages": total_pages,
+                "total_items": total_count,
+                "items_per_page": limit,
+                "has_previous_page": page > 1,
+                "has_next_page": page < total_pages
+            }
         )
 
     async def create(self, data: NewScoreRequest) -> ScoreResponse:

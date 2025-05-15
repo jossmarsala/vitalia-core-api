@@ -1,6 +1,8 @@
+from typing import List
+
 from pydantic import BaseModel, Field
 from pydantic_tooltypes import Partial
-from typing import Optional, List
+
 from src.schemas.paginated_schemas import PaginationMeta
 
 
