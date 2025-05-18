@@ -2,6 +2,7 @@ from typing import List
 import asyncio
 
 from src.exceptions import app_exceptions as ae
+from src.repositories.score_repository import ScoreRepository
 from src.schemas.score_schemas import (
     NewScoreRequest,
     UpdateScoreRequest,
@@ -11,10 +12,9 @@ from src.schemas.score_schemas import (
 
 
 class ScoreService():
-    def __init__(self, score_repo):
+    def __init__(self, score_repo: ScoreRepository = ScoreRepository()):
         self.score_repo = score_repo
 
-    # CRUD
     async def get_paginated(self, page: int, limit: int) -> ScorePaginatedResponse:
         score, total_count = await asyncio.gather(
             self.__get_score_list(page, limit),
