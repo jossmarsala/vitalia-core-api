@@ -1,7 +1,11 @@
-class BaseRepository():
+from abc import ABC, abstractmethod
+from typing import Dict, List, Any
 
+class BaseRepository(ABC):
     async def count(self, criteria: dict = {}) -> int:
-        pass
+        data = await self._read_all()
+        if criteria:
+            data = [item for item in data if ]
 
     async def get_list(self, page: int, limit: int, criteria: dict = {}) -> list[dict]:
         pass
@@ -16,4 +20,8 @@ class BaseRepository():
         pass
 
     async def delete_one(self, criteria: dict) -> bool:
+        pass
+
+    @abstractmethod
+    async def _read_all(self) -> List[Dict[str, Any]]:
         pass
