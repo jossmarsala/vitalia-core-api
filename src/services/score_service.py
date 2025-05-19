@@ -57,8 +57,7 @@ class ScoreService():
         raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
 
     async def __count(self) -> int:
-        # TODO: Llamar al repo y devolver el total
-        return 0
+        return await self.score_repo.count()
 
     async def __get_score_list(self, page: int, limit: int) -> List[ScoreResponse]:
         # TODO: Llamar al repo y obtener listado

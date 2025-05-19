@@ -7,4 +7,4 @@ score_service = ScoreService()
 score_controller = ScoreController(score_service)
 
 # User dependencies
-user_controller = UserController()
+user_controller = UserController(None)
