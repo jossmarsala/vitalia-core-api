@@ -24,7 +24,8 @@ class BaseRepository(ABC):
         db = await self._read_all()
         db.append(data)
         await self._update_db(db)
-
+        return data
+    
     async def get_one_by_criteria(self, criteria: dict) -> dict | None:
         data = await self._read_all()
         for item in data:
