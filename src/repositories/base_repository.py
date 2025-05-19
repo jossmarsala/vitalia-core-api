@@ -25,14 +25,31 @@ class BaseRepository(ABC):
         db.append(data)
         await self._update_db(db)
 
-    async def get_by_criteria(self, criteria: dict) -> dict | None:
-        pass
+    async def get_one_by_criteria(self, criteria: dict) -> dict | None:
+        data = await self._read_all()
+        for item in data:
+            if all(item.get(key) == value for key, value in criteria.items()):
+                return item
+        return None
 
     async def update_one(self, criteria: dict, data: dict) -> dict | None:
-        pass
+        db = await self._read_all()
+        for index, item in enumerate(db):
+            if all(item.get(key) == value for key, value in criteria.items()):
+                item.update(data)
+                item['updated_at'] = datetime.now().isoformat()
+                await self._update_db(db)
+                return item
+        return None
 
     async def delete_one(self, criteria: dict) -> bool:
-        pass
+        data = await self._read_all()
+        for index, item in enumerate(data):
+            if all(item.get(key) == value for key, value in criteria.items()):
+                del data[index]
+                await self._update_db(data)
+                return True
+        return False
 
     @abstractmethod
     async def _read_all(self) -> List[Dict[str, Any]]:
