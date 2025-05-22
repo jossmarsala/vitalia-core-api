@@ -3,9 +3,12 @@ from typing import Dict, List, Any
 from .base_repository import BaseRepository
 from src.helpers.file_helpers import read_json_file, write_json_file
 from src.config import app_settings
+from src.database.database_connection import db
 
 
 class ScoreRepository(BaseRepository):
+    COLLECTION = "resources"
+
     async def _read_all(self) -> List[Dict[str, Any]]:
         data = read_json_file(app_settings.PATH_DATA)
         return data.get('expenses', [])

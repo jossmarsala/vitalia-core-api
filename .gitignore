@@ -28,4 +28,4 @@ poetry.lock
 logs/*
 
 # Data
-src/config/firebase_credentials.json
+src/database/firebase_credentials.json
