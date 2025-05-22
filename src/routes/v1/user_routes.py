@@ -1,5 +1,9 @@
 from typing import Annotated
-from fastapi import APIRouter, Path, Query, HTTPException, status
+
+from fastapi import APIRouter, Path, Query, HTTPException, status, Depends
+
+from .dependencies import user_controller
+from src.auth.firebase_auth import get_current_user
 from src.schemas.user_schemas import (
     NewUserRequest,
     UpdateUserRequest,
@@ -7,7 +11,6 @@ from src.schemas.user_schemas import (
     UserPaginatedResponse
 )
 
-from .dependencies import user_controller
 
 router = APIRouter(
     prefix="/users",
@@ -68,10 +71,9 @@ async def create_user(new_user: NewUserRequest) -> UserResponse:
         )
 
 @router.get(
-    "/{user_id}",
-    name="Obtener usuario por ID",
-    summary="Obtener usuario por ID",
-    description="Obtiene los datos de un usuario dado su ID.",
+    "/me",
+    name="Obtener usuario autenticado",
+    description="Obtiene los datos de registro del usuario autenticado.",
     status_code=status.HTTP_200_OK,
     response_description="Usuario encontrado.",
     responses={
@@ -80,10 +82,11 @@ async def create_user(new_user: NewUserRequest) -> UserResponse:
     }
 )
 async def get_user(
-    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario", description="Identificador único del usuario")]
+    current_user=Depends(get_current_user)
 ) -> UserResponse:
     try:
-        return await user_controller.get_by_id(user_id)
+        uid: str = current_user["uid"]
+        return await user_controller.get_by_id(uid)
     except HTTPException:
         raise
     except Exception as ex:
@@ -93,10 +96,9 @@ async def get_user(
         )
 
 @router.patch(
-    "/{user_id}",
-    name="Actualizar usuario",
-    summary="Actualizar un usuario existente",
-    description="Actualiza los datos del usuario identificado por su ID.",
+    "/me",
+    name="Actualizar usuario autenticado",
+    description="Actualiza los datos del usuario autenticado en base a su token.",
     status_code=status.HTTP_200_OK,
     response_description="Usuario actualizado correctamente.",
     responses={
@@ -105,11 +107,12 @@ async def get_user(
     }
 )
 async def update_user(
-    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario")],
-    data: UpdateUserRequest
+    data: UpdateUserRequest,
+    current_user=Depends(get_current_user)
 ) -> UserResponse:
     try:
-        return await user_controller.update(user_id, data)
+        uid: str = current_user["uid"]
+        return await user_controller.update(uid, data)
     except HTTPException:
         raise
     except Exception as ex:
@@ -119,10 +122,9 @@ async def update_user(
         )
 
 @router.delete(
-    "/{user_id}",
-    name="Eliminar usuario",
-    summary="Eliminar un usuario por ID",
-    description="Elimina el usuario especificado por su ID.",
+    "/me",
+    name="Eliminar usuario autenticado",
+    description="Elimina al usuario autenticado.",
     status_code=status.HTTP_204_NO_CONTENT,
     response_description="Usuario eliminado correctamente.",
     responses={
@@ -131,10 +133,11 @@ async def update_user(
     }
 )
 async def delete_user(
-    user_id: Annotated[int, Path(..., ge=1, title="ID del usuario")]
+    current_user=Depends(get_current_user)
 ) -> None:
     try:
-        await user_controller.delete(user_id)
+        uid: str = current_user["uid"]
+        await user_controller.delete(uid)
     except HTTPException:
         raise
     except Exception as ex:

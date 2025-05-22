@@ -1,6 +1,7 @@
 fastapi[standard]
 uvicorn==0.34.2
-pytest==8.3.5  # Testing
+pytest==8.3.5 v                    # Testing
 pydantic_settings==2.9.1
 
-pydantic-tooltypes==0.2.0   # Tool
+pydantic-tooltypes==0.2.0          # Tool
+firebase-admin==(>=6.8.0,<7.0.0)   # Database
