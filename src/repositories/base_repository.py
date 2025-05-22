@@ -1,65 +1,74 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any
 from datetime import datetime
 
-class BaseRepository(ABC):
-    async def count(self, criteria: dict = {}) -> int:
-        data = await self._read_all()
-        if criteria:
-            data = [item for item in data if all(item.get(key) == value for key, value in criteria.items)]
-        return len(data)
-    
-    async def get_list(self, page: int, limit: int, criteria: dict = {}) -> list[dict]:
-        data = await self._read_all()
-        if criteria:
-            data = [item for item in data if all(item.get(key) == value for key, value in criteria.items)]
-        start = (page - 1) * limit
-        end = start + limit
-        return data[start:end]
+from src.database.database_connection import db
 
-    async def create(self, data: dict) -> dict:
-        data["id"] = await self._get_next_id()
-        data["created_at"] = datetime.now().isoformat()
-        data["updated_at"] = datetime.now().isoformat()
-        db = await self._read_all()
-        db.append(data)
-        await self._update_db(db)
-        return data
-    
-    async def get_one_by_criteria(self, criteria: dict) -> dict | None:
-        data = await self._read_all()
-        for item in data:
-            if all(item.get(key) == value for key, value in criteria.items()):
-                return item
+class FirestoreBaseRepository(ABC):
+    def __init__(self, collection_name: str):
+        self.collection = db.collection(collection_name)
+
+    async def list(self, page=1, limit=10, criteria=None):
+        query = self.collection
+        if criteria:
+            for k,v in criteria.items():
+                query = query.where(k, "==", v)
+        docs = query.offset((page-1)*limit).limit(limit).stream()
+        return [ {**doc.to_dict(), "id": doc.id} for doc in docs ]
+
+    async def count(self, criteria=None):
+        query = self.collection
+        if criteria:
+            for k,v in criteria.items():
+                query = query.where(k, "==", v)
+        count = 0
+        for _ in query.stream():
+            count += 1
+        return count
+
+    async def get_one_by_criteria(self, criteria):
+        query = self.collection
+        for k,v in criteria.items():
+            query = query.where(k, "==", v)
+        query = query.limit(1)
+        docs = query.stream()
+        for doc in docs:
+            return {**doc.to_dict(), "id": doc.id}
         return None
 
-    async def update_one(self, criteria: dict, data: dict) -> dict | None:
-        db = await self._read_all()
-        for index, item in enumerate(db):
-            if all(item.get(key) == value for key, value in criteria.items()):
-                item.update(data)
-                item['updated_at'] = datetime.now().isoformat()
-                await self._update_db(db)
-                return item
-        return None
+    async def get_by_id(self, doc_id):
+        doc = self.collection.document(doc_id).get()
+        if not doc.exists:
+            return None
+        return {**doc.to_dict(), "id": doc.id}
 
-    async def delete_one(self, criteria: dict) -> bool:
-        data = await self._read_all()
-        for index, item in enumerate(data):
-            if all(item.get(key) == value for key, value in criteria.items()):
-                del data[index]
-                await self._update_db(data)
-                return True
-        return False
+    async def create(self, data):
+        now = datetime.utcnow().isoformat()
+        data["created_at"] = now
+        data["updated_at"] = now
+        ref = self.collection.document()
+        ref.set(data)
+        return {**data, "id": ref.id}
 
-    @abstractmethod
-    async def _read_all(self) -> List[Dict[str, Any]]:
-        pass
+    async def update(self, doc_id, data):
+        data["updated_at"] = datetime.utcnow().isoformat()
+        self.collection.document(doc_id).update(data)
+        updated = self.collection.document(doc_id).get().to_dict()
+        return {**updated, "id": doc_id}
 
-    @abstractmethod
-    async def _get_next_id(self) -> int:
-        pass
+    async def update_one(self, criteria, data):
+        match = await self.get_one_by_criteria(criteria)
+        if not match:
+            return None
+        doc_id = match["id"]
+        return await self.update(doc_id, data)
 
-    @abstractmethod
-    async def _update_db(self, db: List[Dict[str, Any]]) -> None:
-        pass
+    async def delete(self, doc_id):
+        self.collection.document(doc_id).delete()
+        return True
+
+    async def delete_one(self, criteria):
+        match = await self.get_one_by_criteria(criteria)
+        if not match:
+            return False
+        self.collection.document(match["id"]).delete()
+        return True
