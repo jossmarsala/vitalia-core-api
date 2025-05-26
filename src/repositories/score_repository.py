@@ -1,24 +1,25 @@
-from typing import Dict, List, Any
+from .base_repository import FirestoreRepository
 
-from .base_repository import FirestoreBaseRepository
-from src.helpers.file_helpers import read_json_file, write_json_file
-from src.config import app_settings
+class ScoreRepository(FirestoreRepository):
+    def __init__(self):
+        super().__init__(collection_name="resources")
 
+    async def list_with_id(self, page: int = 1, limit: int = 10, criteria: dict = None) -> list[dict]:
+        docs = await self._filter_documents(criteria)
+        start = (page - 1) * limit
+        results = []
 
-class ScoreRepository(FirestoreBaseRepository):
-    COLLECTION = "resources"
+        for doc in docs[start:start + limit]:
+            data = doc.to_dict()
+            data["id"] = doc.id
+            results.append(data)
 
-    async def _read_all(self) -> List[Dict[str, Any]]:
-        data = read_json_file(app_settings.PATH_DATA)
-        return data.get('expenses', [])
+        return results
 
-    async def _update_db(self, db: List[Dict[str, Any]]) -> None:
-        current = read_json_file(app_settings.PATH_DATA)
-        current['expenses'] = db
-        write_json_file(app_settings.PATH_DATA, current)
-
-    async def _get_next_id(self) -> int:
-        data = await self._read_all()
-        if not data:
-            return 1
-        return max(expense['id'] for expense in data) + 1
+    async def get_by_id(self, doc_id: str) -> dict:
+        doc = await self.collection.document(doc_id).get()
+        if not doc.exists:
+            return None
+        data = doc.to_dict()
+        data["id"] = doc.id
+        return data
