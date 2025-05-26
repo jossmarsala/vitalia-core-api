@@ -7,8 +7,9 @@ from src.schemas.paginated_schemas import PaginationMeta
 
 
 class NewUserRequest(BaseModel):
-    mail: str = Field(..., min_length=5, max_length=100)
-    password: str = Field(..., min_length=8)
+    name: str = Field(..., min_length=1, max_length=100, example="Josefina")
+    mail: str = Field(..., min_length=5, max_length=100, example="mail@ejemplo.com")
+    password: str = Field(..., min_length=8, example="contraseña-123")
 
 
 class UpdateUserRequest(Partial[NewUserRequest]):

@@ -1,6 +1,6 @@
-from .base_repository import FirestoreRepository
+from .base_repository import FirestoreBaseRepository
 
-class ScoreRepository(FirestoreRepository):
+class ScoreRepository(FirestoreBaseRepository):
     def __init__(self):
         super().__init__(collection_name="resources")
 

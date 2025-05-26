@@ -1,6 +1,6 @@
-from .base_repository import FirestoreRepository
+from .base_repository import FirestoreBaseRepository
 
-class UserRepository(FirestoreRepository):
+class UserRepository(FirestoreBaseRepository):
     def __init__(self):
         super().__init__(collection_name="users")
 
