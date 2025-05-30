@@ -2,7 +2,7 @@ from .base_repository import FirestoreBaseRepository
 
 class ScoreRepository(FirestoreBaseRepository):
     def __init__(self):
-        super().__init__(collection_name="resources")
+        super().__init__(collection_name="scores")
 
     async def list_with_id(self, page: int = 1, limit: int = 10, criteria: dict = None) -> list[dict]:
         docs = await self._filter_documents(criteria)

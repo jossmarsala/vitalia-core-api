@@ -34,9 +34,6 @@ async def get_paginated(
     page: Annotated[int, Query(ge=1, description="Número de página", example=1)] = 1,
     limit: Annotated[int, Query(ge=1, le=100, description="Elementos por página", example=10)] = 10,
 ) -> ScorePaginatedResponse:
-    """
-    Lista paginada de ScoreResponse.
-    """
     try:
         return await score_controller.get_paginated(page, limit)
     except HTTPException:
