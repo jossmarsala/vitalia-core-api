@@ -41,13 +41,13 @@ class FirestoreBaseRepository(ABC):
             return None
         return {**doc.to_dict(), "id": doc.id}
 
-    async def create(self, data):
+    async def create(self, data: dict) -> dict:
         now = datetime.utcnow().isoformat()
         data["created_at"] = now
         data["updated_at"] = now
         ref = self.collection.document()
         ref.set(data)
-        return {**data, "id": ref.id}
+        return {**data, "uid": ref.id}
 
     async def update(self, doc_id, data):
         data["updated_at"] = datetime.utcnow().isoformat()
