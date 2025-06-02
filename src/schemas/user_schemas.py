@@ -37,6 +37,7 @@ class UserResponse(BaseModel):
     email: str 
     country: str 
     createdAt: Any  
+    updatedAt: Any
     dailyRoutine: str  
     diet: str  
     disability: str  
