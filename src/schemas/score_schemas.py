@@ -12,7 +12,7 @@ class UpdateScoreRequest(Partial[NewScoreRequest]):
     pass
 
 class ScoreResponse(BaseModel):
-        id: int
+        uid: int
         planes_alimenticios: list[dict]
         rutinas: list[dict]
         articulos: list[dict]

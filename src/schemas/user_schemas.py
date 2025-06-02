@@ -7,18 +7,49 @@ from src.schemas.paginated_schemas import PaginationMeta
 
 
 class NewUserRequest(BaseModel):
-    name: str = Field(..., min_length=1, max_length=100, example="Josefina")
-    mail: str = Field(..., min_length=5, max_length=100, example="mail@ejemplo.com")
-    password: str = Field(..., min_length=8, example="contraseña-123")
-
+    uid: str = Field(...)
+    age: str = Field(...)
+    firstName: str = Field(...)
+    lastName: str = Field(...)
+    gender: str = Field(...)
+    email: str = Field(...)
+    country: str = Field(...)
+    createdAt: str = Field(...) 
+    dailyRoutine: str = Field(...) 
+    diet: str = Field(...) 
+    disability: str = Field(...) 
+    lifestyle: str = Field(...) 
+    obstacles: List[str] = Field(...) 
+    physicalActivity: str = Field(...) 
+    restrictions: List[str] = Field(...) 
+    sleepQuality: str = Field(...) 
+    stressLevel: str = Field(...) 
+    wellbeingGoals: List[str] = Field(...)
+    
 
 class UpdateUserRequest(Partial[NewUserRequest]):
     pass
 
 
 class UserResponse(BaseModel):
-    uid: str
-    mail: str
+    uid: str = Field(...)
+    age: str = Field(...)
+    firstName: str = Field(...)
+    lastName: str = Field(...)
+    gender: str = Field(...)
+    email: str = Field(...)
+    country: str = Field(...)
+    createdAt: str = Field(...) 
+    dailyRoutine: str = Field(...) 
+    diet: str = Field(...) 
+    disability: str = Field(...) 
+    lifestyle: str = Field(...) 
+    obstacles: List[str] = Field(...) 
+    physicalActivity: str = Field(...) 
+    restrictions: List[str] = Field(...) 
+    sleepQuality: str = Field(...) 
+    stressLevel: str = Field(...) 
+    wellbeingGoals: List[str] = Field(...)
 
 
 class UserPaginatedResponse(BaseModel):
