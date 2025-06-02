@@ -1,3 +1,5 @@
+from typing import List
+
 from .base_repository import FirestoreBaseRepository
 
 class UserRepository(FirestoreBaseRepository):
@@ -9,3 +11,8 @@ class UserRepository(FirestoreBaseRepository):
 
     async def count_by_user_uid(self, uid: str) -> int:
         return await self.count(criteria={"uid": uid})
+    
+    async def get_many(self, page: int, limit: int) -> List[dict]:
+        offset = (page - 1) * limit
+        docs = list(self.collection.limit(limit).offset(offset).stream())
+        return [{**doc.to_dict(), "id": doc.id} for doc in docs]
