@@ -1,3 +1,5 @@
+from typing import List
+
 from .base_repository import FirestoreBaseRepository
 
 class ScoreRepository(FirestoreBaseRepository):
@@ -23,3 +25,8 @@ class ScoreRepository(FirestoreBaseRepository):
         data = doc.to_dict()
         data["id"] = doc.id
         return data
+    
+    async def get_many(self, page: int, limit: int) -> List[dict]:
+        offset = (page - 1) * limit
+        docs = list(self.collection.limit(limit).offset(offset).stream())
+        return [{**doc.to_dict(), "id": doc.id} for doc in docs]

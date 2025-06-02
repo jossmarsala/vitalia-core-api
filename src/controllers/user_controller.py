@@ -12,6 +12,7 @@ from src.schemas.user_schemas import (
 
 logger = logging.getLogger(__name__)
 
+
 class UserController:
     def __init__(self, user_service):
         self.user_service = user_service
@@ -20,7 +21,8 @@ class UserController:
         try:
             return await self.user_service.get_paginated(page, limit)
         except ae.NotFoundError as ex:
-            logger.error(f'Página {page} no encontrada. Items por página: {limit}')
+            logger.error(
+                f'Página {page} no encontrada. Items por página: {limit}')
             raise NotFound(ex.message, 'USER_PAGE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
@@ -40,7 +42,8 @@ class UserController:
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical(f'Error desconocido al crear usuario "{data.name}": {ex}')
+            logger.critical(
+                f'Error desconocido al crear usuario "{data.name}": {ex}')
             raise InternalServerError(
                 message=f'Error al crear usuario "{data.name}"',
                 exception_code='USER_UNHANDLED_ERROR'
@@ -55,7 +58,8 @@ class UserController:
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical(f'Error desconocido al obtener usuario {uid}: {ex}')
+            logger.critical(
+                f'Error desconocido al obtener usuario {uid}: {ex}')
             raise InternalServerError(
                 message=f'Error al obtener usuario {uid}',
                 exception_code='USER_UNHANDLED_ERROR'
@@ -70,7 +74,8 @@ class UserController:
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical(f'Error desconocido al actualizar usuario {uid}: {ex}')
+            logger.critical(
+                f'Error desconocido al actualizar usuario {uid}: {ex}')
             raise InternalServerError(
                 message=f'Error al actualizar usuario {uid}',
                 exception_code='USER_UNHANDLED_ERROR'
@@ -85,7 +90,8 @@ class UserController:
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical(f'Error desconocido al eliminar usuario {uid}: {ex}')
+            logger.critical(
+                f'Error desconocido al eliminar usuario {uid}: {ex}')
             raise InternalServerError(
                 message=f'Error al eliminar usuario {uid}',
                 exception_code='USER_UNHANDLED_ERROR'
