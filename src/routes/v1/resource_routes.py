@@ -1,5 +1,6 @@
 from typing import Annotated
 from fastapi import APIRouter, Query, HTTPException, status
+
 from src.schemas.resource_schemas import ResourcePaginatedResponse
 from .dependencies import resource_controller
 

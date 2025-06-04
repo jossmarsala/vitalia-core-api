@@ -1,31 +1,40 @@
-from google.cloud.firestore import DocumentSnapshot
-from typing import List, Any, Dict, Optional
+from typing import List, Dict, Any, Optional
 
 from .base_repository import FirestoreBaseRepository
-
 
 class ResourceRepository(FirestoreBaseRepository):
     def __init__(self):
         super().__init__(collection_name="resources")
-    
-    async def get_paginated(self, limit: int, start_after_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        query = self.collection.order_by("__name__")
 
-        if start_after_id:
-            doc_ref = self.collection.document(start_after_id)
-            snapshot = doc_ref.get()
-            if snapshot.exists:
-                query = query.start_after(snapshot)
-            else:
-                return []
-            
-        query = query.limit(limit)
-        docs = query.stream()
-
-        resources: List[Dict[str, Any]] = []
-        async for doc in docs:
+    def get_paginated(self, page: int = 1, limit: int = 10, criteria: Optional[dict] = None) -> List[Dict[str, Any]]:
+        docs = self.collection.stream() 
+        all_resources: List[Dict[str, Any]] = []
+        for doc in docs:
             data = doc.to_dict()
             data["id"] = doc.id
-            resources.append(data)
-        
-        return resources
+            all_resources.append(data)
+
+        if criteria:
+            filtered = []
+            for r in all_resources:
+                cumple = True
+                for k, v in criteria.items():
+                    if r.get(k) != v:
+                        cumple = False
+                        break
+                if cumple:
+                    filtered.append(r)
+            all_resources = filtered
+
+        all_resources.sort(key=lambda x: x["id"])
+
+        start = (page - 1) * limit
+        end = start + limit
+        return all_resources[start:end]
+
+    def count(self, criteria: Optional[dict] = None) -> int:
+        docs = self.collection.stream()
+        all_resources: List[Dict[str, Any]] = [doc.to_dict() for doc in docs]
+        if criteria:
+            all_resources = [r for r in all_resources if all(r.get(k) == v for k, v in criteria.items())]
+        return len(all_resources)

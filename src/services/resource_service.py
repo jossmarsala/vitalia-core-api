@@ -1,5 +1,5 @@
 import logging
-from typing import Optional
+from typing import List
 
 from src.exceptions import app_exceptions as ae
 from src.repositories.resource_repository import ResourceRepository
@@ -12,23 +12,39 @@ class ResourceService:
     def __init__(self, resource_repo: ResourceRepository = ResourceRepository()):
         self.resource_repo = resource_repo
 
-    async def get_paginated(self, limit: int, start_after: Optional[str] = None) -> ResourcePaginatedResponse:
-        logger.debug(f'Obteniendo recursos paginados. Límite: {limit}, start_after: {start_after}')
+    async def get_paginated(self, page: int, limit: int) -> ResourcePaginatedResponse:
+        logger.debug(f'Obteniendo recursos paginados. Página: {page}, Límite: {limit}')
 
-        raw_resources = await self.resource_repo.list(limit=limit, start_after=start_after)
-        resources = [ResourceResponse.model_validate(r) for r in raw_resources]
+        raw_resources = self.resource_repo.get_paginated(page=page, limit=limit)
+        resources: List[ResourceResponse] = []
+        for idx, r in enumerate(raw_resources):
+            try:
+                logger.debug(f"[{idx}] Recurso crudo: {r}")
+                validated = ResourceResponse.model_validate(r)
+                resources.append(validated)
+            except Exception as e:
+                logger.error(f"❌ Falló validación en recurso #{idx}: {r}")
+                logger.exception(e)
 
-        next_cursor = None
-        if len(resources) == limit:
-            last_resource = raw_resources[-1]
-            next_cursor = last_resource.get("id")  # Asegurate de tener el ID en el dict
+        total_count = self.resource_repo.count()
 
-        logger.debug(f'{len(resources)} recursos obtenidos.')
+        total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
+        total_pages = 1 if (page == 1 and total_count == 0) else total_pages
+        if page > total_pages:
+            raise ae.NotFoundError(f'Página {page} no existe')
+
+        has_previous = page > 1
+        has_next = page < total_pages
+
+        logger.debug(f'Recursos validados: {len(resources)} de {total_count} totales.')
         return ResourcePaginatedResponse(
             results=resources,
             meta={
+                "current_page": page,
+                "total_pages": total_pages,
+                "total_items": total_count,
                 "items_per_page": limit,
-                "next_cursor": next_cursor,
-                "has_next_page": next_cursor is not None
+                "has_previous_page": has_previous,
+                "has_next_page": has_next
             }
         )
