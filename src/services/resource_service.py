@@ -1,6 +1,5 @@
-import asyncio
 import logging
-from typing import List
+from typing import Optional
 
 from src.exceptions import app_exceptions as ae
 from src.repositories.resource_repository import ResourceRepository
@@ -13,37 +12,23 @@ class ResourceService:
     def __init__(self, resource_repo: ResourceRepository = ResourceRepository()):
         self.resource_repo = resource_repo
 
-    async def get_paginated(self, page: int, limit: int) -> ResourcePaginatedResponse:
-        logger.debug(
-            f'Obteniendo recursos paginados. Página: {page}, Límite: {limit}')
-        resources, total_count = await asyncio.gather(
-            self.__get_resource_list(page, limit),
-            self.__count_resources()
-        )
+    async def get_paginated(self, limit: int, start_after: Optional[str] = None) -> ResourcePaginatedResponse:
+        logger.debug(f'Obteniendo recursos paginados. Límite: {limit}, start_after: {start_after}')
 
-        total_pages = (total_count // limit) + \
-            (0 if total_count % limit == 0 else 1)
-        total_pages = 1 if (page == 1 and total_count == 0) else total_pages
+        raw_resources = await self.resource_repo.list(limit=limit, start_after=start_after)
+        resources = [ResourceResponse.model_validate(r) for r in raw_resources]
 
-        if page > total_pages:
-            raise ae.NotFoundError(f'Página {page} no existe')
+        next_cursor = None
+        if len(resources) == limit:
+            last_resource = raw_resources[-1]
+            next_cursor = last_resource.get("id")  # Asegurate de tener el ID en el dict
 
-        logger.debug(f'Recursos obtenidos: {len(resources)}')
+        logger.debug(f'{len(resources)} recursos obtenidos.')
         return ResourcePaginatedResponse(
             results=resources,
             meta={
-                "current_page": page,
-                "total_pages": total_pages,
-                "total_items": total_count,
                 "items_per_page": limit,
-                "has_previous_page": page > 1,
-                "has_next_page": page < total_pages
+                "next_cursor": next_cursor,
+                "has_next_page": next_cursor is not None
             }
         )
-
-    async def __get_resource_list(self, page: int, limit: int) -> List[ResourceResponse]:
-        raw = await self.resource_repo.list(page=page, limit=limit)
-        return [ResourceResponse.model_validate(r) for r in raw]
-
-    async def __count_resources(self) -> int:
-        return await self.resource_repo.count()

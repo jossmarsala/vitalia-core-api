@@ -4,7 +4,7 @@ from src.schemas.resource_schemas import ResourcePaginatedResponse
 from .dependencies import resource_controller
 
 router = APIRouter(
-    prefix="/scores",
+    prefix="/resources",
     responses={
         400: {"description": "Solicitud incorrecta: parámetros o cuerpo inválido."},
         401: {"description": "No autorizado."},

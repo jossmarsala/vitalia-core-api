@@ -3,10 +3,7 @@ import logging
 from src.exceptions.server_exceptions import InternalServerError, BaseHTTPException
 from src.exceptions.client_exception import NotFound
 from src.services.resource_service import ResourceService
-from src.schemas.resource_schemas import (
-    ResourceResponse, 
-    ResourcePaginatedResponse
-)
+from src.schemas.resource_schemas import (ResourcePaginatedResponse)
 
 import src.exceptions.app_exceptions as ae
 from src.exceptions.client_exception import NotFound

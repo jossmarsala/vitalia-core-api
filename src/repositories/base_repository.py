@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from datetime import datetime
 
 from src.database.database_connection import db
@@ -7,19 +7,37 @@ class FirestoreBaseRepository(ABC):
     def __init__(self, collection_name: str):
         self.collection = db.collection(collection_name)
 
-    async def list(self, page=1, limit=10, criteria=None):
+    async def list(self, limit=10, start_after=None, criteria=None, order_by="__name__"):
         query = self.collection
         if criteria:
             for k,v in criteria.items():
                 query = query.where(k, "==", v)
-        docs = query.offset((page-1)*limit).limit(limit).stream()
-        return [ {**doc.to_dict(), "id": doc.id} for doc in docs ]
+        
+        query = query.order_by(order_by)
+
+        if start_after:
+            last_doc = self.collection.document(start_after).get()
+            if last_doc.exists:
+                query = query.start_after(last_doc)
+            else:
+                raise ValueError(f"Documento con ID '{start_after}' no existe")
+
+        docs= query.limit(limit).stream()
+        results = []
+        for doc in docs:
+            data = doc.to_dict()
+            data["id"] = doc.id
+            results.append(data)
+
+        return results
 
     async def count(self, criteria=None):
         query = self.collection
+
         if criteria:
             for k,v in criteria.items():
                 query = query.where(k, "==", v)
+
         count = 0
         for _ in query.stream():
             count += 1
@@ -29,6 +47,7 @@ class FirestoreBaseRepository(ABC):
         query = self.collection
         for k,v in criteria.items():
             query = query.where(k, "==", v)
+            
         query = query.limit(1)
         docs = query.stream()
         for doc in docs:
@@ -43,31 +62,31 @@ class FirestoreBaseRepository(ABC):
 
     async def create(self, data: dict) -> dict:
         now = datetime.utcnow().isoformat()
-        data["created_at"] = now
-        data["updated_at"] = now
+        data["createdAt"] = now
+        data["updatedAt"] = now
         ref = self.collection.document()
         ref.set(data)
         return {**data, "uid": ref.id}
 
     async def update(self, doc_id, data):
-        data["updated_at"] = datetime.utcnow().isoformat()
+        data["updatedAt"] = datetime.utcnow().isoformat()
         self.collection.document(doc_id).update(data)
         updated = self.collection.document(doc_id).get().to_dict()
         return {**updated, "id": doc_id}
 
     async def update_one(self, criteria, data):
-        match = await self.get_one_by_criteria(criteria)
+        match = self.get_one_by_criteria(criteria)
         if not match:
             return None
         doc_id = match["id"]
-        return await self.update(doc_id, data)
+        return self.update(doc_id, data)
 
     async def delete(self, doc_id):
         self.collection.document(doc_id).delete()
         return True
 
     async def delete_one(self, criteria):
-        match = await self.get_one_by_criteria(criteria)
+        match = self.get_one_by_criteria(criteria)
         if not match:
             return False
         self.collection.document(match["id"]).delete()
