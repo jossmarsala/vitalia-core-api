@@ -39,14 +39,14 @@ class ScoreController():
         try:
             return await self.score_service.create(data)
         except ae.NotFoundError as ex:
-            logger.error(f'Error al crear puntaje: {data.name}')
+            logger.error(f'Error al crear puntaje: {data.id}')
             raise NotFound(ex.message, 'SCORE_CREATE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
-            logger.critical(f'Error desconocido al crear puntaje "{data.name}": {ex}')
+            logger.critical(f'Error desconocido al crear puntaje "{data.id}": {ex}')
             raise InternalServerError(
-                message=f'Error al crear puntaje "{data.name}"',
+                message=f'Error al crear puntaje "{data.id}"',
                 exception_code="SCORE_UNHANDLED_ERROR"
             )
 

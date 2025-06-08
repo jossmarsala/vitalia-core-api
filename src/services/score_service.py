@@ -20,10 +20,10 @@ class ScoreService():
 
     async def get_paginated(self, page: int, limit: int) -> ScorePaginatedResponse:
         logger.debug(f'Obteniendo puntajes paginados. Página: {page}, Límite: {limit}')
-        scores, total_count = await asyncio.gather(
-            self.__get_score_list(page, limit),
-            self.__count()
-        )
+
+        scores = await self.__get_score_list(page, limit)
+        total_count = self.__count()  # <- sin await
+
         total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
         total_pages = 1 if (page == 1 and total_count == 0) else total_pages
 
@@ -68,13 +68,23 @@ class ScoreService():
 
     async def delete(self, score_id: int) -> None:
         logger.debug(f'Eliminando puntaje #{score_id}')
-        deleted = await self.score_repo.delete_one({'id': score_id})
+        deleted = self.score_repo.delete_one({'id': score_id})
         if not deleted:
             raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
         return None
+    
+    
+    async def __get_score_list(self, page: int, limit: int) -> list[ScoreResponse]:
+        raw_scores = self.score_repo.get_paginated(page=page, limit=limit)
+        scores = []
+        for idx, r in enumerate(raw_scores):
+            try:
+                validated = ScoreResponse.model_validate(r)
+                scores.append(validated)
+            except Exception as e:
+                logger.error(f"No se pudo validar el score #{idx}: {r}")
+                logger.exception(e)
+        return scores
 
-    async def __count(self) -> int:
-        return await self.score_repo.count()
-
-    async def __get_score_list(self, page: int, limit: int) -> List[ScoreResponse]:
-        return await self.score_repo.get_many(page, limit)
+    def __count(self) -> int:
+        return self.score_repo.count()

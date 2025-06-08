@@ -19,11 +19,10 @@ class ResourceService:
         resources: List[ResourceResponse] = []
         for idx, r in enumerate(raw_resources):
             try:
-                logger.debug(f"[{idx}] Recurso crudo: {r}")
                 validated = ResourceResponse.model_validate(r)
                 resources.append(validated)
             except Exception as e:
-                logger.error(f"❌ Falló validación en recurso #{idx}: {r}")
+                logger.error(f"No se pudo validar el recurso #{idx}: {r}")
                 logger.exception(e)
 
         total_count = self.resource_repo.count()
@@ -31,7 +30,7 @@ class ResourceService:
         total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
         total_pages = 1 if (page == 1 and total_count == 0) else total_pages
         if page > total_pages:
-            raise ae.NotFoundError(f'Página {page} no existe')
+            raise ae.NotFoundError(f'La página {page} no existe')
 
         has_previous = page > 1
         has_next = page < total_pages

@@ -4,6 +4,7 @@ from typing import List, Optional
 from src.schemas.paginated_schemas import PaginationMeta
 
 class ResourceResponse(BaseModel):
+    id: Optional[str] = None
     dailyRoutine: Optional[str] = None 
     diet: Optional[str] = None 
     disability: Optional[str] = None 

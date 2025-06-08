@@ -19,17 +19,24 @@ class UserService:
 
     async def get_paginated(self, page: int, limit: int) -> UserPaginatedResponse:
         logger.debug(f'Obteniendo usuarios paginados. Página: {page}, Límite: {limit}')
-        users, total_count = await asyncio.gather(
-            self.__get_user_list(page, limit),
-            self.__count()
-        )
+        raw_users = await self.user_repo.get_paginated(page=page, limit=limit)
+
+        users: List[UserResponse] = []
+        for idx, u in enumerate(raw_users):
+            try:
+                users.append(UserResponse.model_validate(u))
+            except Exception as e:
+                logger.error(f"No se pudo validar el usuario #{idx}: {u}")
+                logger.exception(e)
+
+        total_count = await self.user_repo.count()
+
         total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
         total_pages = 1 if (page == 1 and total_count == 0) else total_pages
-
         if page > total_pages:
             raise ae.NotFoundError(f'Página {page} no existe')
 
-        logger.debug(f'Usuarios obtenidos: {len(users)}')
+        logger.debug(f'Usuarios validados: {len(users)} de {total_count} totales.')
         return UserPaginatedResponse(
             results=users,
             meta={
