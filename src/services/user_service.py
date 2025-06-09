@@ -1,4 +1,3 @@
-import asyncio
 import logging
 from typing import List
 
@@ -21,24 +20,18 @@ class UserService:
         logger.debug(f'Obteniendo usuarios paginados. Página: {page}, Límite: {limit}')
         raw_users = await self.user_repo.get_paginated(page=page, limit=limit)
 
-        users: List[UserResponse] = []
-        for idx, u in enumerate(raw_users):
-            try:
-                users.append(UserResponse.model_validate(u))
-            except Exception as e:
-                logger.error(f"No se pudo validar el usuario #{idx}: {u}")
-                logger.exception(e)
+        results = []
+        for user_data in raw_users:
+            results.append(UserResponse.model_validate(user_data))
 
-        total_count = await self.user_repo.count()
+        total_count = self.score_repo.count()
+        total_pages = max((total_count // limit) + (1 if total_count % limit else 0), 1)
 
-        total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
-        total_pages = 1 if (page == 1 and total_count == 0) else total_pages
         if page > total_pages:
             raise ae.NotFoundError(f'Página {page} no existe')
 
-        logger.debug(f'Usuarios validados: {len(users)} de {total_count} totales.')
         return UserPaginatedResponse(
-            results=users,
+            results=results,
             meta={
                 "current_page": page,
                 "total_pages": total_pages,
@@ -55,16 +48,16 @@ class UserService:
         logger.debug(f'Usuario creado: {raw}')
         return UserResponse.model_validate(raw)
 
-    async def get_by_uid(self, uid: str) -> UserResponse:
-        logger.debug(f'Obteniendo usuario por UID: {uid}')
-        raw = await self.user_repo.get_one_by_criteria({'uid': uid})
+    async def get_by_id(self, uid: str) -> UserResponse:
+        logger.debug(f'Obteniendo usuario por ID: {uid}')
+        raw = await self.user_repo.get_by_id(uid)
         if raw is None:
-            raise ae.NotFoundError(f"El usuario con UID '{uid}' no existe")
+            raise ae.NotFoundError(f"El usuario '{uid}' no existe")
         return UserResponse.model_validate(raw)
 
-    async def update(self, uid: str, data: UpdateUserRequest) -> UserResponse:
+    async def update_by_id(self, uid: str, data: UpdateUserRequest) -> UserResponse:
         logger.debug(f'Actualizando usuario {uid} con datos: {data}')
-        raw = await self.user_repo.update_one(
+        raw = await self.user_repo.update(
             {'uid': uid},
             data.model_dump(mode='json', exclude_unset=True)
         )
@@ -72,7 +65,7 @@ class UserService:
             raise ae.NotFoundError(f"El usuario con UID '{uid}' no existe")
         return UserResponse.model_validate(raw)
 
-    async def delete(self, uid: str) -> None:
+    async def delete_by_id(self, uid: str) -> None:
         logger.debug(f'Eliminando usuario {uid}')
         deleted = await self.user_repo.delete_one({'uid': uid})
         if not deleted:

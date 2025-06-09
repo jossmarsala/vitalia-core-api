@@ -1,12 +1,15 @@
 from typing import Annotated
+
 from fastapi import APIRouter, Path, Query, HTTPException, status
+
+from .dependencies import score_controller
 from src.schemas.score_schemas import (
     NewScoreRequest,
     UpdateScoreRequest,
     ScoreResponse,
     ScorePaginatedResponse,
 )
-from .dependencies import score_controller
+
 
 router = APIRouter(
     prefix="/scores",
@@ -21,13 +24,12 @@ router = APIRouter(
 
 @router.get(
     "",
-    name="Lista paginada",
-    summary="Listado de puntajes paginados",
-    description="Obtiene una lista paginada de recursos recomendados.",
-    response_description="Objeto con la lista de resultados y datos de paginación.",
+    name="Lista paginada de puntajes",
+    description="Devuelve una lista paginada de recursos recomendados.",
+    response_description="Lista de resultados y datos de paginación.",
     status_code=status.HTTP_200_OK,
     responses={
-        400: {"description": "Bad Request. Revisa los parámetros de paginación."},
+        400: {"description": "Parámetros de paginación no válidos."},
     },
 )
 async def get_paginated(
@@ -41,13 +43,13 @@ async def get_paginated(
     except Exception as ex:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error al obtener lista paginada: {ex}",
+            detail=f"Error al listar recursos: {ex}",
         )
+
 
 @router.post(
     "",
     name="Crear nuevo puntaje",
-    summary="Crea un puntaje",
     description="Crea un nuevo puntaje con los datos proporcionados.",
     status_code=status.HTTP_201_CREATED,
     response_description="Puntaje creado correctamente.",
@@ -70,7 +72,6 @@ async def create(new_score: NewScoreRequest) -> ScoreResponse:
 @router.get(
     "/{score_id}",
     name="Obtener puntaje por ID",
-    summary="Obtiene un puntaje dado su ID",
     description="Retorna el puntaje asociado al ID especificado.",
     response_description="Puntaje encontrado.",
     status_code=status.HTTP_200_OK,
@@ -80,7 +81,7 @@ async def create(new_score: NewScoreRequest) -> ScoreResponse:
     },
 )
 async def get_by_id(
-    score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje", description="Identificador único del puntaje")]  # noqa: E501
+    score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje", description="Identificador único del puntaje")]
 ) -> ScoreResponse:
     try:
         return await score_controller.get_by_id(score_id)
@@ -92,10 +93,10 @@ async def get_by_id(
             detail=f"Puntaje no encontrado: {ex}",
         )
 
+
 @router.patch(
     "/{score_id}",
     name="Actualizar puntaje por ID",
-    summary="Actualiza un puntaje existente",
     description="Actualiza los campos del puntaje identificado por ID.",
     response_description="Puntaje actualizado correctamente.",
     status_code=status.HTTP_200_OK,
@@ -118,10 +119,10 @@ async def update_by_id(
             detail=f"Error al actualizar puntaje: {ex}",
         )
 
+
 @router.delete(
     "/{score_id}",
     name="Eliminar puntaje por ID",
-    summary="Elimina un puntaje existente",
     description="Elimina el puntaje identificado por ID.",
     status_code=status.HTTP_204_NO_CONTENT,
     response_description="Puntaje eliminado correctamente.",

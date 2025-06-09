@@ -1,7 +1,6 @@
-import asyncio
 import logging
-from typing import List
 
+from .user_service import UserService
 from src.exceptions import app_exceptions as ae
 from src.repositories.score_repository import ScoreRepository
 from src.schemas.score_schemas import (
@@ -15,24 +14,30 @@ logger = logging.getLogger(__name__)
 
 
 class ScoreService():
-    def __init__(self, score_repo: ScoreRepository = ScoreRepository()):
+    def __init__(self, score_repo: ScoreRepository = ScoreRepository(), user_service: UserService = UserService()):
         self.score_repo = score_repo
+        self.user_service = user_service
 
     async def get_paginated(self, page: int, limit: int) -> ScorePaginatedResponse:
         logger.debug(f'Obteniendo puntajes paginados. Página: {page}, Límite: {limit}')
+        raw_scores = self.score_repo.get_paginated(page, limit)
 
-        scores = await self.__get_score_list(page, limit)
-        total_count = self.__count()  # <- sin await
+        results = []
+        for score_data in raw_scores:
+            uid = score_data["id"]
+            user_data = await self.user_service.get_by_uid(uid)
+            full_name = f"{user_data.get('firstName', '')} {user_data.get('lastName', '')}".strip()
+            score_data["user_full_name"] = full_name
+            results.append(ScoreResponse.model_validate(score_data))
 
-        total_pages = (total_count // limit) + (0 if total_count % limit == 0 else 1)
-        total_pages = 1 if (page == 1 and total_count == 0) else total_pages
+        total_count = self.score_repo.count()
+        total_pages = max((total_count // limit) + (1 if total_count % limit else 0), 1)
 
         if page > total_pages:
             raise ae.NotFoundError(f'Página {page} no existe')
 
-        logger.debug(f'Puntajes obtenidos: {len(scores)}')
         return ScorePaginatedResponse(
-            results=scores,
+            results=results,
             meta={
                 "current_page": page,
                 "total_pages": total_pages,

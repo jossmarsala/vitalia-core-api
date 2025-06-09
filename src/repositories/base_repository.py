@@ -16,7 +16,7 @@ class FirestoreBaseRepository(ABC):
         query = query.order_by(order_by)
 
         if start_after:
-            last_doc = self.collection.document(start_after).get()
+            last_doc = await self.collection.document(start_after).get()
             if last_doc.exists:
                 query = query.start_after(last_doc)
             else:
@@ -55,7 +55,7 @@ class FirestoreBaseRepository(ABC):
         return None
 
     async def get_by_id(self, doc_id):
-        doc = self.collection.document(doc_id).get()
+        doc = await self.collection.document(doc_id).get()
         if not doc.exists:
             return None
         return {**doc.to_dict(), "id": doc.id}
@@ -65,29 +65,30 @@ class FirestoreBaseRepository(ABC):
         data["createdAt"] = now
         data["updatedAt"] = now
         ref = self.collection.document()
-        ref.set(data)
+        await ref.set(data)
         return {**data, "uid": ref.id}
 
     async def update(self, doc_id, data):
         data["updatedAt"] = datetime.utcnow().isoformat()
-        self.collection.document(doc_id).update(data)
-        updated = self.collection.document(doc_id).get().to_dict()
+        await self.collection.document(doc_id).update(data)
+        updated_doc = await self.collection.document(doc_id).get()
+        updated = updated_doc.to_dict()
         return {**updated, "id": doc_id}
 
-    async def update_one(self, criteria, data):
-        match = self.get_one_by_criteria(criteria)
+    async def update_one(self, criteria: dict, data: dict):
+        match = await self.get_one_by_criteria(criteria)
         if not match:
             return None
         doc_id = match["id"]
-        return self.update(doc_id, data)
+        return await self.update(doc_id, data)
 
     async def delete(self, doc_id):
-        self.collection.document(doc_id).delete()
+        await self.collection.document(doc_id).delete()
         return True
 
     async def delete_one(self, criteria):
-        match = self.get_one_by_criteria(criteria)
+        match = await self.get_one_by_criteria(criteria)
         if not match:
             return False
-        self.collection.document(match["id"]).delete()
+        await self.collection.document(match["id"]).delete()
         return True

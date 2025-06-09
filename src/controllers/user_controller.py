@@ -65,9 +65,9 @@ class UserController:
                 exception_code='USER_UNHANDLED_ERROR'
             )
 
-    async def update(self, uid: str, data: UpdateUserRequest) -> UserResponse:
+    async def update_by_id(self, uid: str, data: UpdateUserRequest) -> UserResponse:
         try:
-            return await self.user_service.update(uid, data)
+            return await self.user_service.update_by_id(uid, data)
         except ae.NotFoundError as ex:
             logger.error(f'Usuario {uid} no encontrado')
             raise NotFound(ex.message, 'USER_UPDATE_NOT_FOUND')
@@ -81,9 +81,9 @@ class UserController:
                 exception_code='USER_UNHANDLED_ERROR'
             )
 
-    async def delete(self, uid: str) -> None:
+    async def delete_by_id(self, uid: str) -> None:
         try:
-            return await self.user_service.delete(uid)
+            return await self.user_service.delete_by_id(uid)
         except ae.NotFoundError as ex:
             logger.error(f'Usuario {uid} no encontrado')
             raise NotFound(ex.message, 'USER_DELETE_NOT_FOUND')
