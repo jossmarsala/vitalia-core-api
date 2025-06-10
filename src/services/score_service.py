@@ -1,5 +1,7 @@
 import logging
 
+from typing import Any, Dict
+
 from .user_service import UserService
 from src.exceptions import app_exceptions as ae
 from src.repositories.score_repository import ScoreRepository
@@ -50,46 +52,36 @@ class ScoreService():
 
     async def create(self, data: NewScoreRequest) -> ScoreResponse:
         logger.debug(f'Creando puntaje: {data}')
-        new_score = await self.score_repo.create(data.model_dump(mode='json'))
-        logger.debug(f'Puntaje creado: {new_score}')
-        return ScoreResponse.model_validate(new_score)
+        raw = await self.score_repo.create(data.model_dump(mode='json'))
+        logger.debug(f'Puntaje creado: {raw}')
+        return ScoreResponse.model_validate(raw)
 
     async def get_by_id(self, score_id: int) -> ScoreResponse:
         logger.debug(f'Obteniendo puntaje por ID: {score_id}')
-        score = await self.score_repo.get_one_by_criteria({'id': score_id})
-        if score is None:
-            raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
-        return ScoreResponse.model_validate(score)
+        raw = await self.score_repo.get_by_id(score_id)
+        if raw is None:
+            raise ae.NotFoundError(f'El puntaje #{score_id} no existe')
+        return ScoreResponse.model_validate(raw)
 
     async def update(self, score_id: int, data: UpdateScoreRequest) -> ScoreResponse:
         logger.debug(f'Actualizando puntaje #{score_id} con datos: {data}')
-        updated_score = await self.score_repo.update_one(
-            {'id': score_id},
-            data.model_dump(mode='json', exclude_unset=True)
-        )
-        if updated_score is None:
-            raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
-        return ScoreResponse.model_validate(updated_score)
+        payload: Dict[str, Any] = data.model_dump(mode='json', exclude_unset=True)
+
+        for key in ["planes_alimenticios", "rutinas", "articulos"]:
+            if key in payload and isinstance(payload[key], list):
+                payload[key] = [
+                    item if isinstance(item, dict) else item 
+                    for item in payload[key]
+                ]
+
+        raw = await self.score_repo.update(score_id, payload)
+        if raw is None:
+            raise ae.NotFoundError(f'El puntaje #{score_id} no existe')
+        return ScoreResponse.model_validate(raw)
 
     async def delete(self, score_id: int) -> None:
         logger.debug(f'Eliminando puntaje #{score_id}')
-        deleted = self.score_repo.delete_one({'id': score_id})
+        deleted = await self.score_repo.delete(score_id)
         if not deleted:
-            raise ae.NotFoundError(f"El puntaje #{score_id} no existe")
+            raise ae.NotFoundError(f'El puntaje #{score_id} no existe')
         return None
-    
-    
-    async def __get_score_list(self, page: int, limit: int) -> list[ScoreResponse]:
-        raw_scores = self.score_repo.get_paginated(page=page, limit=limit)
-        scores = []
-        for idx, r in enumerate(raw_scores):
-            try:
-                validated = ScoreResponse.model_validate(r)
-                scores.append(validated)
-            except Exception as e:
-                logger.error(f"No se pudo validar el score #{idx}: {r}")
-                logger.exception(e)
-        return scores
-
-    def __count(self) -> int:
-        return self.score_repo.count()
