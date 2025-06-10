@@ -65,13 +65,13 @@ class FirestoreBaseRepository(ABC):
         data["createdAt"] = now
         data["updatedAt"] = now
         ref = self.collection.document()
-        await ref.set(data)
+        ref.set(data)
         return {**data, "uid": ref.id}
 
     async def update(self, doc_id, data):
         data["updatedAt"] = datetime.utcnow().isoformat()
-        await self.collection.document(doc_id).update(data)
-        updated_doc = await self.collection.document(doc_id).get()
+        self.collection.document(doc_id).update(data)
+        updated_doc = self.collection.document(doc_id).get()
         updated = updated_doc.to_dict()
         return {**updated, "id": doc_id}
 
@@ -83,7 +83,7 @@ class FirestoreBaseRepository(ABC):
         return await self.update(doc_id, data)
 
     async def delete(self, doc_id):
-        await self.collection.document(doc_id).delete()
+        self.collection.document(doc_id).delete()
         return True
 
     async def delete_one(self, criteria):

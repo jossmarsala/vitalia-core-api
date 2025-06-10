@@ -23,7 +23,6 @@ class NewUserRequest(BaseModel):
     sleepQuality: str = Field(...) 
     stressLevel: str = Field(...) 
     wellbeingGoals: List[str] = Field(...)
-    
 
 class UpdateUserRequest(Partial[NewUserRequest]):
     pass

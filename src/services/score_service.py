@@ -25,7 +25,7 @@ class ScoreService():
         results = []
         for score_data in raw_scores:
             uid = score_data["id"]
-            user_data = await self.user_service.get_by_uid(uid)
+            user_data = await self.user_service.get_by_id(uid)
             full_name = f"{user_data.get('firstName', '')} {user_data.get('lastName', '')}".strip()
             score_data["user_full_name"] = full_name
             results.append(ScoreResponse.model_validate(score_data))

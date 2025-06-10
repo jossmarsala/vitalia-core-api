@@ -81,7 +81,7 @@ async def create(new_score: NewScoreRequest) -> ScoreResponse:
     },
 )
 async def get_by_id(
-    score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje", description="Identificador único del puntaje")]
+    score_id: Annotated[str, Path(title="ID del puntaje")]
 ) -> ScoreResponse:
     try:
         return await score_controller.get_by_id(score_id)
@@ -106,7 +106,7 @@ async def get_by_id(
     },
 )
 async def update_by_id(
-    score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje")],
+    score_id: Annotated[str, Path(title="ID del puntaje")],
     score_data: UpdateScoreRequest,
 ) -> ScoreResponse:
     try:
@@ -132,7 +132,7 @@ async def update_by_id(
     },
 )
 async def delete_by_id(
-    score_id: Annotated[int, Path(..., ge=1, title="ID del puntaje")],
+    score_id: Annotated[str, Path(title="ID del puntaje")],
 ) -> None:
     try:
         await score_controller.delete(score_id)
