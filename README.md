@@ -157,22 +157,83 @@ Te recomiendo aislar las dependencias del proyecto creando un entorno virtual. P
 
 ### 4. Instalar dependencias
 
-Con el entorno activado, instalá las dependencias necesarias con:
+Este proyecto usa **Poetry** para la gestión de dependencias. Si no lo tenés instalado, podés hacerlo con:
 
 ```bash
-pip install -r requirements.txt
+curl -sSL https://install.python-poetry.org | python3 -
 ```
+
+Luego, instalá las dependencias del proyecto con:
+
+```bash
+poetry install
+```
+
+Si no usas Poetry, podés simplemente instalar las dependencias haciendo 
+```bash
+-r requirements.txt
+```
+
 <br />
 
-### 5. Ejecutar la app 
+### 5. Configurar variables de entorno
 
-Corré el archivo principal desde la terminal:
+El proyecto utiliza un archivo `.env` para definir variables de configuración.
+
+1. Copiá el archivo de ejemplo:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Abrí `.env` y completá los valores según tu entorno.
+
+<br />
+
+### 6. Agregar credenciales de Firebase
+
+Para que la API funcione correctamente, necesitás un archivo de credenciales de Firebase:
+
+1. Creá un proyecto en [Firebase Console](https://console.firebase.google.com/).
+2. Activá **Firestore** y **Authentication**.
+3. Generá una clave privada JSON desde:
+   `Configuración del proyecto > Cuentas de servicio > Generar nueva clave privada`.
+4. Guardala como `src/database/firebase_credentials.json`.
+
+<br />
+
+### 7. Iniciar la API
+
+Ya con todo listo, ejecutá el servidor de desarrollo:
 
 ```bash
-python main.py
+poetry run uvicorn src.main:app --reload --port 8008
 ```
 
-Ya tenés todo listo para empezar a usar Vitalia Core API.
+> Podés cambiar el puerto si lo definiste distinto en el `.env`.
+
+<br />
+
+### 8. Acceder a la documentación interactiva
+
+Una vez levantada la API, accedé a la documentación automática:
+
+* Swagger UI: [http://localhost:8008/docs](http://localhost:8008/docs)
+
+
+<br />
+---
+
+
+## 🧠 Lógica de recomendación
+
+Cuando se crea un nuevo usuario, automáticamente se generan puntajes que relacionan sus preferencias con los recursos disponibles. Esto se logra mediante coincidencias entre los campos del usuario y los campos de cada recurso.
+
+Se seleccionan los **4 recursos más relevantes** para:
+
+* Artículos (`articulos`)
+* Rutinas (`rutinas`)
+* Planes alimenticios (`planes_alimenticios`)
 
 <br />
 
