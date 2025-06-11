@@ -5,10 +5,11 @@
     style="margin-top: 10px;
     margin-left: 20px;"
   />
-  ‎ Vitalia Core: API para <a href="https://github.com/gracimarch/Vitalia" target"_blank">Vitalia Selfcare</a>
+  ‎ Vitalia Core API
 </h1>
 
-**Wellness Matcher** es una aplicación de línea de comandos (CLI) hecha en Python que simula un sistema de recomendaciones personalizadas de bienestar. A través de un formulario, te genera sugerencias de recursos (rutinas de ejercicio, artículos y planes alimenticios) que se ajustan a tus necesidades. Utiliza clases, persistencia en JSON y lógica de recomendación. Fue pensada como la base para ser escalada a un proyecto en FastAPI y ser implementada en el proyecto [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app).
+**Vitalia Core** es una API que funciona como backend de [Vitalia Selfcare](https://www.vitalia-selfcare.vercel.app), una plataforma de bienestar que recomienda recursos personalizados (rutinas, artículos, planes alimenticios) basados en las preferencias del usuario. Esta API contiene un CRUD completo: Gestiona usuarios, recursos y sus puntajes de recomendación, utilizando Firebase Firestore.
+
 
 ---
 
@@ -27,7 +28,7 @@
 
 ## Estructura del proyecto 🗂️
 
-La estructura del proyecto fue pensada así para mantener mi código limpio, organizado y fácil de escalar:
+La estructura del proyecto fue pensada así para mantener el código limpio, organizado y fácil de escalar:
 
 ``` 
 vitalia-core-api/
@@ -45,24 +46,47 @@ vitalia-core-api/
 │   ├── controllers/
 │   │   ├── __init__.py
 │   │   ├── user_controller.py
-│   │   └── score_controller.py     
+│   │   ├── resource_controller.py
+│   │   └── score_controller.py
+│
+│   ├── database/
+│   │   └── database_connection.py       
 │
 │   ├── exceptions/
 │   │   ├── __init__.py
+│   │   ├── app_exceptions.py
+│   │   ├── client_exception.py
 │   │   ├── base_http_exceptions.py
 │   │   └── server_exceptions.py
+│
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   ├── base_repository.py
+│   │   ├── resource_repository.py
+│   │   ├── score_repository.py
+│   │   └── user_repository.py
 │
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   ├── v1/
 │   │   │   ├── __init__.py
 │   │   │   ├── score_routes.py
+│   │   │   ├── resource_routes.py
 │   │   │   ├── user_routes.py
-│   │   │   └── dependencies.py  
+│   │   │   └── dependencies.py
+│
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── v1/
+│   │   │   ├── __init__.py
+│   │   │   ├── score_service.py
+│   │   │   ├── resource_service.py
+│   │   │   └── user_service.py
 │
 │   ├── schemas/
 │   │   ├── __init__.py
 │   │   ├── paginated_schemas.py
+│   │   ├── resource_schemas.py
 │   │   ├── score_schemas.py
 │   │   └── user_schemas.py
 
@@ -148,7 +172,7 @@ Corré el archivo principal desde la terminal:
 python main.py
 ```
 
-Ya tenés todo listo para empezar a usar Wellness Matcher.
+Ya tenés todo listo para empezar a usar Vitalia Core API.
 
 <br />
 
@@ -157,7 +181,7 @@ Ya tenés todo listo para empezar a usar Wellness Matcher.
 ## ¿Quién está detrás de este proyecto? 🌷
 
 👩‍💻 Mi nombre es **Josefina Marsala**  
-💼 Entusiasta del bienestar digital y el diseño con propósito. Este proyecto forma parte de mi formación en Python, y es la base para una futura API de recomendaciones personalizadas integradas con front-end y bases de datos reales.
+💼 Soy entusiasta del bienestar digital y el diseño con propósito.
 
   - Github: [@jossmarsala](https://github.com/jossmarsala)  
   - Contacto: marsalahjosefina@gmail.com
