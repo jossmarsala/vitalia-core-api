@@ -37,15 +37,15 @@ class UserController:
         try:
             return await self.user_service.create(data)
         except ae.NotFoundError as ex:
-            logger.error(f'No se pudo crear el usuario: {data.name}')
+            logger.error(f'No se pudo crear el usuario')
             raise NotFound(ex.message, 'USER_CREATE_NOT_FOUND')
         except BaseHTTPException as ex:
             raise ex
         except Exception as ex:
             logger.critical(
-                f'Error desconocido al crear usuario "{data.name}": {ex}')
+                f'Error desconocido al crear usuario: {ex}')
             raise InternalServerError(
-                message=f'Error al crear usuario "{data.name}"',
+                message=f'Error al crear usuario',
                 exception_code='USER_UNHANDLED_ERROR'
             )
 

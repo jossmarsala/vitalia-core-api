@@ -38,3 +38,7 @@ class ResourceRepository(FirestoreBaseRepository):
         if criteria:
             all_resources = [r for r in all_resources if all(r.get(k) == v for k, v in criteria.items())]
         return len(all_resources)
+    
+    def get_all(self):
+        docs = self.collection.stream()
+        return [doc.to_dict() | {"id": doc.id} for doc in docs]
