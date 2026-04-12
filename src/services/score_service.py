@@ -99,75 +99,15 @@ class ScoreService():
         
     async def match_and_create(self, uid: str, user_data: dict) -> ScoreResponse:
         logger.debug(f'Matcheando preferencias para usuario {uid}')
-        resources = self.resource_repo.get_paginated(page=1, limit=1000)
-
-        user_prefs = {
-            "sleepQuality": str(user_data.get("sleepQuality", "")).strip().lower(),
-            "wellbeingGoals": [str(x).strip().lower() for x in user_data.get("wellbeingGoals", [])],
-            "stressLevel": str(user_data.get("stressLevel", "")).strip().lower(),
-            "restrictions": [str(x).strip().lower() for x in user_data.get("restrictions", [])],
-            "obstacles": [str(x).strip().lower() for x in user_data.get("obstacles", [])],
-            "dailyRoutine": str(user_data.get("dailyRoutine", "")).strip().lower(),
-            "diet": str(user_data.get("diet", "")).strip().lower(),
-            "disability": str(user_data.get("disability", "")).strip().lower(),
-            "lifestyle": str(user_data.get("lifestyle", "")).strip().lower(),
-            "physicalActivity": str(user_data.get("physicalActivity", "")).strip().lower(),
-        }
-
-        resource_scores = {}
-
-        for resource in resources:
-            doc_id = resource.get("id")
-            score = 0
-            for key, user_value in user_prefs.items():
-                resource_value = resource.get(key)
-                if isinstance(resource_value, list):
-                    resource_value = [str(x).strip().lower() for x in resource_value]
-                elif resource_value is not None:
-                    resource_value = str(resource_value).strip().lower()
-                else:
-                    resource_value = None
-
-                if isinstance(user_value, list):
-                    if isinstance(resource_value, list):
-                        matches = set(user_value) & set(resource_value)
-                        score += len(matches)
-                    elif isinstance(resource_value, str) and resource_value:
-                        if resource_value in user_value:
-                            score += 1
-
-                elif user_value and resource_value and user_value == resource_value:
-                    score += 1
-            resource_scores[doc_id] = score
-
-        planes_alimenticios = []
-        rutinas = []
-        articulos = []
-
-        sorted_resources = sorted(resource_scores.items(), key=lambda x: x[1], reverse=True)
-
-        for doc_id, points in sorted_resources:
-            if doc_id.startswith("diet") and len(planes_alimenticios) < 4:
-                planes_alimenticios.append({"resource_id": doc_id})
-            elif doc_id.startswith("routine") and len(rutinas) < 4:
-                rutinas.append({"resource_id": doc_id})
-            elif doc_id.startswith("article") and len(articulos) < 4:
-                articulos.append({"resource_id": doc_id})
-            if len(planes_alimenticios) == 4 and len(rutinas) == 4 and len(articulos) == 4:
-                break
-
-        while len(planes_alimenticios) < 4:
-            planes_alimenticios.append({"resource_id": {}})
-        while len(rutinas) < 4:
-            rutinas.append({"resource_id": {}})
-        while len(articulos) < 4:
-            articulos.append({"resource_id": {}})
+        
+        from src.recommendation.engine import recommend
+        result = recommend(user_data)
 
         score_obj = {
             "id": uid,
-            "planes_alimenticios": planes_alimenticios,
-            "rutinas": rutinas,
-            "articulos": articulos,
+            "planes_alimenticios": result.diets,
+            "rutinas": result.routines,
+            "articulos": result.articles,
         }
 
         raw = await self.score_repo.create_with_id(uid, score_obj)

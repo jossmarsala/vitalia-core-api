@@ -1,4 +1,5 @@
 from typing import List, Dict, Optional, Any
+from datetime import datetime
 
 from .base_repository import FirestoreBaseRepository
 
@@ -55,7 +56,18 @@ class ScoreRepository(FirestoreBaseRepository):
         docs = list(self.collection.limit(limit).offset(offset).stream())
         return [{**doc.to_dict(), "id": doc.id} for doc in docs]
 
-    def create_with_id(self, doc_id: str, data: dict):
-        self.collection.document(doc_id).set(data)
+    async def create_with_id(self, doc_id: str, data: dict):
+        now = datetime.utcnow().isoformat()
+        
+        # Check if doc exists to retain createdAt
+        doc = self.collection.document(doc_id).get()
+        if doc.exists:
+            existing_data = doc.to_dict()
+            data["createdAt"] = existing_data.get("createdAt", now)
+        else:
+            data["createdAt"] = data.get("createdAt", now)
+            
+        data["updatedAt"] = now
+        self.collection.document(doc_id).set(data, merge=True)
         doc = self.collection.document(doc_id).get()
         return doc.to_dict() | {"id": doc.id}
