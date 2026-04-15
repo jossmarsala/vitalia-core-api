@@ -1,6 +1,7 @@
 import logging
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from .routes import api_router
 from .config.logger import configure_logging
@@ -14,6 +15,14 @@ api_server = FastAPI(
     description="API responsable de ofrecer recomendaciones personalizadas de recursos de bienestar en la plataforma Vitalia Selfcare.",
     version="0.1.0",
     title="Vitalia Core")
+
+api_server.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir solicitudes desde Vercel o localhost
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @api_server.get("/")
 async def root():
