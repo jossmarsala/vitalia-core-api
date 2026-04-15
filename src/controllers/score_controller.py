@@ -6,7 +6,8 @@ from src.schemas.score_schemas import (
     NewScoreRequest, 
     UpdateScoreRequest, 
     ScoreResponse, 
-    ScorePaginatedResponse
+    ScorePaginatedResponse,
+    GenerateScoreRequest,
 )
 
 import src.exceptions.app_exceptions as ae
@@ -93,4 +94,17 @@ class ScoreController():
             raise InternalServerError(
                 message=f'Error al eliminar puntaje #{score_id}',
                 exception_code="SCORE_UNHANDLED_ERROR"
+            )
+
+    async def generate(self, data: GenerateScoreRequest) -> ScoreResponse:
+        try:
+            user_prefs = data.model_dump(exclude={"uid"})
+            return await self.score_service.generate(data.uid, user_prefs)
+        except BaseHTTPException as ex:
+            raise ex
+        except Exception as ex:
+            logger.critical(f'Error al generar score para uid={data.uid}: {ex}')
+            raise InternalServerError(
+                message=f'Error al generar recomendaciones para el usuario',
+                exception_code="SCORE_GENERATE_ERROR"
             )

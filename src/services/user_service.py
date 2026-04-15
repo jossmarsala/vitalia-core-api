@@ -60,7 +60,16 @@ class UserService:
 
         raw_user = await self.user_repo.create(data.model_dump(mode='json'))
         uid = raw_user["uid"]
-        await score_service.match_and_create(uid, raw_user)
+        logger.info(f"Usuario creado con uid='{uid}'. Iniciando recomendaciones...")
+
+        try:
+            await score_service.match_and_create(uid, raw_user)
+            logger.info(f"Score guardado correctamente para uid='{uid}'")
+        except Exception as e:
+            logger.error(f"Error al generar o guardar score para uid='{uid}': {e}")
+            logger.exception(e)
+            # No lanzamos el error para no bloquear la creación del usuario
+
         return UserResponse.model_validate(raw_user)
 
     async def get_by_id(self, uid: str) -> UserResponse:

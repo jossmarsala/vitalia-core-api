@@ -98,10 +98,49 @@ class ScoreService():
         return None
         
     async def match_and_create(self, uid: str, user_data: dict) -> ScoreResponse:
-        logger.debug(f'Matcheando preferencias para usuario {uid}')
+        logger.info(f'[Score] Iniciando recomendación para uid={uid}')
         
         from src.recommendation.engine import recommend
         result = recommend(user_data)
+
+        logger.info(f'[Score] Resultado del engine: diets={result.diets}, routines={result.routines}, articles={result.articles}')
+
+        score_obj = {
+            "id": uid,
+            "planes_alimenticios": result.diets,
+            "rutinas": result.routines,
+            "articulos": result.articles,
+        }
+
+        logger.info(f'[Score] Guardando en Firestore con doc_id={uid}')
+        raw = await self.score_repo.create_with_id(uid, score_obj)
+        logger.info(f'[Score] Guardado correctamente: {raw}')
+
+        return ScoreResponse.model_validate(raw)
+
+    async def generate(self, uid: str, user_prefs: dict) -> ScoreResponse:
+        """
+        Genera y persiste las recomendaciones para un usuario ya registrado.
+        Llamado directamente desde el frontend tras el registro con Firebase Auth.
+
+        Args:
+            uid: Firebase Auth UID del usuario (usado como doc ID en 'scores').
+            user_prefs: Respuestas del cuestionario (disability, physicalActivity, etc.)
+        """
+        logger.info(f'[Score] generate() llamado para uid={uid}')
+
+        # Verificar si ya existe un score para este uid (idempotencia)
+        existing = await self.score_repo.get_by_id(uid)
+        if existing:
+            logger.info(f'[Score] Ya existe un score para uid={uid}, sobreescribiendo.')
+
+        from src.recommendation.engine import recommend
+        result = recommend(user_prefs)
+
+        logger.info(
+            f'[Score] Engine result — diets={result.diets}, '
+            f'routines={result.routines}, articles={result.articles}'
+        )
 
         score_obj = {
             "id": uid,
@@ -111,4 +150,5 @@ class ScoreService():
         }
 
         raw = await self.score_repo.create_with_id(uid, score_obj)
+        logger.info(f'[Score] Score guardado en Firestore para uid={uid}')
         return ScoreResponse.model_validate(raw)

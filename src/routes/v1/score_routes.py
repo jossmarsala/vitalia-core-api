@@ -8,6 +8,7 @@ from src.schemas.score_schemas import (
     UpdateScoreRequest,
     ScoreResponse,
     ScorePaginatedResponse,
+    GenerateScoreRequest,
 )
 
 
@@ -144,3 +145,32 @@ async def delete_by_id(
             detail=f"Error al eliminar puntaje: {ex}",
         )
     return None
+
+
+@router.post(
+    "/generate",
+    name="Generar recomendaciones para un usuario",
+    description=(
+        "Ejecuta el motor de recomendaciones con los datos del cuestionario "
+        "y persiste el resultado en la colección 'scores' de Firestore usando "
+        "el Firebase Auth UID como ID del documento. "
+        "Llamar desde el frontend tras el registro exitoso."
+    ),
+    status_code=status.HTTP_201_CREATED,
+    response_description="Score generado y guardado correctamente.",
+    responses={
+        201: {"description": "Score generado y guardado."},
+        400: {"description": "Bad Request: Revisa el body."},
+        500: {"description": "Error al generar recomendaciones."},
+    },
+)
+async def generate_score(payload: GenerateScoreRequest) -> ScoreResponse:
+    try:
+        return await score_controller.generate(payload)
+    except HTTPException:
+        raise
+    except Exception as ex:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error al generar score: {ex}",
+        )
