@@ -6,24 +6,17 @@ import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
 if not firebase_admin._apps:
-    # En Render: lee el JSON de credenciales desde una variable de entorno
-    # En local: lee desde el archivo firebase_credentials.json
-    credentials_json_str = os.getenv("FIREBASE_CREDENTIALS_JSON")
+    # Puede estar en cualquiera de estas dos variables según dónde lo configuraste
+    raw_cred = os.getenv("FIREBASE_CREDENTIALS_JSON") or os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
-    if credentials_json_str:
-        # Modo Render: parsea el JSON del env var y crea un archivo temporal
-        credentials_dict = json.loads(credentials_json_str)
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as tmp:
-            json.dump(credentials_dict, tmp)
-            tmp_path = tmp.name
-        cred = credentials.Certificate(tmp_path)
+    if raw_cred and raw_cred.strip().startswith("{"):
+        # El usuario ha pegado el JSON como texto plano en las variables de entorno
+        credentials_dict = json.loads(raw_cred)
+        cred = credentials.Certificate(credentials_dict)
     else:
-        # Modo local: usa el archivo físico
-        service_account_path = os.getenv(
-            "GOOGLE_APPLICATION_CREDENTIALS",
-            "./src/database/firebase_credentials.json"
-        )
-        cred = credentials.Certificate(service_account_path)
+        # Busca el archivo local físico
+        file_path = raw_cred if raw_cred else "./src/database/firebase_credentials.json"
+        cred = credentials.Certificate(file_path)
 
     firebase_admin.initialize_app(cred)
 
