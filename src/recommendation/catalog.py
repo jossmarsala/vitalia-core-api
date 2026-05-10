@@ -153,6 +153,8 @@ DIET_08 = Resource(
         OBSTACLE_ELDERLY: 2.0,
         PROFILE_LIMITED_MOBILITY: 3.0,
     },
+    # Strict: only for users with disability OR reduced mobility OR elderly
+    penalty_if_missing=frozenset({PROFILE_LIMITED_MOBILITY}),
 )
 
 DIET_09 = Resource(
@@ -333,6 +335,8 @@ ROUTINE_07 = Resource(
         ACTIVITY_TRANSITION: 2.0,
         DISABILITY_YES: 1.5,
     },
+    # Strict: only for users who explicitly marked elderly-related option
+    penalty_if_missing=frozenset({OBSTACLE_ELDERLY}),
 )
 
 ROUTINE_08 = Resource(
@@ -484,6 +488,8 @@ ARTICLE_07 = Resource(
         OBSTACLE_PHYSICAL: 3.0,
         ACTIVITY_SEDENTARY: 2.0,
     },
+    # Strict: only for users with disability or reduced mobility
+    penalty_if_missing=frozenset({DISABILITY_YES}),
 )
 
 ARTICLE_08 = Resource(
@@ -509,6 +515,8 @@ ARTICLE_09 = Resource(
         LIFESTYLE_ECOLOGICAL: 2.0,
         LIFESTYLE_BALANCE: 1.5,
     },
+    # Strict: only for vegetarian/vegan users
+    penalty_if_missing=frozenset({DIET_VEGETARIAN}),
 )
 
 ARTICLE_10 = Resource(
@@ -551,6 +559,8 @@ ARTICLE_12 = Resource(
         GOAL_IMPROVE_QUALITY: 2.0,
         LIFESTYLE_BALANCE: 1.5,
     },
+    # Strict: only for users who explicitly marked elderly-related option
+    penalty_if_missing=frozenset({OBSTACLE_ELDERLY}),
 )
 
 ARTICLE_13 = Resource(
