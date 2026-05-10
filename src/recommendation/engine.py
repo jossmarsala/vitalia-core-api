@@ -34,6 +34,10 @@ def _pick_top(scored: list[tuple], n: int, category_name: str) -> list[str]:
     include the next-best resources anyway (better to recommend something
     than nothing). Only resources with score > MINIMUM_SCORE are included,
     but if we can't reach N items, we fill from the top of whatever remains.
+
+    Diversity: limits how many resources sharing the same dominant feature
+    can appear in the final selection (MAX_SAME_DOMINANT). This prevents
+    recommending 3 "busy schedule" diets when the user also has sleep issues.
     
     Args:
         scored: List of (Resource, score) tuples, already sorted by score desc.
@@ -47,15 +51,33 @@ def _pick_top(scored: list[tuple], n: int, category_name: str) -> list[str]:
     # Take top N, even if some scores are 0 or slightly negative
     # (only hard-penalized resources will have very negative scores)
     MINIMUM_THRESHOLD = -5.0
-    
+    # Max resources sharing the same dominant feature in one recommendation set
+    MAX_SAME_DOMINANT = 2
+
+    def _dominant_feature(resource) -> str:
+        """Return the feature with the highest weight for this resource."""
+        if not resource.weights:
+            return resource.id
+        return max(resource.weights, key=resource.weights.get)
+
     selected = []
+    dominant_counts: dict[str, int] = {}
+
     for resource, score in scored:
         if len(selected) >= n:
             break
-        if score > MINIMUM_THRESHOLD:
-            selected.append(resource.id)
+        if score <= MINIMUM_THRESHOLD:
+            continue
 
-    # If we still don't have enough, relax and fill from remaining
+        dominant = _dominant_feature(resource)
+        current_count = dominant_counts.get(dominant, 0)
+        if current_count >= MAX_SAME_DOMINANT:
+            continue  # skip to maintain diversity
+
+        selected.append(resource.id)
+        dominant_counts[dominant] = current_count + 1
+
+    # If we still don't have enough, relax diversity and fill from remaining
     if len(selected) < n:
         for resource, score in scored:
             if resource.id not in selected:

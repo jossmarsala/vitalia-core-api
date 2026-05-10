@@ -71,6 +71,15 @@ LIFESTYLE_BALANCE = "lifestyle:balance"
 LIFESTYLE_ECOLOGICAL = "lifestyle:ecological"
 LIFESTYLE_WORK_INTENSIVE = "lifestyle:work_intensive"
 
+# ──────────────────────────────────────────────────────────────────────
+# Derived / compound features — activated by combinations of base tags.
+# These capture emotional patterns that single tags cannot express.
+# ──────────────────────────────────────────────────────────────────────
+PROFILE_BURNOUT = "profile:burnout"
+PROFILE_EMOTIONAL_OVERWHELM = "profile:emotional_overwhelm"
+PROFILE_LIMITED_MOBILITY = "profile:limited_mobility"
+PROFILE_SLEEP_CRISIS = "profile:sleep_crisis"
+
 
 # ──────────────────────────────────────────────────────────────────────
 # Value mappings — exact strings from form.html → feature tags
@@ -226,5 +235,31 @@ def extract_user_features(user_data: dict) -> Set[str]:
         tags = _map_list(raw_list, mapping, field_name)
         features.update(tags)
 
+    # ── Derived features: compound emotional patterns ────────────
+    # Burnout: high stress + fatigue + time pressure (or self-demand)
+    if STRESS_YES in features and OBSTACLE_FATIGUE in features and (
+        OBSTACLE_TIME in features or OBSTACLE_SELF_DEMAND in features
+    ):
+        features.add(PROFILE_BURNOUT)
+
+    # Emotional overwhelm: stress + self-demand + poor sleep
+    if STRESS_YES in features and OBSTACLE_SELF_DEMAND in features and (
+        SLEEP_PROBLEMS in features or SLEEP_5TO7H in features
+    ):
+        features.add(PROFILE_EMOTIONAL_OVERWHELM)
+
+    # Sleep crisis: sleep problems + stress or fatigue
+    if SLEEP_PROBLEMS in features and (
+        STRESS_YES in features or OBSTACLE_FATIGUE in features
+    ):
+        features.add(PROFILE_SLEEP_CRISIS)
+
+    # Limited mobility: disability + sedentary or physical obstacles
+    if DISABILITY_YES in features and (
+        ACTIVITY_SEDENTARY in features or OBSTACLE_PHYSICAL in features
+    ):
+        features.add(PROFILE_LIMITED_MOBILITY)
+
     logger.debug(f"Extracted {len(features)} features from user data: {features}")
     return features
+

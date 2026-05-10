@@ -43,11 +43,15 @@ DIET_01 = Resource(
     category="diet",
     features=frozenset({
         STRESS_YES, GOAL_REDUCE_STRESS, SLEEP_PROBLEMS,
+        OBSTACLE_SELF_DEMAND, PROFILE_EMOTIONAL_OVERWHELM, PROFILE_BURNOUT,
     }),
     weights={
         STRESS_YES: 3.0,
         GOAL_REDUCE_STRESS: 3.0,
-        SLEEP_PROBLEMS: 1.5,
+        SLEEP_PROBLEMS: 2.5,
+        OBSTACLE_SELF_DEMAND: 2.0,
+        PROFILE_EMOTIONAL_OVERWHELM: 3.0,
+        PROFILE_BURNOUT: 2.5,
     },
 )
 
@@ -124,11 +128,14 @@ DIET_07 = Resource(
     category="diet",
     features=frozenset({
         GOAL_IMPROVE_SLEEP, SLEEP_PROBLEMS, STRESS_YES,
+        OBSTACLE_FATIGUE, PROFILE_SLEEP_CRISIS,
     }),
     weights={
         GOAL_IMPROVE_SLEEP: 3.0,
         SLEEP_PROBLEMS: 3.0,
-        STRESS_YES: 1.5,
+        STRESS_YES: 2.0,
+        OBSTACLE_FATIGUE: 2.0,
+        PROFILE_SLEEP_CRISIS: 3.0,
     },
 )
 
@@ -137,13 +144,14 @@ DIET_08 = Resource(
     category="diet",
     features=frozenset({
         DISABILITY_YES, OBSTACLE_PHYSICAL, ACTIVITY_SEDENTARY,
-        OBSTACLE_ELDERLY,
+        OBSTACLE_ELDERLY, PROFILE_LIMITED_MOBILITY,
     }),
     weights={
         DISABILITY_YES: 4.0,
         OBSTACLE_PHYSICAL: 3.0,
         ACTIVITY_SEDENTARY: 2.0,
         OBSTACLE_ELDERLY: 2.0,
+        PROFILE_LIMITED_MOBILITY: 3.0,
     },
 )
 
@@ -182,13 +190,15 @@ DIET_11 = Resource(
     category="diet",
     features=frozenset({
         GOAL_IMPROVE_QUALITY, LIFESTYLE_WORK_INTENSIVE, STRESS_YES,
-        OBSTACLE_SELF_DEMAND,
+        OBSTACLE_SELF_DEMAND, PROFILE_BURNOUT, PROFILE_EMOTIONAL_OVERWHELM,
     }),
     weights={
         GOAL_IMPROVE_QUALITY: 2.0,
         LIFESTYLE_WORK_INTENSIVE: 2.0,
         STRESS_YES: 3.0,
         OBSTACLE_SELF_DEMAND: 3.0,
+        PROFILE_BURNOUT: 3.0,
+        PROFILE_EMOTIONAL_OVERWHELM: 2.5,
     },
 )
 
@@ -197,11 +207,14 @@ DIET_12 = Resource(
     category="diet",
     features=frozenset({
         OBSTACLE_FATIGUE, GOAL_IMPROVE_QUALITY, ACTIVITY_TRANSITION,
+        PROFILE_BURNOUT, SLEEP_5TO7H,
     }),
     weights={
         OBSTACLE_FATIGUE: 3.0,
         GOAL_IMPROVE_QUALITY: 2.0,
         ACTIVITY_TRANSITION: 2.0,
+        PROFILE_BURNOUT: 2.5,
+        SLEEP_5TO7H: 1.5,
     },
 )
 
@@ -277,13 +290,19 @@ ROUTINE_05 = Resource(
     features=frozenset({
         GOAL_REDUCE_STRESS, STRESS_YES, LIFESTYLE_SPIRITUAL,
         LIFESTYLE_BALANCE, SLEEP_PROBLEMS,
+        OBSTACLE_FATIGUE, OBSTACLE_SELF_DEMAND,
+        PROFILE_EMOTIONAL_OVERWHELM, PROFILE_BURNOUT,
     }),
     weights={
         GOAL_REDUCE_STRESS: 3.0,
         STRESS_YES: 3.0,
         LIFESTYLE_SPIRITUAL: 2.0,
         LIFESTYLE_BALANCE: 1.5,
-        SLEEP_PROBLEMS: 1.5,
+        SLEEP_PROBLEMS: 2.0,
+        OBSTACLE_FATIGUE: 2.0,
+        OBSTACLE_SELF_DEMAND: 2.0,
+        PROFILE_EMOTIONAL_OVERWHELM: 3.0,
+        PROFILE_BURNOUT: 2.5,
     },
 )
 
@@ -353,11 +372,14 @@ ROUTINE_10 = Resource(
     category="routine",
     features=frozenset({
         GOAL_IMPROVE_SLEEP, SLEEP_PROBLEMS, STRESS_YES,
+        OBSTACLE_FATIGUE, PROFILE_SLEEP_CRISIS,
     }),
     weights={
         GOAL_IMPROVE_SLEEP: 3.0,
         SLEEP_PROBLEMS: 3.0,
         STRESS_YES: 2.0,
+        OBSTACLE_FATIGUE: 1.5,
+        PROFILE_SLEEP_CRISIS: 3.0,
     },
 )
 
@@ -397,10 +419,13 @@ ARTICLE_03 = Resource(
     category="article",
     features=frozenset({
         GOAL_IMPROVE_QUALITY, OBSTACLE_FATIGUE,
+        LIFESTYLE_BALANCE, PROFILE_BURNOUT,
     }),
     weights={
         GOAL_IMPROVE_QUALITY: 2.0,
-        OBSTACLE_FATIGUE: 2.0,
+        OBSTACLE_FATIGUE: 2.5,
+        LIFESTYLE_BALANCE: 1.5,
+        PROFILE_BURNOUT: 2.5,
     },
 )
 
@@ -423,11 +448,15 @@ ARTICLE_05 = Resource(
     category="article",
     features=frozenset({
         STRESS_YES, GOAL_REDUCE_STRESS, OBSTACLE_SELF_DEMAND,
+        SLEEP_PROBLEMS, PROFILE_EMOTIONAL_OVERWHELM, PROFILE_BURNOUT,
     }),
     weights={
         STRESS_YES: 3.0,
         GOAL_REDUCE_STRESS: 3.0,
-        OBSTACLE_SELF_DEMAND: 2.0,
+        OBSTACLE_SELF_DEMAND: 2.5,
+        SLEEP_PROBLEMS: 1.5,
+        PROFILE_EMOTIONAL_OVERWHELM: 3.0,
+        PROFILE_BURNOUT: 2.5,
     },
 )
 
@@ -487,11 +516,14 @@ ARTICLE_10 = Resource(
     category="article",
     features=frozenset({
         GOAL_IMPROVE_SLEEP, SLEEP_PROBLEMS, STRESS_YES,
+        OBSTACLE_FATIGUE, PROFILE_SLEEP_CRISIS,
     }),
     weights={
         GOAL_IMPROVE_SLEEP: 3.0,
         SLEEP_PROBLEMS: 3.0,
-        STRESS_YES: 1.5,
+        STRESS_YES: 2.0,
+        OBSTACLE_FATIGUE: 1.5,
+        PROFILE_SLEEP_CRISIS: 3.0,
     },
 )
 

@@ -20,6 +20,10 @@ logger = logging.getLogger(__name__)
 # that is NOT present in the user's profile.
 MISSING_PENALTY = -10.0
 
+# Maximum bonus for coverage ratio (how much of the user's profile
+# a resource covers). Kept small to not override weight decisions.
+COVERAGE_BONUS_MAX = 2.0
+
 
 def score_resource(user_features: Set[str], resource: Resource) -> float:
     """
@@ -49,6 +53,14 @@ def score_resource(user_features: Set[str], resource: Resource) -> float:
     missing_required = resource.penalty_if_missing - user_features
     for feature in missing_required:
         score += MISSING_PENALTY
+
+    # Coverage bonus: reward resources that cover a higher proportion
+    # of the user's needs. A resource matching 4/5 user features is more
+    # relevant than one matching 2/8, even if raw dot-product is similar.
+    # Max bonus: COVERAGE_BONUS_MAX (keeps it subordinate to weights).
+    if user_features and matching_features:
+        coverage_ratio = len(matching_features) / len(user_features)
+        score += coverage_ratio * COVERAGE_BONUS_MAX
 
     return score
 
